@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">GIAC_app_v01</string>
+    <string name="nombreApp">GIAC</string>
+    <string name="app_name">pruebaRegistro_v01</string>
+    <string-array name="TipoPermiso">
+        <item>A1</item>
+        <item>A2</item>
+        <item>A</item>
+        <item>B</item>
+        <item>C1</item>
+        <item>C</item>
+    </string-array>
+
+    <string name="descripcion">Rellena los campos solicitados para poder realizar el registro correctamente</string>
+
+
 </resources>
