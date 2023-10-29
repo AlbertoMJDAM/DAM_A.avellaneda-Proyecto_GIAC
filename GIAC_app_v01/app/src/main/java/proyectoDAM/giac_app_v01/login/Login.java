@@ -28,6 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import proyectoDAM.giac_app_v01.R;
+import proyectoDAM.giac_app_v01.Trabajador.Trabajador;
+import proyectoDAM.giac_app_v01.Usuario.Usuario;
 import proyectoDAM.giac_app_v01.registroUsuario.RegistroUsuarios;
 
 
@@ -96,6 +98,17 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*boolean esUsuario = ComprobarUsuario();
+                if(esUsuario){
+                    Toast.makeText(getBaseContext(), "Usuario existe",Toast.LENGTH_SHORT).show();
+                }else{
+                    boolean esTrabajador = ComprobarEmpleado();
+                    if(esTrabajador){
+                        Toast.makeText(getBaseContext(), "Empleado existe",Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getBaseContext(), "Usuario o contrasena incorrectos", Toast.LENGTH_SHORT).show();
+                    }
+                }*/
                 ComprobarUsuario();
             }
         });
@@ -106,16 +119,52 @@ public class Login extends AppCompatActivity {
          */
     }
 
-    //METODO QUE CONSULTA EN LA BBDD SI EXISTE EL USUARIO CON SU CONTRASENA
+    //METODO QUE CONSULTA EN LAS BBDD DE USUARIOS SI EXISTE EL USUARIO CON SU CONTRASENA
+    //SI EXISTE, LANZA LA PANTALLA PRINCIPAL DE USUARIOS, SI NO, COMPRUEBA EN TRABAJADOR
     public void ComprobarUsuario(){
-        String url = "https://appgiac.000webhostapp.com/validar_usuario.php";
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+        String urlUsuarios = "https://appgiac.000webhostapp.com/validar_usuario.php";
+        String a = "";
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, urlUsuarios, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(!response.isEmpty()){
-                    Toast.makeText(getBaseContext(), "Usuario existe",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getBaseContext(), "Usuario existe ",Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getApplicationContext(), Usuario.class);
+                    startActivity(intent);
+                }else {
+                    ComprobarEmpleado();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getBaseContext(), error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams() throws AuthFailureError {
+                Map<String,String> parametros=new HashMap<String,String>();
+                parametros.put("Nombre_Usuario", edtUser.getText().toString());
+                parametros.put("Password", edtPass.getText().toString());
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    //METODO QUE CONSULTA EN LAS BBDD DE EMPLEADOS SI EXISTE EL EMPLEADO CON SU CONTRASENA
+    //SI EXISTE, LANZA LA PANTALLA PRINCIPAL DE EMPLEADOS
+    public void ComprobarEmpleado(){
+        String urlEmpleados = "https://appgiac.000webhostapp.com/validar_empleado.php";
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, urlEmpleados, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(!response.isEmpty()){
+                    Intent intent= new Intent(getApplicationContext(), Trabajador.class);
+                    startActivity(intent);
                 }else{
-                    Toast.makeText(getBaseContext(), "Usuario o contrasena incorrectos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Usuario o contrasena incorrectos", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
