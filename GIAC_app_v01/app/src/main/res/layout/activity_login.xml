@@ -5,19 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondogl"
-    tools:context=".login.Login_"
+    tools:context=".login.Login"
     tools:layout_editor_absoluteX="-3dp"
     tools:layout_editor_absoluteY="0dp">
 
     <EditText
         android:id="@+id/edtUser"
         android:layout_width="300dp"
-        android:layout_height="55dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="350dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/btn_contorno_blanco_l"
         android:drawableLeft="@drawable/ico_user"
+        android:textAlignment="textStart"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,9 +27,8 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="1dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,21 +56,21 @@
                 android:layout_height="55dp"
                 android:background="@drawable/btn_contorno_blanco_l"
                 android:drawableStart="@drawable/ico_lock"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:inputType="textPassword"
                 tools:layout_editor_absoluteX="66dp"
                 tools:layout_editor_absoluteY="508dp" />
-
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="409dp"
-        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="20dp"
         android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,17 +80,19 @@
             android:id="@+id/cbRecordar"
             style="@style/TextosBlancos"
             android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="55dp"
             android:text="Recuerdame"
-            android:textSize="14dp" />
+            android:textSize="14dp"/>
 
         <TextView
             android:id="@+id/tvRem"
             style="@style/TextosBlancos"
-            android:layout_width="142dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:layout_height="20dp"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="20dp"
             android:text="¿Olvido su contraseña?"
             android:textSize="14dp" />
     </LinearLayout>
@@ -109,20 +111,17 @@
         style="@style/TextosBlancos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="25dp"
         android:text="REGISTRATE"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
-
     <Button
         android:id="@+id/btnReg"
         style="@style/Boton_azul_L"
-        android:layout_height="40dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="68dp"
         android:text="Nuevo Usuario"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -2,7 +2,9 @@ package proyectoDAM.giac_app_v01.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -38,9 +40,12 @@ public class Login extends AppCompatActivity {
     Button btnLogin,btnReg;
     EditText edtUser;
     TextInputEditText edtPass;
-
     TextView tvRem;
     CheckBox cbRecordar;
+    SharedPreferences preferencias;
+    SharedPreferences.Editor editorPreferencias;
+    String llave = "sesion";
+    String userGuardado = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +57,13 @@ public class Login extends AppCompatActivity {
         edtPass = (TextInputEditText) findViewById(R.id.textInputEditText);
         tvRem = (TextView) findViewById(R.id.tvRem);
         cbRecordar = (CheckBox) findViewById(R.id.cbRecordar);
-
+        preferencias = this.getPreferences(Context.MODE_PRIVATE);
+        editorPreferencias = preferencias.edit();
+        //AL INICIAR, REVISA SI SE RECORDO USUARIO Y LO ESTABLECE ASI COMO MARCHA EL CHECK
+        if(RevisarSesion()){
+            edtUser.setText(this.preferencias.getString(userGuardado, ""));
+            cbRecordar.setChecked(true);
+        }
 
         // METODO ONCLICK TEXTO "NUEVO USUARIO". AL HACER CLICK ENVIA A INTENT DE REGISTRO DE USUARIO
         btnReg.setOnClickListener(new View.OnClickListener() {
@@ -94,29 +105,14 @@ public class Login extends AppCompatActivity {
 
         // METODO ONCLICK BOTON "ACCEDER". AL HACER CLICK COMPRUEBA QUE EL USUARIO Y CONTRASENA
         // EXISTE Y DERIBAN A PANTALLA DE USUARIO O PANTALLA DE EMPLEADO
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*boolean esUsuario = ComprobarUsuario();
-                if(esUsuario){
-                    Toast.makeText(getBaseContext(), "Usuario existe",Toast.LENGTH_SHORT).show();
-                }else{
-                    boolean esTrabajador = ComprobarEmpleado();
-                    if(esTrabajador){
-                        Toast.makeText(getBaseContext(), "Empleado existe",Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(getBaseContext(), "Usuario o contrasena incorrectos", Toast.LENGTH_SHORT).show();
-                    }
-                }*/
+                GuardarSesion(cbRecordar.isChecked());
                 ComprobarUsuario();
+
             }
         });
-
-        /* PENDIENTE:
-            - METODO ONCLICK DE ACCESO A LA APP CON NOMBRE DE USUARIO Y CONTRASEÑA
-            - GUARDAR DATOS DE USUARUI CON SHARED-PREFERENCES DEL PROPIO TELEFONO
-         */
     }
 
     //METODO QUE CONSULTA EN LAS BBDD DE USUARIOS SI EXISTE EL USUARIO CON SU CONTRASENA
@@ -185,4 +181,16 @@ public class Login extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    //METODO QUE REALIZA LA GESTION DE GUARDAR EL USUARIO Y EL CHECK DE GUARDAR SESION
+    public void GuardarSesion(boolean chequear){
+        editorPreferencias.putBoolean(llave, chequear);
+        editorPreferencias.putString(userGuardado, edtUser.getText().toString());
+        editorPreferencias.apply();
+    }
+
+    //METODO QUE CONPRUEBA AL ARRANCAR SI EL CHECK DE GUARDAR SESION ESTABA MARCADO
+    public Boolean RevisarSesion(){
+        boolean sesion = this.preferencias.getBoolean(llave, false);
+        return sesion;
+    }
 }
