@@ -11,6 +11,20 @@
     </string-array>
 
     <string name="descripcion">Rellena los campos solicitados para poder realizar el registro correctamente</string>
+    <string name="tutoriales">¿Necesitas saber como funciona la aplicacion?\nPulsa aqui y te enseñamos.</string>
+    <string name="TituloINC">NOTIFICAR UNA INCIDENCIA</string>
+    <string name="TituloACC">NOTIFICAR UN ACCIDENTE</string>
+    <string name="TituloASI">CONSULTAR ASISTENTES</string>
+    <string name="TituloDOC">MIS DOCUMENTOS</string>
+    <string name="TituloAYU">SOLICITA AYUDA</string>
+
+    <string name="incidencia">Si has tenido alguna avería, un percance leve o has detectado algún desperfecto en la carretera\nPincha en la imagen y lo solucionaremos.</string>
+    <string name="accidente">¿Has tenido un accidente? Tranquilo, no pierdas la calma.Pincha en
+        la imagen y te ayudaremos con la máxima brevedad. </string>
+    <string name="asitencia">¿Necesitas información sobre tu accidente? Pincha en la imagen y consulta a los agentes\nque te atendieron.</string>
+    <string name="archivos"> Revisa la documentación de tus partes activos pinchando en la imagen superior.</string>
+    <string name="ayuda"> Pulsa en la imagen superior y te ayudaremos con lo que necesites.</string>
+
 
 
 </resources>
