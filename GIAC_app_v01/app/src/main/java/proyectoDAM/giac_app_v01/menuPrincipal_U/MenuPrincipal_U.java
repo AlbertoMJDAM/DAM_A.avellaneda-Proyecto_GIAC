@@ -47,6 +47,10 @@ public class MenuPrincipal_U extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principalu);
 
+        Bundle extras = getIntent().getExtras();
+        String datos = extras.getString("datos");
+        Toast.makeText(getApplicationContext(), datos, Toast.LENGTH_LONG).show();
+
         // Damos valor a los elementos del menu principal:
         tvBbienvenida = findViewById(R.id.tvBienvenida);
         tvBbienvenida.setText("Bienvenido " + usuaruioLogin); //Traer desde la ventana de login

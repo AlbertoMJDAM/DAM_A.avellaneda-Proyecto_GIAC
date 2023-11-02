@@ -15,10 +15,10 @@
         android:theme="@style/Theme"
         tools:targetApi="31">
         <activity
-            android:name=".Usuario.Usuario"
+            android:name=".Trabajador.Trabajador"
             android:exported="false" />
         <activity
-            android:name=".Trabajador.Trabajador"
+            android:name=".menuPrincipal_U.MenuPrincipal_U"
             android:exported="false" />
         <activity
             android:name=".login.Login"

@@ -31,7 +31,7 @@ import java.util.Map;
 
 import proyectoDAM.giac_app_v01.R;
 import proyectoDAM.giac_app_v01.Trabajador.Trabajador;
-import proyectoDAM.giac_app_v01.Usuario.Usuario;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.MenuPrincipal_U;
 import proyectoDAM.giac_app_v01.registroUsuario.RegistroUsuarios;
 
 
@@ -110,7 +110,6 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 GuardarSesion(cbRecordar.isChecked());
                 ComprobarUsuario();
-
             }
         });
     }
@@ -124,8 +123,9 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if(!response.isEmpty()){
-                    //Toast.makeText(getBaseContext(), "Usuario existe ",Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(getApplicationContext(), Usuario.class);
+
+                    Intent intent=new Intent(getApplicationContext(), MenuPrincipal_U.class);
+                    intent.putExtra("datos", response);
                     startActivity(intent);
                 }else {
                     ComprobarEmpleado();

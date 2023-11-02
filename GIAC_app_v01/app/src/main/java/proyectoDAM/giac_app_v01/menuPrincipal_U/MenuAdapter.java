@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import proyectoDAM.giac_app_v01.R;
+
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     MediaPlayer incidencia,accidente,asistencia,documentos,ayuda;
     int [] imagenes;
