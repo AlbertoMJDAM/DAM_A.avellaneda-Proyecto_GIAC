@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    android:layout_margin="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imagen"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imagen"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/descripcion"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textSize="13dp"
+            android:maxLines="4"
+            android:drawablePadding="10dp"
+            android:ellipsize="end"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titulo"
+            android:textStyle="italic"/>
+
+        <ImageView
+            android:id="@+id/audio"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="15dp"
+            android:layout_below="@+id/titulo"
+            android:onClick="audio"
+            android:layout_toRightOf="@+id/descripcion"
+            android:src="@drawable/audio"
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
+</LinearLayout>
