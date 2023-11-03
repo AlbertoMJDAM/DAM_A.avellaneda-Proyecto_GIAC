@@ -76,7 +76,7 @@ public class RegistroUsuarios extends AppCompatActivity {
         // Prueba en LocalHost
         //maxID("http://192.168.1.134/BBDD_giac/mostrar_max_usu.php");
         //Prueba en webhost
-        maxID("https://giacdam.000webhostapp.com/mostrar_max_usu.php");
+        maxID("https://appgiac.000webhostapp.com/mostrar_max_usu.php");
 
         // METODO ONCLICK DE BOTON "GUARDAR" PARA INSERTAR DATOS EN LA URL INDICADA EN EL METODO "insertaUsuarios"
         // TRAS LA VALIDACION DE LOS DATOS INSERTADOS MEDIANTE LOS METODOS DE VALIDACION.
