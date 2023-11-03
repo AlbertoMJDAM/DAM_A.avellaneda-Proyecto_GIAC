@@ -134,7 +134,7 @@ public class RegistroUsuarios extends AppCompatActivity {
                     // Prueba en LocalHost
                     //insertaUsuarios("http://192.168.1.134/BBDD_giac/insertar_usuario.php");
                     // Prueba en WebHost
-                    insertaUsuarios("https://giacdam.000webhostapp.com/insertar_usuario.php");
+                    insertaUsuarios("https://appgiac.000webhostapp.com/insertar_usuario.php");
                 }
             }
         });
