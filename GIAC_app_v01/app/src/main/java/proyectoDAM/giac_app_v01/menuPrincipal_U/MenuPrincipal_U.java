@@ -1,5 +1,6 @@
 package proyectoDAM.giac_app_v01.menuPrincipal_U;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -40,20 +41,25 @@ public class MenuPrincipal_U extends AppCompatActivity {
     private Button btnUser, btnVehiculos, btnUbicacion;
     private ImageButton btnSos;
     private TextView tvTutorial;
-
+    private String usuariologin;
     // Metodo onCreate
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principalu);
 
+        //Traido nombre de usuario desde login sirve para todos los datos que queremos adquirir
+        // en el resto de acciones del menu principal.
+        // NOTA: Tenemos que valorar si en Activity login debemos sacar tambien e
+        // en los parametros del response los datos de las ID de cada usuaruio y traerla al menu
+        // principal para hacer las consultas de sql mejor con este las ID que con el nombre de usuario
+        // que es Primary Key.
         Bundle extras = getIntent().getExtras();
-        String datos = extras.getString("datos");
-        Toast.makeText(getApplicationContext(), datos, Toast.LENGTH_LONG).show();
-
+        usuariologin = extras.getString("usuario");
         // Damos valor a los elementos del menu principal:
         tvBbienvenida = findViewById(R.id.tvBienvenida);
-        tvBbienvenida.setText("Bienvenido " + usuaruioLogin); //Traer desde la ventana de login
+        tvBbienvenida.setText("¡ Bienvenido " + usuariologin + " !");
         viewPager2=findViewById(R.id.viewpager);
         menuAdapter = new MenuAdapter(imagenes);
         btnUser = findViewById(R.id.btnUsu);

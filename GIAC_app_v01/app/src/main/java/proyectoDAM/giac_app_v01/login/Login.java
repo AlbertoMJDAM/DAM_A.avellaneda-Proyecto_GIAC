@@ -123,9 +123,8 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if(!response.isEmpty()){
-
                     Intent intent=new Intent(getApplicationContext(), MenuPrincipal_U.class);
-                    intent.putExtra("datos", response);
+                    intent.putExtra("usuario", edtUser.getText().toString());
                     startActivity(intent);
                 }else {
                     ComprobarEmpleado();
