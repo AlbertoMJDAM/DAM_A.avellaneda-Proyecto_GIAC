@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondorg_emp"
+    android:backgroundTintMode="src_atop"
+    android:hapticFeedbackEnabled="false"
+    android:layout_gravity="center"
+    tools:context=".menuPrincipal_T.ListadoUsuarios">
+
+    <TextView
+        android:id="@+id/tvtit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/times"
+        android:text="LISTADO DE USUARIOS"
+        android:textAlignment="center"
+        android:textColor="#306cb0"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvsbtit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvsbtit"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/times"
+        android:text="@string/descripcionListaUsuarios"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#306cb0"
+        android:textIsSelectable="false"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvtit" />
+
+    <LinearLayout
+        android:id="@+id/lltitulos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/lvListaUsuarios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvsbtit">
+
+        <TextView
+            android:id="@+id/listID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ID Usuario"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/listNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nombre"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/listDNI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="DNI"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/listLicencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Licencia"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/listEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Email"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvListaUsuarios"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvsbtit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

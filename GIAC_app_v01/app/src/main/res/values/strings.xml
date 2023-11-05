@@ -10,6 +10,7 @@
         <item>C</item>
     </string-array>
 
+    //USUARIOS
     <string name="descripcion">Rellena los campos solicitados para poder realizar el registro correctamente</string>
     <string name="tutoriales">¿Necesitas saber como funciona la aplicacion?\nPulsa aqui y te enseñamos.</string>
     <string name="TituloINC">NOTIFICAR UNA INCIDENCIA</string>
@@ -18,13 +19,35 @@
     <string name="TituloDOC">MIS DOCUMENTOS</string>
     <string name="TituloAYU">SOLICITA AYUDA</string>
 
-    <string name="incidencia">Si has tenido alguna avería, un percance leve o has detectado algún desperfecto en la carretera\nPincha en la imagen y lo solucionaremos.</string>
+    <string name="incidencia">Si has tenido alguna avería, un percance leve o has detectado algún
+        desperfecto en la carretera\nPincha en la imagen y lo solucionaremos.</string>
     <string name="accidente">¿Has tenido un accidente? Tranquilo, no pierdas la calma.Pincha en
         la imagen y te ayudaremos con la máxima brevedad. </string>
-    <string name="asitencia">¿Necesitas información sobre tu accidente? Pincha en la imagen y consulta a los agentes\nque te atendieron.</string>
-    <string name="archivos"> Revisa la documentación de tus partes activos pinchando en la imagen superior.</string>
+    <string name="asitencia">¿Necesitas información sobre tu accidente? Pincha en la imagen y
+        consulta a los agentes\nque te atendieron.</string>
+    <string name="archivos"> Revisa la documentación de tus partes activos pinchando en la
+        imagen superior.</string>
     <string name="ayuda"> Pulsa en la imagen superior y te ayudaremos con lo que necesites.</string>
 
+    //TRABAJADORES
+    <string name="descripcionTrab">Comprueba tus datos como trabajador, si ves alguno erroneo, puedes corregirlo.</string>
+    <string name="TituloINCASIG">REVISAR INCIDENCIAS ASIGNADAS</string>
+    <string name="TituloCLIASIG">REVISAR CLIENTES ASIGNADOS</string>
+    <string name="TituloACCTRAB">LOCALIZAR ACCIDENTES</string>
+    <string name="TituloDOCTRAB">REVISAR DOCUMENTOS DE LAS INCIDENCIAS</string>
+
+
+    <string name="incidenAsig">Revisa las incidencias abiertas y asignate alguna. Pincha en la imagen
+        para gestionarlas.</string>
+    <string name="clientesAsig">Revisa tus clientes asignados y ponte en contacto con ellos para su tranquilidad.
+        Pincha en la imagen para verlos.</string>
+    <string name="accidenTrab">Localiza accidentes en el mapa para poder ayudarlos. Pincha en la imagen
+        para gestionarlos.</string>
+    <string name="archivosTrab"> Revisa la documentación de los partes activos.
+        Pincha en la imagen para gestionarlos.</string>
+
+    <string name="descripcionListaVehiculos">Aqui puedes ver un listado completo de los vehiculos registrados</string>
+    <string name="descripcionListaUsuarios">Aqui puedes ver un listado completo de los usuarios registrados</string>
 
 
 </resources>

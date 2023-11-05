@@ -15,7 +15,16 @@
         android:theme="@style/Theme"
         tools:targetApi="31">
         <activity
-            android:name=".Trabajador.Trabajador"
+            android:name=".menuPrincipal_T.ListadoUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_T.ListadoVehiculos"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_T.DatosTrabajador"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_T.MenuPrincipal_T"
             android:exported="false" />
         <activity
             android:name=".menuPrincipal_U.MenuPrincipal_U"

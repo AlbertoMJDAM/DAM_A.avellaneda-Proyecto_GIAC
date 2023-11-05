@@ -57,6 +57,7 @@ public class MenuPrincipal_U extends AppCompatActivity {
         // que es Primary Key.
         Bundle extras = getIntent().getExtras();
         usuariologin = extras.getString("usuario");
+
         // Damos valor a los elementos del menu principal:
         tvBbienvenida = findViewById(R.id.tvBienvenida);
         tvBbienvenida.setText("¡ Bienvenido " + usuariologin + " !");
