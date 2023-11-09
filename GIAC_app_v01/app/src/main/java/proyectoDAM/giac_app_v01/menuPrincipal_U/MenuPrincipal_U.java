@@ -20,14 +20,20 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import proyectoDAM.giac_app_v01.R;
+
 
 
 public class MenuPrincipal_U extends AppCompatActivity {
 
     // Atributos:
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123; // Damos valor al permiso.
-    private String usuaruioLogin; // Usuario registrado en login
+    private String datosUsuario; // Datos del Trabajador registrado en login
+    String idusuario;
+    String nombreusu;
     private ViewPager2 viewPager2; //Menu de acciones
     private TextView tvBbienvenida; // String de Bienvenida de Usuario
 
@@ -41,7 +47,8 @@ public class MenuPrincipal_U extends AppCompatActivity {
     private Button btnUser, btnVehiculos, btnUbicacion;
     private ImageButton btnSos;
     private TextView tvTutorial;
-    private String usuariologin;
+
+
     // Metodo onCreate
     @SuppressLint("SetTextI18n")
     @Override
@@ -49,19 +56,34 @@ public class MenuPrincipal_U extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principalu);
 
-        //Traido nombre de usuario desde login sirve para todos los datos que queremos adquirir
-        // en el resto de acciones del menu principal.
-        // NOTA: Tenemos que valorar si en Activity login debemos sacar tambien e
-        // en los parametros del response los datos de las ID de cada usuaruio y traerla al menu
-        // principal para hacer las consultas de sql mejor con este las ID que con el nombre de usuario
-        // que es Primary Key.
+        // Traemos un string con todos los datos del trabajador logueado que
+        // convertimos en un objeto JSON para poder extraer los datos que
+        // necesitemos en cada momento.
         Bundle extras = getIntent().getExtras();
-        usuariologin = extras.getString("usuario");
+        datosUsuario = extras.getString("Usuario");
+        JSONObject jsonDatosTrab;
+        try {
+            jsonDatosTrab = new JSONObject(datosUsuario);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
 
         // Damos valor a los elementos del menu principal:
         tvBbienvenida = findViewById(R.id.tvBienvenida);
-        tvBbienvenida.setText("¡ Bienvenido " + usuariologin + " !");
-        viewPager2=findViewById(R.id.viewpager);
+
+        try {
+            idusuario = jsonDatosTrab.getString("Id_Usuario");
+            nombreusu = jsonDatosTrab.getString("Nombre");
+            //tvBbienvenida.setText("¡ Bienvenido " + jsonDatosTrab.getString("Nombre") + " !");
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Damos valor a los elementos del menu principal:
+        //tvBbienvenida = findViewById(R.id.tvBienvenida);
+        tvBbienvenida.setText("¡ Bienvenido " + nombreusu + " !");
+        viewPager2 = findViewById(R.id.viewpager);
         menuAdapter = new MenuAdapter(imagenes);
         btnUser = findViewById(R.id.btnUsu);
         btnVehiculos = findViewById(R.id.btncoche);
@@ -85,23 +107,23 @@ public class MenuPrincipal_U extends AppCompatActivity {
                 page.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        switch (cont){
+                        switch (cont) {
                             // DESDE ESTE PUNTO SE INICIAN TODAS LAS INTENT DE LAS ACCIONS A REALIZAR POR EL USUARIO EN EL SWIPEVIEW
                             case 0:  //Intent Incidencia = new Intent (view.getContext(), IncidenciaActivity.class);
-                                     //startActivity(incidencia);
-                                     break;
+                                //startActivity(incidencia);
+                                break;
                             case 1: //Intent accidente = new Intent (view.getContext(), AccidenteActivity.class);
-                                    //startActivity(accidente);
-                                    break;
+                                //startActivity(accidente);
+                                break;
                             case 2: //Intent asistencia = new Intent (view.getContext(), AsisteciaActivity.class);
-                                    //startActivity(asistencia);
-                                    break;
+                                //startActivity(asistencia);
+                                break;
                             case 3: //Intent archivos = new Intent (view.getContext(), ArchivosActivity.class);
-                                    //startActivity(archivos);
-                                    break;
+                                //startActivity(archivos);
+                                break;
                             case 4: //Intent ayuda = new Intent (view.getContext(), AyudaActivity.class);
-                                    //startActivity(ayuda);
-                                    break;
+                                //startActivity(ayuda);
+                                break;
                         }
                     }
                 });
@@ -113,13 +135,25 @@ public class MenuPrincipal_U extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                switch (position){
-                    case 0: cont=0; break;
-                    case 1: cont=1; break;
-                    case 2: cont=2; break;
-                    case 3: cont=3; break;
-                    case 4: cont=4; break;
-                    default: cont=0; break;
+                switch (position) {
+                    case 0:
+                        cont = 0;
+                        break;
+                    case 1:
+                        cont = 1;
+                        break;
+                    case 2:
+                        cont = 2;
+                        break;
+                    case 3:
+                        cont = 3;
+                        break;
+                    case 4:
+                        cont = 4;
+                        break;
+                    default:
+                        cont = 0;
+                        break;
                 }
             }
         });
@@ -149,13 +183,13 @@ public class MenuPrincipal_U extends AppCompatActivity {
         btnSos.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (ContextCompat.checkSelfPermission(MenuPrincipal_U.this, android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
                         // Se tiene permiso
-                    }else{
-                        ActivityCompat.requestPermissions(MenuPrincipal_U.this,new String[]{android.Manifest.permission.CALL_PHONE}, REQUEST_CODE_ASK_PERMISSIONS);
+                    } else {
+                        ActivityCompat.requestPermissions(MenuPrincipal_U.this, new String[]{android.Manifest.permission.CALL_PHONE}, REQUEST_CODE_ASK_PERMISSIONS);
                     }
-                }else{
+                } else {
                     // No se necesita requerir permiso OS menos a 6.0.
                 }
 
@@ -166,7 +200,42 @@ public class MenuPrincipal_U extends AppCompatActivity {
             }
         });
 
+        //Acciones boton Usuarios, administrara la edicion de los datos del usuario:
+        btnUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent miperfilintent = new Intent(getApplicationContext(), EditaPerfil.class);
+                miperfilintent.putExtra("idusuario", idusuario);
+                startActivity(miperfilintent);
+            }
+        });
+
+
+        //Acciones boton Vehiculos, administrara el menu de vehiculos pasando como dato ID_Usuario:
+        btnVehiculos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Algo va BIEN", Toast.LENGTH_SHORT).show();
+                Intent vehiculosintent = new Intent(getApplicationContext(), MenuVehiculo.class);
+                vehiculosintent.putExtra("idusuario", idusuario);
+                startActivity(vehiculosintent);
+            }
+        });
+
+        //Acciones boton Mapas, dara tu localizacion en tiempo real (Direccion y coordenadas) y Ubicacion en Mapa:
+        btnUbicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Algo va BIEN", Toast.LENGTH_SHORT).show();
+                Intent ubicacionintent = new Intent(getApplicationContext(), PopupDirActivity.class);
+                startActivity(ubicacionintent);
+            }
+        });
+
+
     }
+
+
 
 
     @Override

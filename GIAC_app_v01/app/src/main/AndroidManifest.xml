@@ -3,8 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -29,6 +32,32 @@
         <activity
             android:name=".menuPrincipal_U.MenuPrincipal_U"
             android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_U.MenuVehiculo"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_U.RegistroVehiculo"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_U.EditaVehiculo"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_U.EditaPerfil"
+            android:exported="false" />
+
+        <activity
+            android:name=".menuPrincipal_U.PopupMapaActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".menuPrincipal_U.PopupDirActivity"
+            android:exported="false"
+            android:theme="@style/Theme.CrearPopUp.as"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC1XseOxJfUCeTcXs4eoTlxDKrg3mIar2A" />
+
         <activity
             android:name=".login.Login"
             android:exported="true">

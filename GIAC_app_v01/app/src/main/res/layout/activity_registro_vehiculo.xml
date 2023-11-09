@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondorg"
+    android:backgroundTintMode="src_atop"
+    android:hapticFeedbackEnabled="false"
+    android:layout_gravity="center"
+    tools:context=".menuPrincipal_U.RegistroVehiculo">
+
+    <TextView
+        android:id="@+id/tvtit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/times"
+        android:layout_marginTop="10dp"
+        android:text="REGISTRA TU VEHICULO"
+        android:textColor="#306cb0"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvsbtit"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/times"
+        android:text="@string/descripcioMveh"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#306cb0"
+        android:textIsSelectable="false"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvtit" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvsbtit">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvMarca"
+                style="@style/TextView_Azul"
+                android:text="Marca"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtMarca"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Introduzca la marca del vehiculo."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
+
+            <TextView
+                android:id="@+id/tvModelo"
+                style="@style/TextView_Azul"
+                android:text="Modelo vehiculo"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="374dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtModelo"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Introduzca el modelo que aparece en la ficha técnica."
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPApe" />
+
+            <TextView
+                android:id="@+id/tvColor"
+                style="@style/TextView_Azul_largos"
+                android:layout_width="254dp"
+                android:layout_marginEnd="250dp"
+                android:text="Color vehiculo"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="503dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtColor"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Introduzca el color que aparece en la ficha técnica."
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="547dp" />
+
+            <TextView
+                android:id="@+id/tvNum_Puertas"
+                style="@style/TextView_Azul"
+                android:text="Numero de Puertas"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edTNum_Puertas"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Si su vehículo es de dos ruedas indicar 0."
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvMotor"
+                style="@style/TextView_Azul_largos"
+                android:text="Datos básicos motor"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtMotor"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Ejemplo formato: 1.9 TDI / 1.2 TSI Gasolina"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvCv"
+                style="@style/TextView_Azul_largos"
+                android:text="Potencia vehiculo"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtCv"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Indicar potencia en Caballos de vapor CV."
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvtipov"
+                style="@style/TextView_Azul_largos"
+                android:text="Tipo de vehiculo"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <Spinner
+                android:id="@+id/sptipov"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvMatricula"
+                style="@style/TextView_Azul_largos"
+                android:fontFamily="@font/times"
+                android:text="Matricula del vehículo"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edTMatricula"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Ejemplo formato: 0000AAA"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvNum_Bastidor"
+                style="@style/TextView_Azul"
+                android:text="Numero de Bastidor"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtNum_Bastidor"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Indicar numero de bastidor del vehiculo."
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        tools:layout_editor_absoluteX="10dp">
+
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/Boton_blanco_S"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="40dp"
+
+            android:text="GUARDAR" />
+
+        <Button
+            android:id="@+id/btnBorra"
+            style="@style/Boton_blanco_S"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:text="BORRAR" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

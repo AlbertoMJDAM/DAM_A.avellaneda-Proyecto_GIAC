@@ -18,7 +18,7 @@
     <string name="TituloASI">CONSULTAR ASISTENTES</string>
     <string name="TituloDOC">MIS DOCUMENTOS</string>
     <string name="TituloAYU">SOLICITA AYUDA</string>
-
+    <string name="des_editausuario">Consulta y edita tus datos de usuario</string>
     <string name="incidencia">Si has tenido alguna avería, un percance leve o has detectado algún
         desperfecto en la carretera\nPincha en la imagen y lo solucionaremos.</string>
     <string name="accidente">¿Has tenido un accidente? Tranquilo, no pierdas la calma.Pincha en
@@ -48,6 +48,29 @@
 
     <string name="descripcionListaVehiculos">Aqui puedes ver un listado completo de los vehiculos registrados</string>
     <string name="descripcionListaUsuarios">Aqui puedes ver un listado completo de los usuarios registrados</string>
+
+    /////////////////////////////////// MENU VEHICULOS ////////////////////////////////
+    <string name="descripcioMveh">Rellena los campos solicitados para poder registrar su vehiculo correctamente</string>
+    //TIPOS VEHICULOS
+    <string-array name="TipoVehiculo">
+        <item>COCHE - PEQUEÑO</item>
+        <item>COCHE - BERLINA</item>
+        <item>COCHE - DEPORTIVO</item>
+        <item>COCHE - FAMILIAR</item>
+        <item>COCHE - CLASICO</item>
+        <item>COCHE - SUV</item>
+        <item>COCHE - TODOTERRENO</item>
+        <item>COCHE - FURGONETA</item>
+        <item>MOTO - SCOOTER</item>
+        <item>MOTO - MAXI SCOOTER</item>
+        <item>MOTO - CUSTOM</item>
+        <item>MOTO - TRAIL</item>
+        <item>MOTO - DEPORTIVA</item>
+        <item>MOTO - NAKED</item>
+        <item>MOTO - MOTOCROSS</item>
+        <item>OTROS - CAMION</item>
+        <item>OTROS - MICRO-BUS</item>
+    </string-array>
 
 
 </resources>
