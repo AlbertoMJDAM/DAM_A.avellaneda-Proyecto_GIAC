@@ -2,9 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,8 +19,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginRight="6dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -29,53 +33,62 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="60"
+                    android:layout_weight="65"
                     android:layout_gravity="center_vertical">
 
                     <TextView
                         style="@style/TextosBlancos"
-                        android:id="@+id/tvTitNombre"
+                        android:id="@+id/tvTitID"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:textSize="18dp"
-                        android:text="Nombre: "/>
+                        android:textStyle="bold"
+                        android:text="Nº ID: "/>
 
                     <TextView
                         style="@style/TextosBlancos"
-                        android:id="@+id/tvNombre"
+                        android:id="@+id/tvIdIncidencia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
-                        android:text="nombre"/>
+                        android:text="X"/>
+
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="40"
+                    android:layout_weight="35"
                     android:layout_gravity="center_vertical">
 
                     <TextView
                         style="@style/TextosBlancos"
-                        android:id="@+id/tvTitLicencia"
+                        android:id="@+id/tvFechaIncidencia"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
-                        android:text="Licencia: "/>
-
-                    <TextView
-                        style="@style/TextosBlancos"
-                        android:id="@+id/tvLicencia"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18dp"
-                        android:text="X1"/>
+                        android:text="fecha"/>
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="gone">
 
+                    <CheckBox
+                        android:id="@+id/checkBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/white"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -87,20 +100,13 @@
 
                 <TextView
                     style="@style/TextosBlancos"
-                    android:id="@+id/tvTitApellidos"
+                    android:id="@+id/tvTitUbicacion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:textSize="18dp"
-                    android:text="Apellidos: "/>
-
-                <TextView
-                    style="@style/TextosBlancos"
-                    android:id="@+id/tvApellidos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18dp"
-                    android:text="apellidos"/>
+                    android:textStyle="bold"
+                    android:text="UBICACIÓN: "/>
 
             </LinearLayout>
 
@@ -112,28 +118,12 @@
 
                 <TextView
                     style="@style/TextosBlancos"
-                    android:id="@+id/tvTitDNI"
+                    android:id="@+id/tvUbicacionIncidencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:textSize="18dp"
-                    android:text="DNI: "/>
-
-                <TextView
-                    style="@style/TextosBlancos"
-                    android:id="@+id/tvDNI"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18dp"
-                    android:text="dni"/>
-
-                <TextView
-                    android:id="@+id/tvIdUsuario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#00000000"
-                    android:textSize="18dp"
-                    android:text="IdUsuario"/>
+                    android:text="ubicacion"/>
 
             </LinearLayout>
 
@@ -145,32 +135,35 @@
 
                 <TextView
                     style="@style/TextosBlancos"
-                    android:id="@+id/tvTirEmail"
+                    android:id="@+id/tvTitDescripcion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:textSize="18dp"
-                    android:text="Email: "/>
+                    android:textStyle="bold"
+
+                    android:text="DESCRIPCIÓN: "/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
 
                 <TextView
                     style="@style/TextosBlancos"
-                    android:id="@+id/tvEmail"
+                    android:id="@+id/tvDescripcionIncidencia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:autoSizeMinTextSize="12dp"
-                    android:autoSizeMaxTextSize="18dp"
-                    android:text="email"/>
+                    android:layout_marginStart="20dp"
+                    android:textSize="18dp"
+                    android:text="descripcion"/>
 
             </LinearLayout>
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/img"
-            android:src="@drawable/usuario"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginRight="8dp"/>
 
     </LinearLayout>
 

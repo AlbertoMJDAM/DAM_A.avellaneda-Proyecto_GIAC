@@ -30,6 +30,9 @@ public class MenuAdapter_T extends RecyclerView.Adapter<MenuAdapter_T.ViewHolder
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.formatoimag,parent,false));
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+                        //Falta pulir el tema de los botones de sonidos//
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.imageView.setBackgroundResource(imagenes[position]);
@@ -39,11 +42,13 @@ public class MenuAdapter_T extends RecyclerView.Adapter<MenuAdapter_T.ViewHolder
                     holder.audio.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            clientesTrab.stop();
-                            accidenteTrab.stop();
-                            documentosTrab.stop();
+                            if(clientesTrab.isPlaying())
+                                clientesTrab.pause();
+                            if(accidenteTrab.isPlaying())
+                                accidenteTrab.pause();
+                            if(documentosTrab.isPlaying())
+                                documentosTrab.pause();
                             incidenciaTrab.start();
-
                         }
                     });
                     break;
@@ -53,10 +58,13 @@ public class MenuAdapter_T extends RecyclerView.Adapter<MenuAdapter_T.ViewHolder
                     holder.audio.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        incidenciaTrab.stop();
+                        if(incidenciaTrab.isPlaying())
+                            incidenciaTrab.pause();
+                        if(accidenteTrab.isPlaying())
+                            accidenteTrab.pause();
+                        if(documentosTrab.isPlaying())
+                            documentosTrab.pause();
                         clientesTrab.start();
-                        //accidenteTrab.stop();
-                        //documentosTrab.stop();
                     }
                     });
                     break;
@@ -65,21 +73,35 @@ public class MenuAdapter_T extends RecyclerView.Adapter<MenuAdapter_T.ViewHolder
                     holder.audio.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clientesTrab.stop();
+                        if(clientesTrab.isPlaying())
+                        {
+                            clientesTrab.pause();
+                            clientesTrab.reset();
+                        }
+                        if(incidenciaTrab.isPlaying()){
+                            incidenciaTrab.pause();
+                            incidenciaTrab.reset();
+                        }
+                        if(documentosTrab.isPlaying()){
+                            documentosTrab.pause();
+                            documentosTrab.reset();
+                        }
                         accidenteTrab.start();
-                        //incidenciaTrab.stop();
-                        //documentosTrab.stop();
                     }
                     });
+                    break;
             case 3: holder.textotitulo.setText(holder.textotitulo.getResources().getString(R.string.TituloDOCTRAB));
                     holder.textoinfo.setText(holder.textoinfo.getResources().getString(R.string.archivosTrab));
                     holder.audio.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        accidenteTrab.stop();
+                        if(accidenteTrab.isPlaying())
+                            accidenteTrab.pause();
+                        if(incidenciaTrab.isPlaying())
+                            incidenciaTrab.pause();
+                        if(clientesTrab.isPlaying())
+                            clientesTrab.pause();
                         documentosTrab.start();
-                        //incidenciaTrab.stop();
-                        //clientesTrab.stop();
                     }
                     });
                     break;

@@ -2,45 +2,175 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp">
 
     <LinearLayout
+        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/btn_contorno_blanco_l">
 
-        <TextView
-            android:id="@+id/listID"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/listMarca"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="60"
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        style="@style/TextosBlancos"
+                        android:id="@+id/tvTitMarca"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:textSize="18dp"
+                        android:text="Marca: "/>
+
+                    <TextView
+                        style="@style/TextosBlancos"
+                        android:id="@+id/tvMarca"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:text="marca"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:layout_gravity="center_vertical">
+
+                    <TextView
+                        style="@style/TextosBlancos"
+                        android:id="@+id/tvTitPuertas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:text="Nº Puertas: "/>
+
+                    <TextView
+                        style="@style/TextosBlancos"
+                        android:id="@+id/tvPuertas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18dp"
+                        android:text="X"/>
+
+                </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/listModelo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
 
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/listColor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
 
+                <TextView
+                    style="@style/TextosBlancos"
+                    android:id="@+id/tvTitModelo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:textSize="18dp"
+                    android:text="Modelo: "/>
 
-        <TextView
-            android:id="@+id/listMatricula"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+                <TextView
+                    style="@style/TextosBlancos"
+                    android:id="@+id/tvModelo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:text="modelo"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    style="@style/TextosBlancos"
+                    android:id="@+id/tvTitColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:textSize="18dp"
+                    android:text="Color: "/>
+
+                <TextView
+                    style="@style/TextosBlancos"
+                    android:id="@+id/tvColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:text="color"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    style="@style/TextosBlancos"
+                    android:id="@+id/tvTirMatricula"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:textSize="18dp"
+                    android:text="Matricula: "/>
+
+                <TextView
+                    style="@style/TextosBlancos"
+                    android:id="@+id/tvMatricula"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dp"
+                    android:text="matricula"/>
+
+                <TextView
+                    android:id="@+id/tvIdVehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#00000000"
+                    android:textSize="18dp"
+                    android:text="ID"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img"
+            android:src="@drawable/coche_blanco"
+            android:layout_width="110dp"
+            android:layout_height="100dp"/>
 
     </LinearLayout>
 

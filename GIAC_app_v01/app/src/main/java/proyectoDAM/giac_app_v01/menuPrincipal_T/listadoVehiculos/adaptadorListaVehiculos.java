@@ -1,4 +1,4 @@
-package proyectoDAM.giac_app_v01.menuPrincipal_T;
+package proyectoDAM.giac_app_v01.menuPrincipal_T.listadoVehiculos;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,9 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.general.Vehiculos;
+import proyectoDAM.giac_app_v01.Model.Vehiculos;
 
 public class adaptadorListaVehiculos extends BaseAdapter {
 
@@ -43,17 +44,19 @@ public class adaptadorListaVehiculos extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.lista_vehiculos_adapter,null);
         }
 
-        TextView tvid = (TextView) view.findViewById(R.id.listID);
-        TextView tvmarca = (TextView) view.findViewById(R.id.listMarca);
-        TextView tvmodelo = (TextView) view.findViewById(R.id.listModelo);
-        TextView tvcolor = (TextView) view.findViewById(R.id.listColor);
-        TextView tvmatricula = (TextView) view.findViewById(R.id.listMatricula);
+        TextView tvIdVehiculo = (TextView) view.findViewById(R.id.tvIdVehiculo);
+        TextView tvPuertas = (TextView) view.findViewById(R.id.tvPuertas);
+        TextView tvMarca = (TextView) view.findViewById(R.id.tvMarca);
+        TextView tvModelo = (TextView) view.findViewById(R.id.tvModelo);
+        TextView tvColor = (TextView) view.findViewById(R.id.tvColor);
+        TextView tvMatricula = (TextView) view.findViewById(R.id.tvMatricula);
 
-        tvid.setText(arrayList.get(i).getId());
-        tvmarca.setText(arrayList.get(i).getMarca());
-        tvmodelo.setText(arrayList.get(i).getModelo());
-        tvcolor.setText(arrayList.get(i).getColor());
-        tvmatricula.setText(arrayList.get(i).getMatricula());
+        tvIdVehiculo.setText(arrayList.get(i).getId());
+        tvMarca.setText(arrayList.get(i).getMarca());
+        tvModelo.setText(arrayList.get(i).getModelo());
+        tvColor.setText(arrayList.get(i).getColor());
+        tvMatricula.setText(arrayList.get(i).getMatricula());
+        tvPuertas.setText(arrayList.get(i).getnPuertas());
 
         return view;
     }

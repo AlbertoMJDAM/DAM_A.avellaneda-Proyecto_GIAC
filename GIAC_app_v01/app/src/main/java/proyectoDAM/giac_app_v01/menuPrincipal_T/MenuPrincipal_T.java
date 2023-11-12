@@ -8,7 +8,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +18,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.menuPrincipal_U.MenuAdapter;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.datosTrabajador.DatosTrabajador;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.incidenciasAsignadas.IncidenciasAsignadas;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoAccidentes.ListadoAccidentes;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoIncidencias.ListadoIncidencias;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoUsuarios.ListadoUsuarios;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoVehiculos.ListadoVehiculos;
 
 public class MenuPrincipal_T extends AppCompatActivity {
 
@@ -35,8 +39,7 @@ public class MenuPrincipal_T extends AppCompatActivity {
     private int cont; //Contador de imagenes en array para interactuar.
 
     // Tipos Botones con acciones que se utilizan en menu principal:
-    private Button btnTrab, btnListaVehiculos, btnListaUsuarios;
-    private TextView tvTutorial;
+    private Button btnTrab, btnListaVehiculos, btnListaUsuarios, btnListaAccidentes, btnListaIncidencias;
 
 
     @Override
@@ -56,11 +59,12 @@ public class MenuPrincipal_T extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-
         // Damos valor a los elementos del menu principal:
         tvBbienvenida = findViewById(R.id.tvBienvenidaTrab);
         try {
             tvBbienvenida.setText("¡ Bienvenido " + jsonDatosTrab.getString("Nombre") + " !");
+            //COGEMOS LA ID DEL TRABAJADOR
+            String idTrabajador = jsonDatosTrab.getString("Id_Empleado");
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -69,7 +73,8 @@ public class MenuPrincipal_T extends AppCompatActivity {
         btnTrab = findViewById(R.id.btnTrab);
         btnListaVehiculos = findViewById(R.id.btnListaCoches);
         btnListaUsuarios = findViewById(R.id.btnListaUser);
-        tvTutorial = findViewById(R.id.tvtutorial);
+        btnListaAccidentes = findViewById(R.id.btnListaAccidentes);
+        btnListaIncidencias = findViewById(R.id.btnListaIncidencias);
 
         // Aplicamos acciones a viewPager2:
         viewPager2.setClipToPadding(false);
@@ -89,8 +94,18 @@ public class MenuPrincipal_T extends AppCompatActivity {
                     public void onClick(View view) {
                         switch (cont) {
                             // DESDE ESTE PUNTO SE INICIAN TODAS LAS INTENT DE LAS ACCIONS A REALIZAR POR EL USUARIO EN EL SWIPEVIEW
-                            case 0:  //Intent Incidencia = new Intent (view.getContext(), IncidenciaActivity.class);
-                                //startActivity(incidencia);
+                            //
+                            case 0:
+                                Intent IncidenciasAsignadas = new Intent (view.getContext(), IncidenciasAsignadas.class);
+                                //COGEMOS LA ID DEL TRABAJADOR Y LA PASAMOS A LA NUEVA ACTIVITY
+                                String idTrabajador = null;
+                                try {
+                                    idTrabajador = jsonDatosTrab.getString("Id_Empleado");
+                                } catch (JSONException e) {
+                                    throw new RuntimeException(e);
+                                }
+                                IncidenciasAsignadas.putExtra("idTrabajador", idTrabajador);
+                                startActivity(IncidenciasAsignadas);
                                 break;
                             case 1: //Intent accidente = new Intent (view.getContext(), AccidenteActivity.class);
                                 //startActivity(accidente);
@@ -114,9 +129,6 @@ public class MenuPrincipal_T extends AppCompatActivity {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 switch (position) {
-                    case 0:
-                        cont = 0;
-                        break;
                     case 1:
                         cont = 1;
                         break;
@@ -134,16 +146,6 @@ public class MenuPrincipal_T extends AppCompatActivity {
         });
 
         // Aplicamos acciones a los botones:
-        // Accion texto de solicitud de Ayuda nos redirige a canal de Youtube de la App donde estan los tutoriales de uso de la aplicacion.
-        tvTutorial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Uri uriUrl = Uri.parse("https://www.youtube.com/channel/UCYBjK1y_U8Ge020g4FVWiuQ");
-                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-                startActivity(launchBrowser);
-            }
-        });
-
         //Metodo para el boton de Datos del Trabajador
         btnTrab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,7 +173,30 @@ public class MenuPrincipal_T extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        //Metodo para el boton de lista de Incidencias sin Asignar
+        btnListaIncidencias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent listaIncidencias = new Intent(getApplicationContext(), ListadoIncidencias.class);
+                //COGEMOS LA ID DEL TRABAJADOR Y LA PASAMOS A LA NUEVA ACTIVITY
+                String idTrabajador = null;
+                try {
+                    idTrabajador = jsonDatosTrab.getString("Id_Empleado");
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                listaIncidencias.putExtra("idTrabajador", idTrabajador);
+                startActivity(listaIncidencias);
+            }
+        });
+        //Metodo para el boton de lista de Accidenctes sin Asignar
+        btnListaAccidentes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ListaAccidentes = new Intent(getApplicationContext(), ListadoAccidentes.class);
+                startActivity(ListaAccidentes);
+            }
+        });
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

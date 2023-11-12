@@ -7,24 +7,23 @@
     android:background="@drawable/fmenu_emp"
     android:backgroundTintMode="src_atop"
     android:hapticFeedbackEnabled="false"
-    android:layout_gravity="center"
-    tools:context=".menuPrincipal_T.listadoVehiculos.ListadoVehiculos">
+    tools:context=".menuPrincipal_T.listadoIncidencias.ListadoIncidencias">
 
     <TextView
         android:id="@+id/tvtit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/times"
         android:layout_marginTop="10dp"
-        android:text="LISTADO DE VEHICULOS"
+        android:fontFamily="@font/times"
+        android:text="INCIDENCIAS SIN ASIGNAR"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/tvsbtit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tvsbtit" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvsbtit"
@@ -32,7 +31,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/times"
-        android:text="@string/descripcionListaVehiculos"
+        android:text="@string/descripcionIncidenciasSinAsignar"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -45,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvtit" />
 
     <ListView
-        android:id="@+id/lvListaVehiculos"
+        android:id="@+id/lvListaIncidencias"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="5dp"
@@ -60,18 +59,41 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:orientation="horizontal"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvListaVehiculos">
+        app:layout_constraintTop_toBottomOf="@+id/lvListaIncidencias">
 
-        <Button
-            android:id="@+id/btnRetroceder"
-            style="@style/Boton_blanco_S"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RETROCEDER" />
+            android:layout_weight="50"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnGuardar"
+                style="@style/Boton_blanco_S"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="ASIGNAR" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnSalir"
+                style="@style/Boton_blanco_S"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="SALIR" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

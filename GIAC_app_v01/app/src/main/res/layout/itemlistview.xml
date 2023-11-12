@@ -21,35 +21,35 @@
             android:layout_height="100dp"
             android:orientation="vertical">
 
-        <TextView
-            style="@style/TextosBlancos"
-            android:id="@+id/tvTitulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="20sp"
-            android:textSize="18dp"
-            android:maxLines="2"
-            android:text="Marca-Modelo-Color-Puertas"
-            />
+            <TextView
+                style="@style/TextosBlancos"
+                android:id="@+id/tvTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20sp"
+                android:textSize="18dp"
+                android:maxLines="2"
+                android:text="Marca-Modelo-Color-Puertas"
+                />
 
-        <TextView
-            style="@style/TextosBlancos"
-            android:id="@+id/tvDireccion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="20sp"
-            android:layout_marginLeft="10dp"
-            android:text="Matricula"
-            android:textSize="20dp"/>
+            <TextView
+                style="@style/TextosBlancos"
+                android:id="@+id/tvDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20sp"
+                android:layout_marginLeft="10dp"
+                android:text="Matricula"
+                android:textSize="20dp"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:backgroundTint="#00FFFFFF"
-            android:layout_height="20dp"
-            android:background="@color/white"/>
-    </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:backgroundTint="#00FFFFFF"
+                android:layout_height="20dp"
+                android:background="@color/white"/>
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/img"
@@ -57,6 +57,6 @@
             android:layout_width="110dp"
             android:layout_height="100dp"/>
 
-</LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

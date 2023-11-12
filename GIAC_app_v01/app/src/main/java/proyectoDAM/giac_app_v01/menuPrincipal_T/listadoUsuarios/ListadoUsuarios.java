@@ -1,8 +1,10 @@
-package proyectoDAM.giac_app_v01.menuPrincipal_T;
+package proyectoDAM.giac_app_v01.menuPrincipal_T.listadoUsuarios;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,8 +21,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.general.Usuarios;
-import proyectoDAM.giac_app_v01.general.Vehiculos;
+import proyectoDAM.giac_app_v01.Model.Usuarios;
 
 public class ListadoUsuarios extends AppCompatActivity {
 
@@ -28,6 +29,7 @@ public class ListadoUsuarios extends AppCompatActivity {
     private ListView lvListaUsuarios;
     private ArrayList<Usuarios> lista;
     private adaptadorListaUsuarios adapter;
+    private Button btnRetroceder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,15 @@ public class ListadoUsuarios extends AppCompatActivity {
         // Damos valor a los elementos:
         lvListaUsuarios = (ListView) findViewById(R.id.lvListaUsuarios);
         lista = new ArrayList<Usuarios>();
+        btnRetroceder = (Button) findViewById(R.id.btnRetroceder);
+
+        //Metodo para el boton Retroceder
+        btnRetroceder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         obtenerUsuarios();
     }
@@ -57,7 +68,9 @@ public class ListadoUsuarios extends AppCompatActivity {
                                 String dni = jsonObject.getString("DNI");
                                 String licencia = jsonObject.getString("Tipo_Licencia");
                                 String email = jsonObject.getString("Email");
-                                Usuarios usuario = new Usuarios(id, nombre, dni, licencia, email);
+                                String pApellido = jsonObject.getString("Per_Apellido");
+                                String sApellidos = jsonObject.getString("Sdo_Apellido");
+                                Usuarios usuario = new Usuarios(id, nombre, dni, licencia, email, pApellido, sApellidos);
                                 lista.add(usuario);
                             } catch (JSONException e) {
                                 Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();

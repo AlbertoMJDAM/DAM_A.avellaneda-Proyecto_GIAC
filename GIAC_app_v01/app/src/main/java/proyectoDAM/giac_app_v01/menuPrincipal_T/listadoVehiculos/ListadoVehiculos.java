@@ -1,8 +1,10 @@
-package proyectoDAM.giac_app_v01.menuPrincipal_T;
+package proyectoDAM.giac_app_v01.menuPrincipal_T.listadoVehiculos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,7 +21,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.general.Vehiculos;
+import proyectoDAM.giac_app_v01.Model.Vehiculos;
 
 public class ListadoVehiculos extends AppCompatActivity {
 
@@ -27,6 +29,8 @@ public class ListadoVehiculos extends AppCompatActivity {
     private ListView lvListaVehiculos;
     private ArrayList<Vehiculos> lista;
     private adaptadorListaVehiculos adapter;
+    private Button btnRetroceder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,15 @@ public class ListadoVehiculos extends AppCompatActivity {
         // Damos valor a los elementos:
         lvListaVehiculos = (ListView) findViewById(R.id.lvListaVehiculos);
         lista = new ArrayList<Vehiculos>();
+        btnRetroceder = (Button) findViewById(R.id.btnRetroceder);
+
+        //Metodo para el boton Retroceder
+        btnRetroceder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         obtenerVehiculos();
     }
@@ -56,7 +69,8 @@ public class ListadoVehiculos extends AppCompatActivity {
                                 String modelo = jsonObject.getString("Modelo");
                                 String color = jsonObject.getString("Color");
                                 String matricula = jsonObject.getString("Matricula");
-                                Vehiculos vehiculo = new Vehiculos(id, marca, modelo, color, matricula);
+                                String nPuertas = jsonObject.getString("Num_Puertas");
+                                Vehiculos vehiculo = new Vehiculos(id, marca, modelo, color, matricula, nPuertas);
                                 lista.add(vehiculo);
                                 //Toast.makeText(getApplicationContext(),vehiculo.getId()+" "+vehiculo.getMarca()+" "+vehiculo.getModelo()+" "+vehiculo.getColor()+" "+vehiculo.getMatricula(),Toast.LENGTH_SHORT).show();
                             } catch (JSONException e) {

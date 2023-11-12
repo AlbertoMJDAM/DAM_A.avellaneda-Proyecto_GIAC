@@ -48,6 +48,10 @@
 
     <string name="descripcionListaVehiculos">Aqui puedes ver un listado completo de los vehiculos registrados</string>
     <string name="descripcionListaUsuarios">Aqui puedes ver un listado completo de los usuarios registrados</string>
+    <string name="descripcionIncidenciasSinAsignar">Aqui puedes ver un listado de las incidencias sin asignar</string>
+    <string name="descripcionListaAccidentes">Aqui puedes ver un listado de los accidentes sin asignar, pincha uno para gestionarlo.</string>
+    <string name="descripcionIncidenciasAsignadas">Aqui puedes ver un listado de tus incidencias asignadas, pincha una para gestionarla.</string>
+
 
     /////////////////////////////////// MENU VEHICULOS ////////////////////////////////
     <string name="descripcioMveh">Rellena los campos solicitados para poder registrar su vehiculo correctamente</string>

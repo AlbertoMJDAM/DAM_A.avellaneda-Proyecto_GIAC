@@ -8,7 +8,7 @@
     android:backgroundTintMode="src_atop"
     android:hapticFeedbackEnabled="false"
     android:layout_gravity="center"
-    tools:context=".menuPrincipal_T.listadoVehiculos.ListadoVehiculos">
+    tools:context=".menuPrincipal_T.listadoAccidentes.ListadoAccidentes">
 
     <TextView
         android:id="@+id/tvtit"
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/times"
         android:layout_marginTop="10dp"
-        android:text="LISTADO DE VEHICULOS"
+        android:text="ACCIDENTES SIN ASIGNAR"
         android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -32,7 +32,7 @@
         android:layout_height="30dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/times"
-        android:text="@string/descripcionListaVehiculos"
+        android:text="@string/descripcionListaAccidentes"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvtit" />
 
     <ListView
-        android:id="@+id/lvListaVehiculos"
+        android:id="@+id/lvListaAccidentes"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="5dp"
@@ -64,7 +64,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvListaVehiculos">
+        app:layout_constraintTop_toBottomOf="@+id/lvListaAccidentes">
 
         <Button
             android:id="@+id/btnRetroceder"
@@ -74,5 +74,6 @@
             android:text="RETROCEDER" />
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

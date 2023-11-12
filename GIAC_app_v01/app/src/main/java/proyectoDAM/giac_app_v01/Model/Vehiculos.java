@@ -1,4 +1,4 @@
-package proyectoDAM.giac_app_v01.general;
+package proyectoDAM.giac_app_v01.Model;
 
 public class Vehiculos {
 
@@ -7,15 +7,22 @@ public class Vehiculos {
     private String modelo;
     private String color;
     private String matricula;
+    private String nPuertas;
 
-    public Vehiculos(String id, String marca, String modelo, String color, String matricula){
+    public Vehiculos(String id, String marca, String modelo, String color, String matricula, String nPuertas){
         this.id = id;
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
         this.matricula = matricula;
+        this.nPuertas = nPuertas;
     }
-
+    public String getnPuertas() {
+        return nPuertas;
+    }
+    public void setnPuertas(String nPuertas) {
+        this.nPuertas = nPuertas;
+    }
     public String getId() {
         return id;
     }

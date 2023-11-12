@@ -1,4 +1,4 @@
-package proyectoDAM.giac_app_v01.menuPrincipal_T;
+package proyectoDAM.giac_app_v01.menuPrincipal_T.datosTrabajador;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +36,8 @@ public class DatosTrabajador extends AppCompatActivity {
     Button btnSave;
     String datosTrabajador;
     RequestQueue requestQueue;
+    JSONObject jsonDatosTrab;
+
 
 
     @Override
@@ -48,7 +50,6 @@ public class DatosTrabajador extends AppCompatActivity {
         // necesitemos en cada momento.
         Bundle extras = getIntent().getExtras();
         datosTrabajador = extras.getString("Trabajador");
-        JSONObject jsonDatosTrab;
         try {
             jsonDatosTrab = new JSONObject(datosTrabajador);
         } catch (JSONException e) {
@@ -127,12 +128,55 @@ public class DatosTrabajador extends AppCompatActivity {
                     edtPasword.setError("¡Contraseña Incorrecta!");
                     datosOk = false;
                 }
-                if(datosOk){
-                    ActualizarDatosTrab("https://appgiac.000webhostapp.com/actualizar_datos_empleados.php");
-                    finish();
+                if(datosOk) {
+                    ActualizarDatosTrab();
                 }
             }
         });
+    }
+
+    //METODO QUE REALIZA LA ACTUALIZACION DE DATOS EN LA BBDD TRABAJADORES
+    private void ActualizarDatosTrab(){
+        //Cogemos ID trabajador
+        String idTrabajador;
+        try {
+            idTrabajador = jsonDatosTrab.getString("Id_Empleado");
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        String url = "https://appgiac.000webhostapp.com/actualizar_datos_empleados.php?Id_Empleado=" + idTrabajador;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> parametros = new HashMap<String,String>();
+                parametros.put("Nombre",edtNombre.getText().toString().trim());
+                parametros.put("Per_Apellido",edtPApe.getText().toString().trim());
+                parametros.put("Sdo_Apellido",edtSApe.getText().toString().trim());
+                parametros.put("DNI", edTDNI.getText().toString().trim());
+                parametros.put("Fecha_Nacimiento",edtFNac.getText().toString().trim());
+                parametros.put("Email", edTeMail.getText().toString().trim());
+                parametros.put("Telefono",edtphone.getText().toString().trim());
+                parametros.put("Password",edtPasword.getText().toString().trim());
+                parametros.put("Id_Empleado",tvidtrab.getText().toString().trim());
+                return parametros;
+            }
+        };
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
     // Metodo encargado de la validacion de Nombres y apellidos mediante regex
@@ -225,38 +269,5 @@ public class DatosTrabajador extends AppCompatActivity {
             passCorrecto = false;
         }
         return passCorrecto;
-    }
-
-    private void ActualizarDatosTrab(String url){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> parametros = new HashMap<String,String>();
-                parametros.put("Nombre",edtNombre.getText().toString());
-                parametros.put("Per_Apellido",edtPApe.getText().toString());
-                parametros.put("Sdo_Apellido",edtSApe.getText().toString());
-                parametros.put("DNI", edTDNI.getText().toString());
-                parametros.put("Fecha_Nacimiento",edtFNac.getText().toString());
-                parametros.put("Email", edTeMail.getText().toString());
-                parametros.put("Telefono",edtphone.getText().toString());
-                parametros.put("Password",edtPasword.getText().toString());
-                parametros.put("Id_Empleado",tvidtrab.getText().toString());
-                return parametros;
-            }
-        };
-        requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
     }
 }

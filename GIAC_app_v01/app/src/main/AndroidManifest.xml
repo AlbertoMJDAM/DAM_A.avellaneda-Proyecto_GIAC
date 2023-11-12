@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,15 +15,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".menuPrincipal_T.ListadoUsuarios"
+            android:name=".menuPrincipal_T.incidenciasAsignadas.IncidenciasAsignadas"
             android:exported="false" />
         <activity
-            android:name=".menuPrincipal_T.ListadoVehiculos"
+            android:name=".menuPrincipal_T.listadoAccidentes.ListadoAccidentes"
             android:exported="false" />
         <activity
-            android:name=".menuPrincipal_T.DatosTrabajador"
+            android:name=".menuPrincipal_T.listadoIncidencias.ListadoIncidencias"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_T.listadoUsuarios.ListadoUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_T.listadoVehiculos.ListadoVehiculos"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_T.datosTrabajador.DatosTrabajador"
             android:exported="false" />
         <activity
             android:name=".menuPrincipal_T.MenuPrincipal_T"
@@ -44,15 +53,13 @@
         <activity
             android:name=".menuPrincipal_U.EditaPerfil"
             android:exported="false" />
-
         <activity
             android:name=".menuPrincipal_U.PopupMapaActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".menuPrincipal_U.PopupDirActivity"
             android:exported="false"
-            android:theme="@style/Theme.CrearPopUp.as"/>
+            android:theme="@style/Theme.CrearPopUp.as" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
