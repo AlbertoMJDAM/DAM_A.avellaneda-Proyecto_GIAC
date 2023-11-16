@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#104D60"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".registraIncidencias.InfoDatos">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvsbtit"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/times"
+                android:gravity="center"
+                android:text="MENU DE INCIDENCIAS"
+                android:textAlignment="center"
+                android:textColor="#CDCFD1"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvdescripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/times"
+                android:gravity="center"
+                android:text="¿No sabes como rellenar una incidencia?\n Tranquilo, te guiaremos en todo el proceso. Tan solo sigue las instrucciones que te detallamos aqui. Cuando termines de leer, pulsa en cualquier punto fuera del recuadro para comenzar."
+                android:textAlignment="center"
+                android:textColor="#CDCFD1"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/datos"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/tvexplicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/times"
+                android:text="Primero deberas comprobar los datos cargados segun tu perfil y completar el resto de datos. tambien necesitaremos la ubicacion donde has sufrido o visto la incidencia, pero tranquil@
+¡No es necesario que te sepas el nombre de la calle o el punto kilometrico de la carretera! \nPara saber donde te encuentras, hemos habilitado un boton similar a este:"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="#CDCFD1"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/location" />
+
+            <TextView
+                android:id="@+id/tvexplicacion2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/times"
+                android:text="Cuando pinches en el y aceptes los permisos de localizacion, la aplicacion detectara automaticamente
+la direccion y coordenadas de donde te encuentras.\n¡Adelante! Vamos a empezar a rellenar estos datos y cuando termines, pulsa el boton Siguiente."
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="#CDCFD1"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginStart="10dp"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="-10dp"
+                    android:layout_marginTop="25dp"
+
+                    android:src="@drawable/info"/>
+                    <TextView
+
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginStart="3dp"
+                        android:fontFamily="@font/times"
+                        android:text="Si prefieres ver un video explicativo puedes ver nuestro canal de YouTube pulsando en el icono."
+                        android:textAlignment="textStart"
+                        android:textColor="#CDCFD1"
+                        android:textSize="12sp"
+                        android:textStyle="italic" />
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/btnvideo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/youtube" />
+        </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

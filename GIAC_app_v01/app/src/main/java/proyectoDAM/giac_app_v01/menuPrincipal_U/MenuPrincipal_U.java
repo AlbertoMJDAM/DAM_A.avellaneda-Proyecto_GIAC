@@ -24,7 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import proyectoDAM.giac_app_v01.R;
-
+import proyectoDAM.giac_app_v01.registraIncidencias.RegistraDatosIn;
 
 
 public class MenuPrincipal_U extends AppCompatActivity {
@@ -109,8 +109,9 @@ public class MenuPrincipal_U extends AppCompatActivity {
                     public void onClick(View view) {
                         switch (cont) {
                             // DESDE ESTE PUNTO SE INICIAN TODAS LAS INTENT DE LAS ACCIONS A REALIZAR POR EL USUARIO EN EL SWIPEVIEW
-                            case 0:  //Intent Incidencia = new Intent (view.getContext(), IncidenciaActivity.class);
-                                //startActivity(incidencia);
+                            case 0:
+                                Intent incidencia = new Intent (view.getContext(), RegistraDatosIn.class);
+                                startActivity(incidencia);
                                 break;
                             case 1: //Intent accidente = new Intent (view.getContext(), AccidenteActivity.class);
                                 //startActivity(accidente);
@@ -200,7 +201,7 @@ public class MenuPrincipal_U extends AppCompatActivity {
             }
         });
 
-        //Acciones boton Usuarios, administrara la edicion de los datos del usuario:
+        //Acciones boton Usuarios, administrara la edicion de los datos del usuario
         btnUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondorg"
+    android:backgroundTintMode="src_atop"
+    android:hapticFeedbackEnabled="false"
+    android:layout_gravity="center"
+    tools:context=".registraIncidencias.RegistraDatosIn">
+
+    <TextView
+        android:id="@+id/tvtit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/times"
+        android:layout_marginTop="10dp"
+        android:text="REGISTRO DE INCIDENCIA"
+        android:textColor="#306cb0"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvsbtit"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/times"
+        android:text=""
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#306cb0"
+        android:textIsSelectable="false"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvtit" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvsbtit">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/li"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvid"
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/times"
+                    android:layout_marginStart="20dp"
+                    android:text="Id Usuario: "
+                    android:textColor="#C4306CB0"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvidusu"
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/times"
+                    android:text="0000000 "
+                    android:textColor="#C4306CB0"
+                    android:textSize="18sp"
+                    android:textStyle="italic|bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvinci"
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/times"
+                    android:layout_marginStart="-28dp"
+                    android:text="Id Incidencia: "
+                    android:textColor="#C4306CB0"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/tvnuminci"
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/times"
+                    android:text="0000000 "
+                    android:textColor="#C4306CB0"
+                    android:textSize="18sp"
+                    android:textStyle="italic|bold"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvNombre"
+                style="@style/TextView_Azul"
+                android:text="Nombre"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtNombre"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Introduzca su nombre"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
+
+            <TextView
+                android:id="@+id/tvPApe"
+                style="@style/TextView_Azul"
+                android:text="Primer Apellido"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="374dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPApe"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Introduzca su primer apellido"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPApe" />
+
+            <TextView
+                android:id="@+id/tvSApe"
+                style="@style/TextView_Azul_largos"
+                android:layout_width="254dp"
+                android:layout_marginEnd="250dp"
+                android:text="Segundo Apellido"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="503dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtSApe"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Introduzca su segundo apellido"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="547dp" />
+
+            <TextView
+                android:id="@+id/tvDNI"
+                style="@style/TextView_Azul"
+                android:text="DNI"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edTtvDNI"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Ejemplo formato: 00000000A"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tveMail"
+                style="@style/TextView_Azul_largos"
+                android:fontFamily="@font/times"
+                android:text="Correo electronico"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edTeMail"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Introduza su correo electronico"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvphone"
+                style="@style/TextView_Azul"
+                android:text="Telefono"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtphone"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="699000000"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvMatricula"
+                style="@style/TextView_Azul_largos"
+                android:text="Matricula Vehiculo"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtmatricula"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Matricula"
+                android:textColorHint="#686666"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvidemp"
+                style="@style/TextView_Azul_largos"
+                android:text="Id. Empleado asistente"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtidempas"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Si tuvo asistencia, indique el numero de empleado"
+                android:textColorHint="#686666"
+                app:layout_constraintStart_toStartOf="parent"
+                android:backgroundTint="#306cb0"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvFsuceso"
+                style="@style/TextView_Azul_largos"
+                android:text="Fecha del suceso"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtFsuceso"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Ejemplo formato: 01/01/2023"
+                android:textColorHint="#686666"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <ImageButton
+                android:background="#00000000"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="150dp"
+                android:src="@drawable/bnt_localizacion"
+                android:id="@+id/btnlob"/>
+
+            <TextView
+                android:id="@+id/Direc"
+                style="@style/TextView_Azul_largos"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtDirec"
+                style="@style/TextInputEditText_RegistroUsu"
+                app:layout_constraintStart_toStartOf="parent"
+                android:backgroundTint="#306cb0"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvLat"
+                style="@style/TextView_Azul"
+                android:text="Latitud"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtLat"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvLon"
+                style="@style/TextView_Azul"
+                android:text="Longitud"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtLon"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        tools:layout_editor_absoluteX="10dp">
+
+        <Button
+            android:id="@+id/btnBorra"
+            style="@style/Boton_blanco_S"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="30dp"
+            android:text="Borrar Datos" />
+
+        <Button
+            android:id="@+id/btnSiguiente"
+            style="@style/Boton_blanco_S"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="40dp"
+            android:text="Siguiente" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
