@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
     android:layout_marginTop="15dp"
     android:layout_marginBottom="15dp">
@@ -33,7 +33,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="70"
+                    android:layout_weight="65"
                     android:layout_gravity="center_vertical">
 
                     <TextView
@@ -48,44 +48,28 @@
 
                     <TextView
                         style="@style/TextosBlancos"
-                        android:id="@+id/tvIdAccidente"
+                        android:id="@+id/tvIdAccidete"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
                         android:text="X"/>
 
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="30"
+                    android:layout_weight="35"
                     android:layout_gravity="center_vertical">
 
                     <TextView
                         style="@style/TextosBlancos"
-                        android:id="@+id/tvFecha"
+                        android:id="@+id/tvFechaAccidente"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
                         android:text="fecha"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="10"
-                    android:layout_gravity="center_vertical"
-                    android:visibility="gone">
-
-                    <CheckBox
-                        android:id="@+id/checkBox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/white"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"/>
 
                 </LinearLayout>
 
@@ -105,7 +89,7 @@
                     android:layout_marginStart="20dp"
                     android:textSize="18dp"
                     android:textStyle="bold"
-                    android:text="Ubicacion: "/>
+                    android:text="UBICACIÓN: "/>
 
             </LinearLayout>
 
@@ -117,7 +101,7 @@
 
                 <TextView
                     style="@style/TextosBlancos"
-                    android:id="@+id/tvUbicacion"
+                    android:id="@+id/tvUbicacionAccidente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -141,7 +125,7 @@
                     android:textSize="18dp"
                     android:textStyle="bold"
 
-                    android:text="Descripcion: "/>
+                    android:text="DESCRIPCIÓN: "/>
 
             </LinearLayout>
 
@@ -153,7 +137,7 @@
 
                 <TextView
                     style="@style/TextosBlancos"
-                    android:id="@+id/tvDescripcion"
+                    android:id="@+id/tvDescripcionAccidente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -163,8 +147,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-
 
     </LinearLayout>
 

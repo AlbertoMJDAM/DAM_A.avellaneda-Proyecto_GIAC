@@ -18,12 +18,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import proyectoDAM.giac_app_v01.R;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.accidentesAsignados.accidentesAsignados;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.datosTrabajador.DatosTrabajador;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.incidenciasAsignadas.IncidenciasAsignadas;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoAccidentes.ListadoAccidentes;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoIncidencias.ListadoIncidencias;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoUsuarios.ListadoUsuarios;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoVehiculos.ListadoVehiculos;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.localizarAccidentes.localizarAccidentes;
 
 public class MenuPrincipal_T extends AppCompatActivity {
 
@@ -92,28 +94,33 @@ public class MenuPrincipal_T extends AppCompatActivity {
                 page.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        //COGEMOS LA ID DEL TRABAJADOR Y LA PASAMOS A LAS NUEVAS ACTIVITIES
+                        String idTrabajador = null;
+                        try {
+                            idTrabajador = jsonDatosTrab.getString("Id_Empleado");
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
                         switch (cont) {
                             // DESDE ESTE PUNTO SE INICIAN TODAS LAS INTENT DE LAS ACCIONS A REALIZAR POR EL USUARIO EN EL SWIPEVIEW
                             //
-                            case 0:
+                            case 0: //BOTON DE INCIDENCIAS ASIGNADAS
                                 Intent IncidenciasAsignadas = new Intent (view.getContext(), IncidenciasAsignadas.class);
-                                //COGEMOS LA ID DEL TRABAJADOR Y LA PASAMOS A LA NUEVA ACTIVITY
-                                String idTrabajador = null;
-                                try {
-                                    idTrabajador = jsonDatosTrab.getString("Id_Empleado");
-                                } catch (JSONException e) {
-                                    throw new RuntimeException(e);
-                                }
+
                                 IncidenciasAsignadas.putExtra("idTrabajador", idTrabajador);
                                 startActivity(IncidenciasAsignadas);
                                 break;
-                            case 1: //Intent accidente = new Intent (view.getContext(), AccidenteActivity.class);
-                                //startActivity(accidente);
+                            case 1: //BOTON DE ACCIDENTES ASIGNADAS
+                                Intent accidentesAsignados = new Intent (getApplicationContext(), accidentesAsignados.class);
+                                accidentesAsignados.putExtra("idTrabajador", idTrabajador);
+                                startActivity(accidentesAsignados);
                                 break;
-                            case 2: //Intent asistencia = new Intent (view.getContext(), AsisteciaActivity.class);
-                                //startActivity(asistencia);
+                            case 2: //BOTON DE LOCALIZAR ACCIDENTES
+                                Intent localizarAccidentes = new Intent (view.getContext(), localizarAccidentes.class);
+                                startActivity(localizarAccidentes);
                                 break;
-                            case 3: //Intent asistencia = new Intent (view.getContext(), AsisteciaActivity.class);
+                            case 3: //BOTON DE DOCUMENTOS DE PARTES
+                                //Intent asistencia = new Intent (view.getContext(), AsisteciaActivity.class);
                                 //startActivity(asistencia);
                                 break;
                         }
@@ -194,6 +201,14 @@ public class MenuPrincipal_T extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent ListaAccidentes = new Intent(getApplicationContext(), ListadoAccidentes.class);
+                //COGEMOS LA ID DEL TRABAJADOR Y LA PASAMOS A LA NUEVA ACTIVITY
+                String idTrabajador = null;
+                try {
+                    idTrabajador = jsonDatosTrab.getString("Id_Empleado");
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+                ListaAccidentes.putExtra("idTrabajador", idTrabajador);
                 startActivity(ListaAccidentes);
             }
         });

@@ -24,6 +24,18 @@
         android:theme="@style/Theme"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA1wQVD4KafHYm7By6Q-nm-lROlsEi5j10"
+            />
+
+        <activity
+            android:name=".menuPrincipal_T.localizarAccidentes.localizarAccidentes"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_T.accidentesAsignados.accidentesAsignados"
+            android:exported="false" />
         <activity
             android:name=".menuPrincipal_T.incidenciasAsignadas.IncidenciasAsignadas"
             android:exported="false" />
@@ -69,7 +81,7 @@
             android:theme="@style/Theme.CrearPopUp.as" />
         <activity
             android:name=".registraIncidencias.RegistraDatosIn"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".registraIncidencias.InfoDatos"
             android:exported="false"
@@ -80,8 +92,7 @@
             android:theme="@style/Theme.CrearPopUp.as" />
         <activity
             android:name=".registraIncidencias.RegistraDesIn"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".login.Login"
             android:exported="true">

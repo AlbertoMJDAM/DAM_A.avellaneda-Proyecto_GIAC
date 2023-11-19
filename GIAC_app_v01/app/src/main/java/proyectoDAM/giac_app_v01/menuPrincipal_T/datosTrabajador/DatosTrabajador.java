@@ -73,7 +73,7 @@ public class DatosTrabajador extends AppCompatActivity {
 
         // Establecemos los datos en sus casillas
         try {
-            tvNusu2.setText(jsonDatosTrab.getString("Nombre"));
+            tvNusu2.setText(jsonDatosTrab.getString("Nombre_Usuario"));
             tvidtrab.setText(jsonDatosTrab.getString("Id_Empleado"));
             tvPerfil2.setText(jsonDatosTrab.getString("Perfil_Empleado"));
             edtNombre.setText(jsonDatosTrab.getString("Nombre"));

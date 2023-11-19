@@ -54,7 +54,7 @@ public class MenuAdapter_T extends RecyclerView.Adapter<MenuAdapter_T.ViewHolder
                     break;
             case 1:
                     holder.textotitulo.setText(holder.textotitulo.getResources().getString(R.string.TituloCLIASIG));
-                    holder.textoinfo.setText(holder.textoinfo.getResources().getString(R.string.clientesAsig));
+                    holder.textoinfo.setText(holder.textoinfo.getResources().getString(R.string.accidentesAsig));
                     holder.audio.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
