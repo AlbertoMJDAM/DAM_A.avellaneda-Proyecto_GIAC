@@ -1,15 +1,15 @@
 package proyectoDAM.giac_app_v01.menuPrincipal_T.incidenciasAsignadas;
 
+
+
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -59,7 +59,6 @@ public class adaptadorIncidenciasAsignadas extends BaseAdapter {
         TextView tvFechaIncidencia = (TextView) view.findViewById(R.id.tvFechaIncidencia);
         TextView tvUbicacionIncidencia = (TextView) view.findViewById(R.id.tvUbicacionIncidencia);
         TextView tvDescripcionIncidencia = (TextView) view.findViewById(R.id.tvDescripcionIncidencia);
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.linearLayout);
 
 
         tvIdIncidencia.setText(arrayList.get(i).getId_Incidencia());
@@ -70,7 +69,9 @@ public class adaptadorIncidenciasAsignadas extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Incidencia numero: "+(i+1),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent (view.getContext(), gestionarIncidencia.class);
+                //intent.putParcelableArrayListExtra("datos", (ArrayList<? extends Parcelable>) arrayList);
+                view.getContext().getApplicationContext().startActivity(intent);
             }
         });
 

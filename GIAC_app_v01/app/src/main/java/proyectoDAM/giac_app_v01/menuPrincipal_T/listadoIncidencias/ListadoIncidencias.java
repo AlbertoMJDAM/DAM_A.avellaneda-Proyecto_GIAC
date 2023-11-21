@@ -94,6 +94,7 @@ public class ListadoIncidencias extends AppCompatActivity {
                             try {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 String Id_Incidencia = jsonObject.getString("Id_Incidencia");
+                                String Id_Usuario = jsonObject.getString("Id_Usuario");
                                 String empleado = jsonObject.getString("empleado");
                                 String Vehiculo_Usuario = jsonObject.getString("Vehiculo_Usuario");
                                 String Fecha_Incidencia  = jsonObject.getString("Fecha_Incidencia");
@@ -102,7 +103,7 @@ public class ListadoIncidencias extends AppCompatActivity {
                                 String CoordenadaY = jsonObject.getString("CoordenadaY");
                                 String Descripcion = jsonObject.getString("Descripcion");
 
-                                Incidencias incidencia = new Incidencias(Id_Incidencia, empleado, Vehiculo_Usuario,
+                                Incidencias incidencia = new Incidencias(Id_Incidencia, Id_Usuario, empleado, Vehiculo_Usuario,
                                         Fecha_Incidencia, Direccion, CoordenadaX, CoordenadaY, Descripcion);
                                 lista.add(incidencia);
                             } catch (JSONException e) {

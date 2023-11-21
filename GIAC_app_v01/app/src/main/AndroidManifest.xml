@@ -27,9 +27,14 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA1wQVD4KafHYm7By6Q-nm-lROlsEi5j10"
-            />
+            android:value="AIzaSyA1wQVD4KafHYm7By6Q-nm-lROlsEi5j10" />
 
+        <activity
+            android:name=".menuPrincipal_T.incidenciasAsignadas.gestionarIncidencia"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_T.documentosTrabajadores.documentosTrabajadores"
+            android:exported="false" />
         <activity
             android:name=".menuPrincipal_T.localizarAccidentes.localizarAccidentes"
             android:exported="false" />

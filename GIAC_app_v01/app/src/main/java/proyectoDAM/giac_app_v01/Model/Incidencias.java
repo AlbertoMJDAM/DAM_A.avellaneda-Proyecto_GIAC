@@ -4,13 +4,14 @@ import android.widget.CheckBox;
 
 public class Incidencias {
 
-    private String Id_Incidencia, empleado, Vehiculo_Usuario, Fecha_Incidencia, Direccion;
+    private String Id_Incidencia, Id_Usuario, empleado, Vehiculo_Usuario, Fecha_Incidencia, Direccion;
     private String CoordenadaX, CoordenadaY, Descripcion;
 
-    public Incidencias (String Id_Incidencia, String empleado, String Vehiculo_Usuario,
+    public Incidencias (String Id_Incidencia, String Id_Usuario, String empleado, String Vehiculo_Usuario,
                         String Fecha_Incidencia, String Direccion, String CoordenadaX,
                         String CoordenadaY, String Descripcion){
         this.Id_Incidencia = Id_Incidencia;
+        this.Id_Usuario = Id_Usuario;
         this.empleado = empleado;
         this.Vehiculo_Usuario = Vehiculo_Usuario;
         this.Fecha_Incidencia = Fecha_Incidencia;
@@ -22,6 +23,14 @@ public class Incidencias {
 
     public Incidencias (){
 
+    }
+
+    public String getId_Usuario() {
+        return Id_Usuario;
+    }
+
+    public void setId_Usuario(String id_Usuario) {
+        Id_Usuario = id_Usuario;
     }
 
     public String getId_Incidencia() {

@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import proyectoDAM.giac_app_v01.R;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.accidentesAsignados.accidentesAsignados;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.datosTrabajador.DatosTrabajador;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.documentosTrabajadores.documentosTrabajadores;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.incidenciasAsignadas.IncidenciasAsignadas;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoAccidentes.ListadoAccidentes;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoIncidencias.ListadoIncidencias;
@@ -120,8 +121,8 @@ public class MenuPrincipal_T extends AppCompatActivity {
                                 startActivity(localizarAccidentes);
                                 break;
                             case 3: //BOTON DE DOCUMENTOS DE PARTES
-                                //Intent asistencia = new Intent (view.getContext(), AsisteciaActivity.class);
-                                //startActivity(asistencia);
+                                Intent documentosTrabajadores = new Intent (view.getContext(), documentosTrabajadores.class);
+                                startActivity(documentosTrabajadores);
                                 break;
                         }
                     }

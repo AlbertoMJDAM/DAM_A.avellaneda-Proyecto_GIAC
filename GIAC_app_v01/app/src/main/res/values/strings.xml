@@ -53,6 +53,7 @@
     <string name="descripcionIncidenciasAsignadas">Aqui puedes ver un listado de tus incidencias asignadas, pincha una para gestionarla.</string>
     <string name="descripcionAccidentesAsignados">Aqui puedes ver un listado de tus accidentes asignados, pincha uno para gestionarla.</string>
     <string name="descripcionLocalizarAccidentes">Aqui puedes ver en el mapa todos los accidentes e incidencias, pincha uno para gestionarla.</string>
+    <string name="descripcionDocumentosTrabajador">Aqui puedes revisar los documentos generados de accidentes e incidencias, pincha para verlos.</string>
 
 
     /////////////////////////////////// MENU VEHICULOS ////////////////////////////////
