@@ -83,11 +83,10 @@ public class RegistraDatosIn extends AppCompatActivity implements LocationListen
         //CARGAMOS EL SIGUIENTE NUMERO DE INCIDENCIA
         maxIdIncidencia("https://appgiac.000webhostapp.com/mostrar_max_incidencia.php");
 
-        // PONGO ESTO PARA LA PRUEBA PERO HAY QUE TRAER EL IDUSUARIO DESDE EL INTENT MENU PRINCIPAL
-        //bundle = getIntent().getExtras();
-        //idUsuario =bundle.getString("idusuario");
-
-        tvidusu.setText("1002");
+        // TRAEMOS EL ID DEL USUARIO DESDE EL MENU PRINCIPAL
+        bundle = getIntent().getExtras();
+        idUsuario =bundle.getString("idusuario");
+        tvidusu.setText(idUsuario);
         ////////////////////////////////////////
 
         // AUTORELLENADO DE LOS DATOS DEL USUARIO

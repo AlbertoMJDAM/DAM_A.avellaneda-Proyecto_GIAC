@@ -125,6 +125,53 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <activity
+            android:name=".registraAccidentes.PopUp_Acciones"
+            android:exported="true"
+            android:theme="@style/Theme.CrearPopUp.acc">
+        </activity>
+        <activity
+            android:name=".registraAccidentes.InfoDatosAcc"
+            android:exported="false"
+            android:theme="@style/Theme.CrearPopUp.as" />
+        <activity
+            android:name=".registraAccidentes.InfoDesPdfAcc"
+            android:exported="false"
+            android:theme="@style/Theme.CrearPopUp.as">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".registraAccidentes.RegistraDatosAcc"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".registraAccidentes.RegistraDesAcc"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".registraAccidentes.RegistraLocalizaAcc"
+            android:exported="false"
+            android:theme="@style/Theme.CrearPopUp.as" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC1XseOxJfUCeTcXs4eoTlxDKrg3mIar2A" />
+        </activity>
+
+
     </application>
+
 
 </manifest>

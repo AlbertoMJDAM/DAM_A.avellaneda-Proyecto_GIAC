@@ -24,6 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import proyectoDAM.giac_app_v01.R;
+import proyectoDAM.giac_app_v01.registraAccidentes.PopUp_Acciones;
 import proyectoDAM.giac_app_v01.registraIncidencias.RegistraDatosIn;
 
 
@@ -111,10 +112,13 @@ public class MenuPrincipal_U extends AppCompatActivity {
                             // DESDE ESTE PUNTO SE INICIAN TODAS LAS INTENT DE LAS ACCIONS A REALIZAR POR EL USUARIO EN EL SWIPEVIEW
                             case 0:
                                 Intent incidencia = new Intent (view.getContext(), RegistraDatosIn.class);
+                                incidencia.putExtra("idusuario", idusuario);
                                 startActivity(incidencia);
                                 break;
-                            case 1: //Intent accidente = new Intent (view.getContext(), AccidenteActivity.class);
-                                //startActivity(accidente);
+                            case 1:
+                                Intent accidente = new Intent (view.getContext(), PopUp_Acciones.class);
+                                accidente.putExtra("idusuario", idusuario);
+                                startActivity(accidente);
                                 break;
                             case 2: //Intent asistencia = new Intent (view.getContext(), AsisteciaActivity.class);
                                 //startActivity(asistencia);
