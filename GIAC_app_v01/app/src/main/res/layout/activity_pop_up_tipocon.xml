@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fpop_up"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".Ayuda.PopUp_tipocon">
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/times"
+        android:gravity="center"
+        android:text="¡Aqui estamos para ayudarte!"
+        android:textAlignment="center"
+        android:textColor="#CDCFD1"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvdescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/times"
+        android:gravity="center"
+        android:text="Si tienes alguna consulta que no hace referencia a los partes que has dado y necesitas que te ayudemos, te facilitamos dos vías de comunicación con nosotros. Elige la que quieras\n y cuéntanos que sucede."
+        android:textAlignment="center"
+        android:textColor="#CDCFD1"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            style="@style/Boton_blanco_S"
+            android:id="@+id/btnEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/white"
+            android:layout_gravity="center"
+            android:text="  Correo Electronico  " />
+
+        <Button
+            android:id="@+id/btnTelefono"
+            style="@style/Boton_blanco_S"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:text="Asistencia TelefOnica" />
+
+    </LinearLayout>
+
+</LinearLayout>

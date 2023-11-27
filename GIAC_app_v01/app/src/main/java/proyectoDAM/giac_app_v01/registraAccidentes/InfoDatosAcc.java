@@ -19,7 +19,7 @@ public class InfoDatosAcc extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_infodatos);
+        setContentView(R.layout.activity_infodatos_acc);
 
         //CONFIGURAMOS TAMAÑO DEL ACTIVITY PARA COMPORTARSE COMO UNA VENTANA EMERGENTE
         DisplayMetrics medidaventana = new DisplayMetrics();

@@ -23,6 +23,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import proyectoDAM.giac_app_v01.Ayuda.PopUp_tipocon;
+import proyectoDAM.giac_app_v01.DocumentosUsuario.MenuArchivos;
 import proyectoDAM.giac_app_v01.R;
 import proyectoDAM.giac_app_v01.registraAccidentes.PopUp_Acciones;
 import proyectoDAM.giac_app_v01.registraIncidencias.RegistraDatosIn;
@@ -32,7 +34,7 @@ public class MenuPrincipal_U extends AppCompatActivity {
 
     // Atributos:
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123; // Damos valor al permiso.
-    private String datosUsuario; // Datos del Trabajador registrado en login
+    private String datosUsuario,email;
     String idusuario;
     String nombreusu;
     private ViewPager2 viewPager2; //Menu de acciones
@@ -76,6 +78,7 @@ public class MenuPrincipal_U extends AppCompatActivity {
         try {
             idusuario = jsonDatosTrab.getString("Id_Usuario");
             nombreusu = jsonDatosTrab.getString("Nombre");
+            email  = jsonDatosTrab.getString("Email");
             //tvBbienvenida.setText("¡ Bienvenido " + jsonDatosTrab.getString("Nombre") + " !");
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -124,10 +127,13 @@ public class MenuPrincipal_U extends AppCompatActivity {
                                 //startActivity(asistencia);
                                 break;
                             case 3: //Intent archivos = new Intent (view.getContext(), ArchivosActivity.class);
-                                //startActivity(archivos);
+                                Intent archivos = new Intent (view.getContext(), MenuArchivos.class);
+                                startActivity(archivos);
                                 break;
                             case 4: //Intent ayuda = new Intent (view.getContext(), AyudaActivity.class);
-                                //startActivity(ayuda);
+                                Intent ayuda = new Intent (view.getContext(), PopUp_tipocon.class);
+                                ayuda.putExtra("email", email);
+                                startActivity(ayuda);
                                 break;
                         }
                     }

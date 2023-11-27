@@ -212,14 +212,14 @@ public class RegistraDesAcc extends AppCompatActivity {
                     requestPermissions();
                 }
                 // Al guardar incidencia abrimos carpeta de incidencia en el dispositivo
-                File directorio = new File(getExternalStorageDirectory() + "/giac", accidente.getIdAccidente());
-                if (!directorio.exists()) {
-                    if (directorio.mkdirs()) {
-                        Toast.makeText(getApplicationContext(), "Creado directorio de incidencia", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Error al crear directorio", Toast.LENGTH_LONG).show();
-                    }
-                }
+                //File directorio = new File(getExternalStorageDirectory() + "/giac", accidente.getIdAccidente());
+                //if (!directorio.exists()) {
+                    //if (directorio.mkdirs()) {
+                        //Toast.makeText(getApplicationContext(), "Creado directorio de incidencia", Toast.LENGTH_LONG).show();
+                    //} else {
+                        //Toast.makeText(getApplicationContext(), "Error al crear directorio", Toast.LENGTH_LONG).show();
+                    //}
+               // }
                 try {
                     //if(accidente.getImg1() != null && accidente.getImg2() != null && accidente.getImg3() != null & accidente.getImg4() != null & accidente.getImg5() != null & accidente.getImg6() != null){
                         createPdf();
