@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondorg"
+    android:backgroundTintMode="src_atop"
+    android:hapticFeedbackEnabled="false"
+    android:layout_gravity="center"
+    tools:context=".Asistencia.EditaIncidencia">
+
+    <TextView
+        android:id="@+id/tvtituloAcc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/times"
+        android:layout_marginTop="10dp"
+        android:text="EDICION PARTE DE INCIDENCIA"
+        android:textColor="#306cb0"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvsbtitAcc"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/times"
+        android:text=""
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#306cb0"
+        android:textIsSelectable="false"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvtituloAcc" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvtituloAcc">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/li"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvidinci"
+                    android:layout_width="115dp"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/times"
+                    android:layout_marginStart="20dp"
+                    android:text="Id.Incidencia: "
+                    android:textColor="#C4306CB0"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvnuminci"
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/times"
+                    android:text="0000"
+                    android:textColor="#C4306CB0"
+                    android:textSize="18sp"
+                    android:textStyle="italic|bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                    android:id="@+id/btnAutoriza"
+                    style="@style/Boton_azul_L"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="20dp"
+                    android:text="Editar"
+                    android:textSize="10dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvNombre"
+                style="@style/TextView_Azul"
+                android:text="Nombre"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtNombre"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Introduzca su nombre"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
+
+            <TextView
+                android:id="@+id/tvPApe"
+                style="@style/TextView_Azul"
+                android:text="Primer Apellido"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="374dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtPApe"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Introduzca su primer apellido"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPApe" />
+
+            <TextView
+                android:id="@+id/tvSApe"
+                style="@style/TextView_Azul_largos"
+                android:layout_width="254dp"
+                android:layout_marginEnd="250dp"
+                android:text="Segundo Apellido"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="503dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtSApe"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Introduzca su segundo apellido"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="547dp" />
+
+            <TextView
+                android:id="@+id/tvDNI"
+                style="@style/TextView_Azul"
+                android:text="DNI"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edTtvDNI"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Ejemplo formato: 00000000A"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tveMail"
+                style="@style/TextView_Azul_largos"
+                android:fontFamily="@font/times"
+                android:text="Correo electronico"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edTeMail"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Introduza su correo electronico"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvphone"
+                style="@style/TextView_Azul"
+                android:text="Telefono"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtphone"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="699000000"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvMatricula"
+                style="@style/TextView_Azul_largos"
+                android:text="Matricula Vehiculo"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtmatricula"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Matricula"
+                android:textColorHint="#686666"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvidemp"
+                style="@style/TextView_Azul_largos"
+                android:text="Id. Empleado asistente"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtidempas"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Si tuvo asistencia, indique el numero de empleado"
+                android:textColorHint="#686666"
+                app:layout_constraintStart_toStartOf="parent"
+                android:backgroundTint="#306cb0"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvFsuceso"
+                style="@style/TextView_Azul_largos"
+                android:text="Fecha del suceso"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtFsuceso"
+                style="@style/TextInputEditText_RegistroUsu"
+                android:hint="Ejemplo formato: 01/01/2023"
+                android:textColorHint="#686666"
+                android:backgroundTint="#306cb0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/Direc"
+                style="@style/TextView_Azul_largos"
+                android:text="Dirección"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="626dp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtDirec"
+                style="@style/TextInputEditText_RegistroUsu"
+                app:layout_constraintStart_toStartOf="parent"
+                android:backgroundTint="#306cb0"
+                tools:layout_editor_absoluteY="670dp" />
+
+            <TextView
+                android:id="@+id/tvDescricionSuceso"
+                style="@style/TextView_Azul"
+                android:layout_width="250dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginBottom="20dp"
+                android:textAlignment="center"
+                android:text="DESCRIBE LO OCURRIDO"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <EditText
+                android:id="@+id/edtDescripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="20"
+                android:layout_marginStart="10dp"
+                android:padding="50dp"
+                android:background="@drawable/borde_descripcion"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/times"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:inputType="textMultiLine"
+                android:maxLines="5"/>
+
+            <TextView
+                android:id="@+id/tvcargaimg"
+                style="@style/TextView_Azul"
+                android:layout_marginStart="100dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="200dp"
+                android:layout_height="20dp"
+                android:text="IMAGENES DEL SUCESO"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:ems="70"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="180dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="5dp"
+                    android:background="#5E5C5C"
+                    android:src="@drawable/camera"
+                    />
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="180dp"
+                    android:layout_height="160dp"
+                    android:background="#5E5C5C"
+                    android:src="@drawable/camera"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:ems="70"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="180dp"
+                    android:layout_height="160dp"
+                    android:layout_margin="5dp"
+                    android:background="#5E5C5C"
+                    android:src="@drawable/camera"/>
+                <ImageView
+                    android:id="@+id/img4"
+                    android:layout_width="180dp"
+                    android:layout_height="160dp"
+                    android:background="#5E5C5C"
+                    android:src="@drawable/camera"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        tools:layout_editor_absoluteX="10dp">
+
+        <Button
+            android:id="@+id/btnBorra"
+            style="@style/Boton_blanco_S"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_weight="1"
+            android:text="BORRAR" />
+
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/Boton_blanco_S"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_weight="1"
+            android:text="GUARDAR" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnpdf"
+        style="@style/Boton_blanco_S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
+        android:backgroundTint="#A11E1E"
+        android:gravity="center"
+        android:text="GENERAR PDF"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,6 +23,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import proyectoDAM.giac_app_v01.Asistencia.MenuPartes;
 import proyectoDAM.giac_app_v01.Ayuda.PopUp_tipocon;
 import proyectoDAM.giac_app_v01.DocumentosUsuario.MenuArchivos;
 import proyectoDAM.giac_app_v01.R;
@@ -124,7 +125,9 @@ public class MenuPrincipal_U extends AppCompatActivity {
                                 startActivity(accidente);
                                 break;
                             case 2: //Intent asistencia = new Intent (view.getContext(), AsisteciaActivity.class);
-                                //startActivity(asistencia);
+                                Intent asistenciaPartes = new Intent (view.getContext(), MenuPartes.class);
+                                asistenciaPartes.putExtra("idusuario", idusuario);
+                                startActivity(asistenciaPartes);
                                 break;
                             case 3: //Intent archivos = new Intent (view.getContext(), ArchivosActivity.class);
                                 Intent archivos = new Intent (view.getContext(), MenuArchivos.class);
