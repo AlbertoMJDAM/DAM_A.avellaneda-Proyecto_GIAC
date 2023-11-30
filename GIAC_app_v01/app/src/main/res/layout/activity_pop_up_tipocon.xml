@@ -19,7 +19,7 @@
         android:text="¡Aqui estamos para ayudarte!"
         android:textAlignment="center"
         android:textColor="#CDCFD1"
-        android:textSize="22sp"
+        android:textSize="22dp"
         android:textStyle="bold" />
 
     <TextView
@@ -29,10 +29,10 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/times"
         android:gravity="center"
-        android:text="Si tienes alguna consulta que no hace referencia a los partes que has dado y necesitas que te ayudemos, te facilitamos dos vías de comunicación con nosotros. Elige la que quieras\n y cuéntanos que sucede."
+        android:text="@string/descripcion_ayudas"
         android:textAlignment="center"
         android:textColor="#CDCFD1"
-        android:textSize="14sp"
+        android:textSize="18dp"
         android:textStyle="bold" />
 
     <LinearLayout

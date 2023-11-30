@@ -63,11 +63,15 @@ public class RegistraDatosAcc extends AppCompatActivity implements LocationListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registra_datos_acc);
+
+        // LLAMAMOS A LA ACTIVITY DEL LA EXPLICACION
         startActivity(new Intent(RegistraDatosAcc.this, InfoDatosAcc.class));
 
-        loadingDialogBar =new LoadingDialogBar(this);
+        // INSTANCIAMOS AL OBJETO DE LA CLASE ACCIDENTE
         accidente = new Accidente();
+
         //CARGA DE ELEMENTOS DEL LAYOUT
+        loadingDialogBar =new LoadingDialogBar(this);
         tvidNumUsuario  = findViewById(R.id.tvidNumUsuario);
         tvidNumAccidente = findViewById(R.id.tvidNumAccidente);
         edtNombre = findViewById(R.id.edtNombre);
@@ -459,13 +463,12 @@ public class RegistraDatosAcc extends AppCompatActivity implements LocationListe
                             Log.w("Response VOLLEY SC", response.toString());
                             //Toast.makeText(getApplicationContext(), "hasta aqui bien", Toast.LENGTH_SHORT).show();
                             JSONObject jsonObject =new JSONObject(response);
-                            Toast.makeText(getApplicationContext(), "hasta aqui bien", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "hasta aqui bien", Toast.LENGTH_SHORT).show();
                             String exito = jsonObject.getString("exito");
                             JSONArray jsonArray =jsonObject.getJSONArray("datos");
 
                             if (exito.equals("1")){
                                 //Toast.makeText(getApplicationContext(), "hasta aqui bien", Toast.LENGTH_SHORT).show();
-                                //Toast.makeText(getApplicationContext(), jsonArray.toString(), Toast.LENGTH_SHORT).show();
                                 for (int i=0;i<jsonArray.length();i++){
                                     JSONObject object=jsonArray.getJSONObject(i);
                                     edtNombre.setText(object.getString("Nombre"));
@@ -510,7 +513,7 @@ public class RegistraDatosAcc extends AppCompatActivity implements LocationListe
                                     idAccidente++;
                                     tvidNumAccidente.setText(String.valueOf(idAccidente));
                                     accidente.setIdAccidente(String.valueOf(idAccidente));
-                                    Toast.makeText(getApplicationContext(), accidente.getIdAccidente(), Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(getApplicationContext(), accidente.getIdAccidente(), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         } catch (JSONException e) {

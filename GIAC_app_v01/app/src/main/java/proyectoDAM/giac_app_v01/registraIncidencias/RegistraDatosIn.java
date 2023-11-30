@@ -60,6 +60,7 @@ public class RegistraDatosIn extends AppCompatActivity implements LocationListen
         setContentView(R.layout.activity_registra_datosin);
         startActivity(new Intent(RegistraDatosIn.this,InfoDatos.class));
         loadingDialogBar =new LoadingDialogBar(this);
+
         //CARGA DE ELEMENTOS DEL LAYOUT
         tvidusu = findViewById(R.id.tvidusu);
         tvnuminci = findViewById(R.id.tvid);
@@ -210,7 +211,6 @@ public class RegistraDatosIn extends AppCompatActivity implements LocationListen
     }
     @Override
     public void onLocationChanged(Location location) {
-        //Toast.makeText(this, ""+location.getLatitude()+","+location.getLongitude(), Toast.LENGTH_SHORT).show();
         loadingDialogBar.OcultaDialog();
         try {
             Geocoder geocoder = new Geocoder(RegistraDatosIn.this, Locale.getDefault());
@@ -395,15 +395,12 @@ public class RegistraDatosIn extends AppCompatActivity implements LocationListen
                     public void onResponse(String response) {
                         try {
                             Log.w("Response VOLLEY SC", response.toString());
-                            //Toast.makeText(getApplicationContext(), "hasta aqui bien", Toast.LENGTH_SHORT).show();
                             JSONObject jsonObject =new JSONObject(response);
-                            Toast.makeText(getApplicationContext(), "hasta aqui bien", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "hasta aqui bien", Toast.LENGTH_SHORT).show();
                             String exito = jsonObject.getString("exito");
                             JSONArray jsonArray =jsonObject.getJSONArray("datos");
 
                             if (exito.equals("1")){
-                                //Toast.makeText(getApplicationContext(), "hasta aqui bien", Toast.LENGTH_SHORT).show();
-                                //Toast.makeText(getApplicationContext(), jsonArray.toString(), Toast.LENGTH_SHORT).show();
                                 for (int i=0;i<jsonArray.length();i++){
                                     JSONObject object=jsonArray.getJSONObject(i);
                                     edtNombre.setText(object.getString("Nombre"));

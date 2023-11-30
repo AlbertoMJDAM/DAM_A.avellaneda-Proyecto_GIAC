@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/times"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
+        android:text="EDICION DE DATOS VEHICULO"
         android:textColor="#306cb0"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -26,16 +27,16 @@
 
     <TextView
         android:id="@+id/tvsbtit"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/times"
-        android:text="@string/descripcion"
+        android:text="Consulta y edita los datos de tu vehículo"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#306cb0"
         android:textIsSelectable="false"
-        android:textSize="10sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -56,7 +57,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp">
+
+            <Button
+                android:id="@+id/btnAutoriza"
+                style="@style/Boton_azul_L"
+                android:layout_gravity="center"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:text="Editar"
+                android:textSize="10dp"/>
 
             <TextView
                 android:id="@+id/tvMarca"
@@ -70,6 +82,9 @@
                 android:id="@+id/edtMarca"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Introduzca la marca del vehiculo."
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
 
@@ -84,6 +99,9 @@
                 android:id="@+id/edtModelo"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Introduzca el modelo que aparece en la ficha técnica."
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPApe" />
 
@@ -100,6 +118,9 @@
                 android:id="@+id/edtColor"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Introduzca el color que aparece en la ficha técnica."
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="547dp" />
 
@@ -114,6 +135,9 @@
                 android:id="@+id/edTNum_Puertas"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Si su vehículo es de dos ruedas indicar 0."
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -128,6 +152,9 @@
                 android:id="@+id/edtMotor"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Ejemplo formato: 1.9 TDI / 1.2 TSI Gasolina"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -143,6 +170,9 @@
                 android:id="@+id/edtCv"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Indicar potencia en Caballos de vapor CV."
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -159,6 +189,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="52dp"
                 android:layout_marginTop="25dp"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -174,6 +207,9 @@
                 android:id="@+id/edTMatricula"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Ejemplo formato: 0000AAA"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -188,6 +224,9 @@
                 android:id="@+id/edtNum_Bastidor"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Indicar numero de bastidor del vehiculo."
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
         </LinearLayout>
@@ -210,7 +249,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_weight="1"
-
             android:text="GUARDAR" />
 
         <Button

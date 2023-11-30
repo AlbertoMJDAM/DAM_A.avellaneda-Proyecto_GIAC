@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/times"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="REGISTRO DE ACCIDENTE"
         android:textColor="#306cb0"
         android:textSize="22sp"
@@ -47,11 +47,10 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="13dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvtituloAcc">
 
@@ -64,8 +63,7 @@
                 android:id="@+id/li"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_marginTop="5dp"
-
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -76,10 +74,10 @@
                     android:id="@+id/tvidUsuario"
                     android:layout_width="110dp"
                     android:layout_height="30dp"
+                    android:layout_marginStart="30dp"
                     android:fontFamily="@font/times"
-                    android:layout_marginStart="20dp"
                     android:text="Id Usuario: "
-                    android:textColor="#C4306CB0"
+                    android:textColor="#306cb0"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +89,7 @@
                     android:layout_height="30dp"
                     android:fontFamily="@font/times"
                     android:text="0000"
-                    android:textColor="#C4306CB0"
+                    android:textColor="#306cb0"
                     android:textSize="18sp"
                     android:textStyle="italic|bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -101,13 +99,12 @@
                     android:id="@+id/tvAccidente"
                     android:layout_width="110dp"
                     android:layout_height="30dp"
-                    android:fontFamily="@font/times"
                     android:layout_marginStart="-28dp"
+                    android:fontFamily="@font/times"
                     android:text="Id Accidente: "
-                    android:textColor="#C4306CB0"
+                    android:textColor="#306cb0"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvidNumAccidente"
@@ -115,10 +112,9 @@
                     android:layout_height="30dp"
                     android:fontFamily="@font/times"
                     android:text="0000"
-                    android:textColor="#C4306CB0"
+                    android:textColor="#306cb0"
                     android:textSize="18sp"
-                    android:textStyle="italic|bold"
-                    />
+                    android:textStyle="italic|bold" />
 
             </LinearLayout>
 
@@ -133,8 +129,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtNombre"
                 style="@style/TextInputEditText_RegistroUsu"
-                android:hint="Introduzca su nombre"
                 android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
+                android:hint="Introduzca su nombre"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
 
@@ -148,8 +147,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtPApe"
                 style="@style/TextInputEditText_RegistroUsu"
-                android:hint="Introduzca su primer apellido"
                 android:backgroundTint="#306cb0"
+                android:hint="Introduzca su primer apellido"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPApe" />
 
@@ -165,8 +167,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtSApe"
                 style="@style/TextInputEditText_RegistroUsu"
-                android:hint="Introduzca su segundo apellido"
                 android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
+                android:hint="Introduzca su segundo apellido"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="547dp" />
 
@@ -180,8 +185,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edTtvDNI"
                 style="@style/TextInputEditText_RegistroUsu"
-                android:hint="Ejemplo formato: 00000000A"
                 android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
+                android:hint="Ejemplo formato: 00000000A"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -196,8 +204,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edTeMail"
                 style="@style/TextInputEditText_RegistroUsu"
-                android:hint="Introduza su correo electronico"
                 android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
+                android:hint="Introduza su correo electronico"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -211,8 +222,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtphone"
                 style="@style/TextInputEditText_RegistroUsu"
-                android:hint="699000000"
                 android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
+                android:hint="699000000"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -227,20 +241,26 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtmatricula"
                 style="@style/TextInputEditText_RegistroUsu"
+                android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
                 android:hint="Matricula"
                 android:textColorHint="#686666"
-                android:backgroundTint="#306cb0"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
             <TextView
                 android:id="@+id/DescripcionVImplicados"
-                style="@style/TextView_Azul_largos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/times"
+                android:text="¿Ha habido algun otro vehiculo implicado?\nSi es asi por favor indica a continuacion \n sus matriculas"
                 android:textAlignment="center"
-                android:layout_width="310dp"
-                android:text="¿Ha habido algun otro vehiculo implicado?
-                Si es asi por favor indica a continuacion \n sus matriculas"
-                app:layout_constraintStart_toStartOf="parent"/>
+                android:textColor="#306cb0"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tvMatriculaImpUno"
@@ -253,9 +273,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtMatriculaImpUno"
                 style="@style/TextInputEditText_RegistroUsu"
+                android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
                 android:hint="Matricula"
                 android:textColorHint="#686666"
-                android:backgroundTint="#306cb0"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -270,9 +293,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtNombreImpUno"
                 style="@style/TextInputEditText_RegistroUsu"
+                android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
                 android:hint="Indica Nombre y Apellidos de Implicado"
                 android:textColorHint="#686666"
-                android:backgroundTint="#306cb0"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -291,33 +317,36 @@
 
                 <RadioButton
                     android:id="@+id/radioButton11"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily = "@font/times"
-                    android:textStyle="bold"
-                    android:textColor="#306cb0"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginStart="55dp"
-                    android:text="Telefono" />
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/times"
+                    android:text="Telefono"
+                    android:textColor="#306cb0"
+                    android:textStyle="bold" />
 
                 <RadioButton
                     android:id="@+id/radioButton12"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily = "@font/times"
-                    android:textStyle="bold"
-                    android:textColor="#306cb0"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginStart="70dp"
-                    android:text="Correo Electronico" />
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/times"
+                    android:text="Correo Electronico"
+                    android:textColor="#306cb0"
+                    android:textStyle="bold" />
             </RadioGroup>
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtcontactoImpUno"
                 style="@style/TextInputEditText_RegistroUsu"
-                android:hint="Indica Datos de Contacto de Implicado 1"
-                android:textColorHint="#686666"
                 android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
+                android:hint="Indica Datos de Contacto de Implicado"
+                android:textColorHint="#686666"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -331,9 +360,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtMatriculaImpDos"
                 style="@style/TextInputEditText_RegistroUsu"
+                android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
                 android:hint="Matricula"
                 android:textColorHint="#686666"
-                android:backgroundTint="#306cb0"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -347,9 +379,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtNombreImpDos"
                 style="@style/TextInputEditText_RegistroUsu"
+                android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
                 android:hint="Indica Nombre y Apellidos de Implicado"
                 android:textColorHint="#686666"
-                android:backgroundTint="#306cb0"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -367,33 +402,36 @@
 
                 <RadioButton
                     android:id="@+id/radioButton21"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily = "@font/times"
-                    android:textStyle="bold"
-                    android:textColor="#306cb0"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginStart="55dp"
-                    android:text="Telefono" />
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/times"
+                    android:text="Telefono"
+                    android:textColor="#306cb0"
+                    android:textStyle="bold" />
 
                 <RadioButton
                     android:id="@+id/radioButton22"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily = "@font/times"
-                    android:textStyle="bold"
-                    android:textColor="#306cb0"
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginStart="70dp"
-                    android:text="Correo Electronico" />
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/times"
+                    android:text="Correo Electronico"
+                    android:textColor="#306cb0"
+                    android:textStyle="bold" />
             </RadioGroup>
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtcontactoImpDos"
                 style="@style/TextInputEditText_RegistroUsu"
-                android:hint="Indica Datos de Contacto de Implicado 2"
-                android:textColorHint="#686666"
                 android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
+                android:hint="Indica Datos de Contacto de Implicado"
+                android:textColorHint="#686666"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -401,8 +439,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
                 android:layout_marginStart="10dp"
+                android:ems="10"
                 android:gravity="center_horizontal">
 
                 <ImageView
@@ -410,13 +448,13 @@
                     android:layout_height="30dp"
                     android:layout_marginTop="25dp"
                     android:backgroundTint="@color/black"
-                    android:src="@drawable/info"/>
+                    android:src="@drawable/info" />
 
                 <TextView
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginTop="25dp"
                     android:fontFamily="@font/times"
                     android:text="Si hay mas de dos vehiculos implicados, indica sus Matriculas y datos en la descripcion."
                     android:textAlignment="textStart"
@@ -437,10 +475,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtidempas"
                 style="@style/TextInputEditText_RegistroUsu"
+                android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
                 android:hint="Si tuvo asistencia, indique el numero de empleado"
                 android:textColorHint="#686666"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                android:backgroundTint="#306cb0"
                 tools:layout_editor_absoluteY="670dp" />
 
             <TextView
@@ -453,20 +494,23 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtFsuceso"
                 style="@style/TextInputEditText_RegistroUsu"
+                android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
                 android:hint="Ejemplo formato: 01/01/2023"
                 android:textColorHint="#686666"
-                android:backgroundTint="#306cb0"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
             <ImageButton
-                android:background="#00000000"
+                android:id="@+id/btnlob"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="150dp"
-                android:src="@drawable/bnt_localizacion"
-                android:id="@+id/btnlob"/>
+                android:layout_marginTop="20dp"
+                android:background="#00000000"
+                android:src="@drawable/bnt_localizacion" />
 
             <TextView
                 android:id="@+id/Direc"
@@ -478,8 +522,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtDirec"
                 style="@style/TextInputEditText_RegistroUsu"
-                app:layout_constraintStart_toStartOf="parent"
                 android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
             <TextView
@@ -493,6 +540,9 @@
                 android:id="@+id/edtLat"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -507,6 +557,9 @@
                 android:id="@+id/edtLon"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:backgroundTint="#306cb0"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
         </LinearLayout>

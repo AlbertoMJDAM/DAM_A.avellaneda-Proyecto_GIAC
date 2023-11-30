@@ -35,7 +35,7 @@ public class EnvioMail extends AppCompatActivity {
         btnEnvio = findViewById(R.id.btnenvio);
         direccion = findViewById(R.id.edtDircorreo);
         textoMail = findViewById(R.id.edttxtCorreo);
-        direccion.setText(email);
+        //direccion.setText(email);
 
         btnBorrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,16 +50,16 @@ public class EnvioMail extends AppCompatActivity {
                 SpannableString mitextoU = new SpannableString("Consulta a GIAC");
                 mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
                 String[] TO = {"admigiac@mail.com"};
-                String[] FROM = {direccion.getText().toString()};
+                String[] CC = {direccion.getText().toString()};
                 String mensaje = textoMail.getText().toString();
 
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.setData(Uri.parse("mailto:"));
-                emailIntent.setData(Uri.parse("mailfrom:"));
                 emailIntent.setType("text/plain");
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, FROM);
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, mensaje );
+                emailIntent.putExtra(Intent.EXTRA_CC, CC);
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Consulta de usuario" );
+                emailIntent.putExtra(Intent.EXTRA_TEXT,  mensaje );
 
                 try {
                     startActivity(Intent.createChooser(emailIntent, "Enviar email."));

@@ -17,7 +17,7 @@
         android:background="@drawable/btn_contorno_blanco_l">
 
         <LinearLayout
-            android:layout_width="300dp"
+            android:layout_width="280dp"
             android:layout_height="100dp"
             android:orientation="vertical">
 
@@ -55,7 +55,8 @@
             android:id="@+id/img"
             android:src="@drawable/coche"
             android:layout_width="110dp"
-            android:layout_height="100dp"/>
+            android:layout_height="100dp"
+            android:layout_marginEnd="50dp"/>
 
     </LinearLayout>
 

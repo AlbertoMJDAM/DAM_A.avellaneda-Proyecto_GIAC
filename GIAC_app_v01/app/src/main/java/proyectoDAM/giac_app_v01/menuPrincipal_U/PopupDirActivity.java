@@ -24,12 +24,13 @@ import java.util.List;
 import java.util.Locale;
 
 import proyectoDAM.giac_app_v01.R;
+import proyectoDAM.giac_app_v01.registraIncidencias.LoadingDialogBar;
 
 public class PopupDirActivity extends AppCompatActivity implements LocationListener {
 
     TextView textView_location;
     LocationManager locationManager;
-    Button mapa;
+    Button btnmapa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +57,8 @@ public class PopupDirActivity extends AppCompatActivity implements LocationListe
         getLocation();
 
         //CREACION DEL MAPA
-        mapa = findViewById(R.id.button_location);
-        mapa.setOnClickListener(new View.OnClickListener() {
+        btnmapa = findViewById(R.id.button_location);
+        btnmapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(PopupDirActivity.this, PopupMapaActivity.class));

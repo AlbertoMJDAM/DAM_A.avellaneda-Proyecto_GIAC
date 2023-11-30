@@ -52,7 +52,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/times"
                 android:gravity="center"
-                android:text="¿No sabes como rellenar una incidencia?\n Tranquilo, te guiaremos en todo el proceso. Tan solo sigue las instrucciones que te detallamos aqui. Cuando termines de leer, pulsa en cualquier punto fuera del recuadro para comenzar."
+                android:text="@string/inc_infoDatos"
                 android:textAlignment="center"
                 android:textColor="#CDCFD1"
                 android:textSize="14sp"
@@ -72,8 +72,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/times"
-                android:text="Primero deberas comprobar los datos cargados segun tu perfil y completar el resto de datos. tambien necesitaremos la ubicacion donde has sufrido o visto la incidencia, pero tranquil@
-¡No es necesario que te sepas el nombre de la calle o el punto kilometrico de la carretera! \nPara saber donde te encuentras, hemos habilitado un boton similar a este:"
+                android:text="@string/inc_infoDatos1"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:textColor="#CDCFD1"
@@ -95,8 +94,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:fontFamily="@font/times"
-                android:text="Cuando pinches en el y aceptes los permisos de localizacion, la aplicacion detectara automaticamente
-la direccion y coordenadas de donde te encuentras.\n¡Adelante! Vamos a empezar a rellenar estos datos y cuando termines, pulsa el boton Siguiente."
+                android:text="@string/inc_infoDatos2"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:textColor="#CDCFD1"

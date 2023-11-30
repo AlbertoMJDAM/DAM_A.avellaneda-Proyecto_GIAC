@@ -159,7 +159,7 @@ public class EditaAccidente extends AppCompatActivity {
         img5.setImageURI(imageUri);
         img6.setImageURI(imageUri);
 
-        // COMPLEMTAMOS EL TEXTVIEW DE ID DE INCIDENCIA
+        // CUMPLIMENTAMOS EL TEXTVIEW DE ID DE INCIDENCIA
         tvidNumAccidente.setText(idAccidente);
 
 
@@ -259,7 +259,8 @@ public class EditaAccidente extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Permitida Edicion datos accidente", Toast.LENGTH_LONG).show();
             }
         });
-
+        // ########## DAMOS ACCION A LOS BOTONES ##########
+        // BOTON PARA GUARDADO DE BASE DE DATOS DE LOS DATOS INTROUDCIDOS
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -323,7 +324,7 @@ public class EditaAccidente extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Creando Documento PDF", Toast.LENGTH_LONG).show();
                 if (checkPermission()) {
-                    Toast.makeText(getApplicationContext(), "Permisos Necesarios", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Permisos Disponibles", Toast.LENGTH_LONG).show();
                 } else {
                     requestPermissions();
                     Toast.makeText(getApplicationContext(), "Permisos Necesarios", Toast.LENGTH_LONG).show();

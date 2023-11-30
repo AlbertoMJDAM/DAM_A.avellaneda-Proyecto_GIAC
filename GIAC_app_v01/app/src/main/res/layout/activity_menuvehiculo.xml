@@ -24,7 +24,7 @@
             android:id="@+id/tv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/times"
             android:text="MIS VEHICULOS"
@@ -35,16 +35,23 @@
 
         <ListView
             android:id="@+id/lstDatos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></ListView>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="5dp">
+        </ListView>
 
     </LinearLayout>
 
     <Button
         android:id="@+id/btnReg"
-        style="@style/Boton_azul_L"
+        style="@style/Boton_blanco_S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Añadir Vehiculo"
         android:textAlignment="center"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

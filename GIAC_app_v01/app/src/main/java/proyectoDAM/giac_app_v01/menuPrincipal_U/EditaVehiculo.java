@@ -40,7 +40,7 @@ public class EditaVehiculo extends AppCompatActivity {
     private TextView titulo;
     private TextInputEditText edtMarca,edtModelo,edtColor, edTNum_Puertas,edtMotor,edtCv, edTMatricula,edtNum_Bastidor,
             edtFechas;
-    private Button btnSave,btnBorra,btnEliminar;
+    private Button btnSave,btnBorra,btnEliminar,btnAutoriza;
 
     private Spinner sptipov;
 
@@ -49,6 +49,7 @@ public class EditaVehiculo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edita_vehiculo);
 
+        //CARGA DE ELEMENTOS DEL LAYOUT
         titulo = findViewById(R.id.tvtit);
         edtMarca = (TextInputEditText) findViewById(R.id.edtMarca);
         edtModelo = (TextInputEditText) findViewById(R.id.edtModelo);
@@ -62,13 +63,14 @@ public class EditaVehiculo extends AppCompatActivity {
         btnBorra =  (Button) findViewById(R.id.btnBorra);
         btnEliminar = (Button) findViewById(R.id.btneliminar);
         sptipov =(Spinner) findViewById(R.id.sptipov);
+        btnAutoriza = (Button) findViewById(R.id.btnAutoriza);
 
-        // Recibimos del objeto Vehiculo enviado al pulsar el ItemListView
+        // RECIBIMOS DATOS DEL MENU PRINCIPAL
         Bundle objetoenviado = getIntent().getExtras();
         Vehiculo vehiculo;
         vehiculo = (Vehiculo) objetoenviado.getSerializable("vehiculo");
 
-        //Damos valor a los atributos del vehiculo seleccionado a traves del objeto.
+        //DAMOS VALOR A LOS CAMPOS DEL ACTIVITY CON EL OBJETO VEHICULO RECIBIDO
         titulo.setText(vehiculo.getMarca() + "  "  + vehiculo.getModelo());
         idCliente = String.valueOf(vehiculo.getId_Cliente());
         edtMarca.setText(vehiculo.getMarca());
@@ -84,7 +86,23 @@ public class EditaVehiculo extends AppCompatActivity {
         sptipov.setAdapter(adapter);
         sptipov.setSelection(ValorSpinner(vehiculo.getTipo_Vehiculo().toString()));
 
-         // METODO ONCLICK DE BOTON "GUARDAR" PARA INSERTAR DATOS EN LA URL INDICADA EN EL METODO "insertaUsuarios"
+
+        //BLOQUEAMOS LA EDICION DE LOS CAMPOS PARA EVITARA ERRORES
+        CamposBloqueados();
+
+
+        // ########## DAMOS ACCION A LOS BOTONES ##########
+
+        // BOTON QUE DESBLOQUEA LOS CAMPOS PARA SU EDICION
+        btnAutoriza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CamposDesbloqueados();
+            }
+        });
+
+
+        // METODO ONCLICK DE BOTON "GUARDAR" PARA INSERTAR DATOS EN LA URL INDICADA EN EL METODO "insertaUsuarios"
         // TRAS LA VALIDACION DE LOS DATOS INSERTADOS MEDIANTE LOS METODOS DE VALIDACION.
 
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -127,8 +145,6 @@ public class EditaVehiculo extends AppCompatActivity {
                 }
 
                 if(datosOk){
-                    Toast.makeText(getApplicationContext(), edtColor.getText().toString(), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(), "bieeen", Toast.LENGTH_SHORT).show();
                     EditaVehiculo("https://appgiac.000webhostapp.com/actualizar_vehiculo.php?Matricula="+edTMatricula.getText().toString());
                 }
                 else{
@@ -264,7 +280,10 @@ public class EditaVehiculo extends AppCompatActivity {
         edtNum_Bastidor.setText("");
     }
 
-    //  Metodo que Volley que inserta Datos en la BBDD
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////// METODOS DE MANEJO DE DATOS DE LA BBDD //////////////////////////////
+    // METODO ENCARGADO DE ACTUALIZAR DATOS EN LA BBDD
     @SuppressLint("NotConstructor")
     private void EditaVehiculo(String urlactualizar){
         String tipo = sptipov.getItemAtPosition(sptipov.getSelectedItemPosition()).toString().trim();
@@ -317,6 +336,7 @@ public class EditaVehiculo extends AppCompatActivity {
         requestQueue.add(request);
     }
 
+    //METODO QUE ELIMINA EL VEHICULO SELECCIONADO DE LA BBDD
     private void EliminaVehiculo(String urleliminar){
         ProgressDialog progressDialog =new ProgressDialog(this);
         progressDialog.setMessage("Eliminando Vehiculo");
@@ -349,11 +369,12 @@ public class EditaVehiculo extends AppCompatActivity {
                 return params;
             }
         };
-        RequestQueue requestQueue = Volley.newRequestQueue(EditaVehiculo.this);
+        requestQueue = Volley.newRequestQueue(EditaVehiculo.this);
         requestQueue.add(request);
 
     }
 
+    // CUADRO DE DIALOGO PARA CONFIRMAR LA ELIMINACION
     AlertDialog ConfirmaEliminacion(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("¿Quieres eliminar este vehiculo?");
@@ -371,6 +392,7 @@ public class EditaVehiculo extends AppCompatActivity {
         return builder.create();
     }
 
+    // CUADRO DE DIALOGO PARA CONFIRMAR LA ACTUALIZACION (NO USADO)
     AlertDialog ConfirmaActualizacion(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Se actualizaran los datos del vehiculo");
@@ -388,6 +410,8 @@ public class EditaVehiculo extends AppCompatActivity {
         return builder.create();
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // METODO ENCARGADO DE DAR VALORES AL SPINNER
     public int ValorSpinner(String texto){
         int valor = 0;
         switch (texto){
@@ -444,6 +468,31 @@ public class EditaVehiculo extends AppCompatActivity {
                 break;
         }
         return valor;
+    }
+
+    // METODOS DE BLOQUEO Y DESBLOQUEO DE CAMPOS
+    public void CamposBloqueados(){
+        edtMarca.setEnabled(false);
+        edtModelo.setEnabled(false);
+        edtColor.setEnabled(false);
+        edTNum_Puertas.setEnabled(false);
+        edtMotor.setEnabled(false);
+        edtCv.setEnabled(false);
+        edTMatricula.setEnabled(false);
+        edtNum_Bastidor.setEnabled(false);
+        sptipov.setEnabled(false);
+    }
+
+    public void CamposDesbloqueados(){
+        edtMarca.setEnabled(true);
+        edtModelo.setEnabled(true);
+        edtColor.setEnabled(true);
+        edTNum_Puertas.setEnabled(true);
+        edtMotor.setEnabled(true);
+        edtCv.setEnabled(true);
+        edTMatricula.setEnabled(true);
+        edtNum_Bastidor.setEnabled(true);
+        sptipov.setEnabled(true);
     }
 
 }

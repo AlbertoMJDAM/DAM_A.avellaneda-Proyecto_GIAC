@@ -49,7 +49,8 @@
         </activity>
         <activity
             android:name=".Ayuda.PopUp_tipocon"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.CrearPopUp.acc" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -109,11 +110,12 @@
             android:exported="false" />
         <activity
             android:name=".menuPrincipal_U.PopupMapaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.CrearPopUp.acc" />
         <activity
             android:name=".menuPrincipal_U.PopupDirActivity"
             android:exported="false"
-            android:theme="@style/Theme.CrearPopUp.as" />
+            android:theme="@style/Theme.CrearPopUp.acc" />
         <activity
             android:name=".registraIncidencias.RegistraDatosIn"
             android:exported="true" />
@@ -194,6 +196,7 @@
             android:name=".DocumentosUsuario.InfoDocumentos"
             android:exported="false"
             android:theme="@style/Theme.CrearPopUp.as" />
+
         <activity
             android:name=".DocumentosUsuario.MenuArchivos"
             android:exported="true" />

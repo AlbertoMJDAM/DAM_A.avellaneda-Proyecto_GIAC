@@ -94,6 +94,7 @@ public class RegistraDesAcc extends AppCompatActivity {
         // INSTANCIAMOS EL CUADRO DE DIALOGO
         loadingDialogBar = new LoadingDialogBar(this);
 
+
         //CARGA DE ELEMENTOS DEL LAYOUT
         tvidusu = findViewById(R.id.tvidNumUsuario);
         tvidNumAccidente = findViewById(R.id.tvidNumAccidente);
@@ -108,11 +109,17 @@ public class RegistraDesAcc extends AppCompatActivity {
         img5 = findViewById(R.id.img5);
         img6 = findViewById(R.id.img6);
 
+        // RELLENAMOS LOS TEXTVIEW DE INCIDENCIA Y USUARIO
+        tvidusu.setText(accidente.getIdUsuario());
+        tvidNumAccidente.setText(accidente.getIdAccidente());
+
+        // DAMOS IMAGEN PREVIA A LAS IMAGENES Y CARGAMOS EN LAS MISMAS
         Uri imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
                 getResources().getResourcePackageName(R.drawable.fotosapp) + '/' +
                 getResources().getResourceTypeName(R.drawable.fotosapp) + '/' +
                 String.valueOf(R.drawable.fotosapp));
 
+        // FIJAMOS EL VALOR DE LA URI
         img1.setImageURI(imageUri);
         img2.setImageURI(imageUri);
         img3.setImageURI(imageUri);
@@ -120,12 +127,8 @@ public class RegistraDesAcc extends AppCompatActivity {
         img5.setImageURI(imageUri);
         img6.setImageURI(imageUri);
 
-        // RELLENAMOS LOS TEXTVIEW DE INCIDENCIA Y USUARIO
-        tvidusu.setText(accidente.getIdUsuario());
-        tvidNumAccidente.setText(accidente.getIdAccidente());
-
         // ########## DAMOS ACCION A LOS BOTONES ##########
-        // BOTON GUARDAR CARGA LOS DATOS EN BBDD
+        // BOTON PARA GUARDADO DE BASE DE DATOS DE LOS DATOS INTROUDCIDOS
         btnGuarda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,27 +210,14 @@ public class RegistraDesAcc extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Creando Documento PDF", Toast.LENGTH_LONG).show();
                 if (checkPermission()) {
+                    Toast.makeText(getApplicationContext(), "Permisos Disponibles", Toast.LENGTH_LONG).show();
                     accidente.setDescripcion(edtdescripcion.getText().toString());
                 } else {
+                    Toast.makeText(getApplicationContext(), "Permisos Necesarios", Toast.LENGTH_LONG).show();
                     requestPermissions();
                 }
-                // Al guardar incidencia abrimos carpeta de incidencia en el dispositivo
-                //File directorio = new File(getExternalStorageDirectory() + "/giac", accidente.getIdAccidente());
-                //if (!directorio.exists()) {
-                    //if (directorio.mkdirs()) {
-                        //Toast.makeText(getApplicationContext(), "Creado directorio de incidencia", Toast.LENGTH_LONG).show();
-                    //} else {
-                        //Toast.makeText(getApplicationContext(), "Error al crear directorio", Toast.LENGTH_LONG).show();
-                    //}
-               // }
                 try {
-                    //if(accidente.getImg1() != null && accidente.getImg2() != null && accidente.getImg3() != null & accidente.getImg4() != null & accidente.getImg5() != null & accidente.getImg6() != null){
-                        createPdf();
-                //}
-
-                //else {
-                   // Toast.makeText(getApplicationContext(), "Inserta al menos 1 fotografia del accidente", Toast.LENGTH_LONG).show();
-               // }
+                    createPdf();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -240,7 +230,11 @@ public class RegistraDesAcc extends AppCompatActivity {
     /* ################################# METODOS #######################################
         A continuacion mostramos los metodos utilizados para el registro de usuarios
      */
-    // METODOS ENCARGADOS DE ABRIR LA GALERIA DE IMAGENES Y LA CAMARA DE FOTOS PARA LA CARGA DE LAS FOTOS DE LA INCIDENCIA.
+
+
+    ///////////////////////////////METODOS PARA USO Y CAPTURA DE IMAGENES //////////////////////////
+
+    // METODOS ENCARGADOS DE ABRIR LA GALERIA DE IMAGENES Y LA CAMARA DE FOTOS PARA LA CARGA DE LAS FOTOS DEL ACCIDENTE.
     private void AbrirGaleria() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
@@ -335,26 +329,50 @@ public class RegistraDesAcc extends AppCompatActivity {
             }
     );
 
+
+    // METODO DEL CUADRO DE DIALOGO PARA SELECCION DE CAMARA O DE GALERIA - MEJORAR
+    private void muestraAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Carga de imagenes");
+        builder.setMessage("Selecciona carga de imagenes");
+        builder.setPositiveButton("Camara", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                abrirCamara();
+                dialog.dismiss();
+            }
+
+        });
+        builder.setNegativeButton("Galeria", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AbrirGaleria();
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
+
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////// METODOS DE MANEJO DE DATOS DE LA BBDD //////////////////////////////
+
     // METODO ENCARGADO DE INSERTAR INCIDENCIA EN BBDD.
 
     private void InsertaAccidente(String url){
         Toast.makeText(getApplicationContext(), accidente.toString(), Toast.LENGTH_SHORT).show();
-        //ProgressDialog progressDialog =new ProgressDialog(this);
-        //progressDialog.setMessage("Insertando datos de localizacion del accidente");
-        // progressDialog.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
-                //progressDialog.dismiss();
             }
 
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), "Error de insercion", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-                //progressDialog.dismiss();
             }
         }){
             @Nullable
@@ -418,11 +436,10 @@ public class RegistraDesAcc extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    /////////////////////////////////// METODOS GENERAR PDF/////////////////////////////////////////
+
     // METODO ENCARGADO DE CREAR EL ARCHIVO PDF.
     private void createPdf() throws FileNotFoundException {
-
-        //Creamos el archivo en una ruta indicada
-        //File file = new File(getExternalStorageDirectory() + "/giac/" + accidente.getIdAccidente(), "Accidente_" + accidente.getIdAccidente() + ".pdf");
         File file = new File(getExternalStorageDirectory() + "/giac/", "Accidente_" + accidente.getIdAccidente() + "_v1" + ".pdf");
         while (file.exists()){
             String existente = file.getName();
@@ -655,21 +672,6 @@ public class RegistraDesAcc extends AppCompatActivity {
         document.add(new Paragraph("\n"));
         document.add(table9);
         document.add(new Paragraph("\n"));
-        // Añadimos las imagenes al documento. VERSION ANTERIOR
-        /*document.add(image1);
-        document.add(new Paragraph("\n"));
-        document.add(image2);
-        document.add(new Paragraph("\n"));
-        document.add(image3);
-        document.add(new Paragraph("\n"));
-        document.add(image4);
-        document.add(new Paragraph("\n"));
-        document.add(new Paragraph("\n"));
-        document.add(new Paragraph("IMAGENES VEHICULOS IMPLICADOS").setFontSize(18f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
-        document.add(image5);
-        document.add(new Paragraph("\n"));
-        document.add(image6);*/
-
 
         // cerramos el documento.
         document.close();
@@ -677,7 +679,10 @@ public class RegistraDesAcc extends AppCompatActivity {
         Toast.makeText(this, "PDF CREADO", Toast.LENGTH_LONG).show();
     }
 
+
+    /////////////////////////////////////// PERMISOS ///////////////////////////////////////////////
     // METODOS ENCARGADOS DE LOS PERMISOS DE LECTURA Y ESCRITURA PARA PDF NECESARIOS.
+
     private boolean checkPermission() {
         int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
         int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE);
@@ -707,29 +712,7 @@ public class RegistraDesAcc extends AppCompatActivity {
     }
 
 
-    // METODO DEL CUADRO DE DIALOGO PARA SELECCION DE CAMARA O DE GALERIA - MEJORAR
-    private void muestraAlertDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Carga de imagenes");
-        builder.setMessage("Selecciona carga de imagenes");
-        builder.setPositiveButton("Camara", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                abrirCamara();
-                dialog.dismiss();
-            }
 
-            });
-        builder.setNegativeButton("Galeria", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                AbrirGaleria();
-                dialog.dismiss();
-            }
-        });
-        builder.create().show();
-
-    }
 
     // METODOS ENCARGADOS DE LOS PERMISOS DE CAMARA.
     private void permisosCamara(){
@@ -742,382 +725,4 @@ public class RegistraDesAcc extends AppCompatActivity {
                     200);
         }
     }
-
-
-    }
-
-
-    /*
-        @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == REQUEST_IMAGE_GALERIA){
-            if(permissions.length>00&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                abrirgaleria();
-            }
-        }else {
-            Toast.makeText(this,"Debes habilitar los permisos de la camara",Toast.LENGTH_SHORT).show();
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode==REQUEST_IMAGE_GALERIA){
-            if(requestCode== Activity.RESULT_OK){
-                Uri imagen = data.getData();
-                img1.setImageURI(imagen);
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-
-    }
-
-    private void abrirgaleria() {
-        Intent abrecamara = new Intent(Intent.ACTION_GET_CONTENT);
-        abrecamara.setType("image/*");
-        if (abrecamara.resolveActivity(getPackageManager()) != null && img1.isEnabled()) {
-            startActivityForResult(abrecamara, REQUEST_IMAGE_GALERIA);
-
-        }
-
-    }
-
-************************ INCIDENCIA QUE FUNCIONA ************************
-
-    private void insertaincidencia(String url){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> parametros = new HashMap<String,String>();
-                parametros.put("Id_Incidencia","3010");
-                parametros.put("Id_Usuario","1002");
-                parametros.put("empleado","1000");
-                parametros.put("Vehiculo_Usuario","8209KWN");
-                parametros.put("Fecha_Incidencia","2023-10-10");
-                parametros.put("Direccion","asdf");
-                parametros.put("CoordenadaX","22");
-                parametros.put("CoordenadaY","22");
-                parametros.put("Descripcion","a");
-                return parametros;
-            }
-        };
-        requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
-
-************************ PARTE QUE FUNCIONA ************************
-
-    private void insertaParte(String url){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> parametros = new HashMap<String,String>();
-                parametros.put("Id_Parte","13012");
-                parametros.put("Cod_Incidencia","3012");
-                parametros.put("Cod_Accidente","");
-                parametros.put("Usuario","1002");
-                parametros.put("Empleado", "");
-                parametros.put("Fecha_Alta","23-10-10");
-                parametros.put("Estado_Parte","En proceso");
-                parametros.put("Fecha_Finalizacion","");
-                return parametros;
-            }
-        };
-        requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
-private void abrirCamara(){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(intent.resolveActivity(getPackageManager()) != null && img1.isEnabled()){
-        startActivityForResult(intent, 1);
-        onActivityResult(1,1,intent,img1);
-        }
-        }
-
-protected void onActivityResult(int requestCode, int resultCode, Intent data,ImageView img) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-        Bundle extras = data.getExtras();
-        Bitmap imgBitmap = (Bitmap) extras.get("data");
-        img1.setImageBitmap(imgBitmap);
-        }
-        }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// METODO ENCARGADO DE CREAR EL ARCHIVO PDF.
-    private void createPdf() throws FileNotFoundException {
-
-        //Creamos el archivo en una ruta indicada
-        File file = new File(getExternalStorageDirectory() + "/giac/" + accidente.getIdAccidente(), "Accidente_" + accidente.getIdAccidente() + ".pdf");
-
-        //Generamos archivo pdf
-        PdfWriter writer = new PdfWriter(file);
-        PdfDocument pdfDocument = new PdfDocument(writer);
-        Document document = new Document(pdfDocument);
-
-        //Imagen Logo
-        Drawable d0 = getDrawable(R.drawable.giac_logo);
-        Bitmap bitmap0 = ((BitmapDrawable) d0).getBitmap();
-        ByteArrayOutputStream stream0 = new ByteArrayOutputStream();
-        bitmap0.compress(Bitmap.CompressFormat.PNG, 100, stream0);
-        byte[] bitmapData0 = stream0.toByteArray();
-        ImageData imageData0 = ImageDataFactory.create(bitmapData0);
-        Image image0 = new Image(imageData0);
-        image0.setWidth(200f);
-        DeviceRgb azulGiac = new DeviceRgb(8, 65, 114);
-
-        //Primera imagen cargada
-        Drawable d1 = img1.getDrawable();
-        Bitmap bitmap1 = ((BitmapDrawable) d1).getBitmap();
-        ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
-        bitmap1.compress(Bitmap.CompressFormat.PNG, 100, stream1);
-        byte[] bitmapData1 = stream1.toByteArray();
-        ImageData imageData1 = ImageDataFactory.create(bitmapData1);
-        Image image1 = new Image(imageData1);
-        image1.setWidth(400f);
-        image1.setHeight(200f);
-
-        //Segunda imagen cargada
-        Drawable d2 = img2.getDrawable();
-        Bitmap bitmap2 = ((BitmapDrawable) d2).getBitmap();
-        ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
-        bitmap2.compress(Bitmap.CompressFormat.PNG, 100, stream2);
-        byte[] bitmapData2 = stream2.toByteArray();
-        ImageData imageData2 = ImageDataFactory.create(bitmapData2);
-        Image image2 = new Image(imageData2);
-        image2.setWidth(400f);
-        image2.setHeight(200f);
-
-
-        //Tercera imagen cargada
-        Drawable d3 = img3.getDrawable();
-        Bitmap bitmap3 = ((BitmapDrawable) d3).getBitmap();
-        ByteArrayOutputStream stream3 = new ByteArrayOutputStream();
-        bitmap3.compress(Bitmap.CompressFormat.PNG, 100, stream3);
-        byte[] bitmapData3 = stream3.toByteArray();
-        ImageData imageData3 = ImageDataFactory.create(bitmapData3);
-        Image image3 = new Image(imageData3);
-        image3.setWidth(400f);
-        image3.setHeight(200f);
-
-
-        //Cuarta imagen cargada
-        Drawable d4 = img4.getDrawable();
-        Bitmap bitmap4 = ((BitmapDrawable) d4).getBitmap();
-        ByteArrayOutputStream stream4 = new ByteArrayOutputStream();
-        bitmap4.compress(Bitmap.CompressFormat.PNG, 100, stream4);
-        byte[] bitmapData4 = stream4.toByteArray();
-        ImageData imageData4 = ImageDataFactory.create(bitmapData4);
-        Image image4 = new Image(imageData4);
-        image4.setWidth(400f);
-        image4.setHeight(200f);
-
-
-        //Cuarta imagen cargada
-        Drawable d5 = img5.getDrawable();
-        Bitmap bitmap5 = ((BitmapDrawable) d5).getBitmap();
-        ByteArrayOutputStream stream5 = new ByteArrayOutputStream();
-        bitmap5.compress(Bitmap.CompressFormat.PNG, 100, stream5);
-        byte[] bitmapData5 = stream5.toByteArray();
-        ImageData imageData5 = ImageDataFactory.create(bitmapData5);
-        Image image5 = new Image(imageData5);
-        image5.setWidth(400f);
-        image5.setHeight(200f);
-
-
-        //Cuarta imagen cargada
-        Drawable d6 = img6.getDrawable();
-        Bitmap bitmap6 = ((BitmapDrawable) d6).getBitmap();
-        ByteArrayOutputStream stream6 = new ByteArrayOutputStream();
-        bitmap6.compress(Bitmap.CompressFormat.PNG, 100, stream6);
-        byte[] bitmapData6 = stream6.toByteArray();
-        ImageData imageData6 = ImageDataFactory.create(bitmapData6);
-        Image image6 = new Image(imageData6);
-        image6.setWidth(400f);
-        image6.setHeight(200f);
-
-
-
-        //Primera tabla tiene el logo y direccion de empresa
-        float columwidth[] = {180, 80, 140, 140};
-        Table table1 = new Table(columwidth);
-        table1.addCell(new Cell(3, 1).add(image0).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell(3, 3).add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("GIAC S.L.")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("C. de Vitoria, 3. Alcalá de Henares")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph("C.P. 28802  - MADRID")).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
-
-        //Segunda tabla tiene los datos de id de incidencia.
-        float columwidth2[] = {140, 140, 140, 140};
-        Table table2 = new Table(columwidth2);
-
-        //Tabla 2 rellena datos de identificacion de incidencia
-        table2.addCell(new Cell(1, 2).add(new Paragraph("Nº DE ACCIDENTE")));
-        table2.addCell(new Cell(1, 2).add(new Paragraph(accidente.getIdAccidente())).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell(1, 2).add(new Paragraph("FECHA DE LA INCIDENCIA")));
-        table2.addCell(new Cell(1, 2).add(new Paragraph(accidente.getfSuceso())).setTextAlignment(TextAlignment.CENTER));
-        table2.addCell(new Cell(1, 2).add(new Paragraph("Nº DE EMPLEADO ASISTE")));
-        table2.addCell(new Cell(1, 2).add(new Paragraph(accidente.getEmpleado())).setTextAlignment(TextAlignment.CENTER));
-
-        //Tercera tabla rellena datos del Usuario, parte y descripcion
-        float columwidth3[] = {140, 140, 140, 140};
-        Table table3 = new Table(columwidth2);
-
-        //Tabla 3 Datos personales
-        table3.addCell(new Cell(1, 4).add(new Paragraph("DATOS DEL USUARIO")).setFontSize(14f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("Nº IDENTIFICACION USUARIOS")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getIdUsuario())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("NOMBRE")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getNombre())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("PRIMER APELLIDO")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getPapellido())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("SEGUNDO APELLIDO")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getSapellido())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("DNI")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getDNI())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("TELEFONO DE CONTACTO")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getTelefono())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("CORREO ELECTRONICO")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getEmail())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("MATRICULA DE VEHICULO IMPLICADO")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getVehiculoUsuario())).setTextAlignment(TextAlignment.CENTER));
-        //Tabla 3 Datos de implicados
-        table3.addCell(new Cell(1, 4).add(new Paragraph("DATOS DE AFECTADOS EN EL INCIDENTE")).setFontSize(14f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("MATRICULA VEHICULO DEL PRIMER AFECTADO")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getVehiculoImplicadoUno())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("NOMBRE Y APELLIDOS")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getNombreImplicadoUno())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("CONTACTO PROPORCIONADO")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getContactoImplicadoUno())).setTextAlignment(TextAlignment.CENTER));
-        // Segundo Afectado
-        table3.addCell(new Cell(1, 4).add(new Paragraph("DATOS DE AFECTADOS EN EL INCIDENTE")).setFontSize(14f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("MATRICULA VEHICULO DEL SEGUNDO AFECTADO")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getVehiculoImplicadoDos())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("NOMBRE Y APELLIDOS")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getNombreImplicadoDos())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("CONTACTO PROPORCIONADO")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getContactoImplicadoDos())).setTextAlignment(TextAlignment.CENTER));
-
-        //Tabla 4 Datos de localizacion
-        table3.addCell(new Cell(1, 4).add(new Paragraph("DATOS DE LOCALIZACION")).setFontSize(14f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("DIRECCION DE LA INCIDENCIA")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getUbicacion())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("LATITUD")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getLatSuceso())).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(1, 2).add(new Paragraph("LONGITUD")));
-        table3.addCell(new Cell(1, 2).add(new Paragraph(accidente.getLonSuceso())).setTextAlignment(TextAlignment.CENTER));
-
-        //Tabla 5 Descripcion del suceso
-        table3.addCell(new Cell(1, 4).add(new Paragraph("DESCRIPCION DEL SUCESO")).setFontSize(14f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
-        table3.addCell(new Cell(5, 4).add(new Paragraph(accidente.getDescripcion())).setTextAlignment(TextAlignment.CENTER));
-
-        float columwidth4[] = {140, 140, 140, 140};
-        Table table4 = new Table(columwidth4);
-        table1.addCell(new Cell(0,2).add(new Paragraph()).setBorder(Border.NO_BORDER));
-        table4.addCell(new Cell(1, 1).add(image1).setHorizontalAlignment(HorizontalAlignment.CENTER).setBorder(Border.NO_BORDER));
-
-        float columwidth5[] = {140, 140, 140, 140};
-        Table table5 = new Table(columwidth5);
-        table5.addCell(new Cell(5, 5).add(image2).setHorizontalAlignment(HorizontalAlignment.CENTER).setBorder(Border.NO_BORDER));
-        float columwidth6[] = {140, 140, 140, 140};
-        Table table6 = new Table(columwidth6);
-        table6.addCell(new Cell(5, 5).add(image3).setHorizontalAlignment(HorizontalAlignment.CENTER).setBorder(Border.NO_BORDER));
-        float columwidth7[] = {140, 140, 140, 140};
-        Table table7 = new Table(columwidth5);
-        table7.addCell(new Cell(5, 5).add(image4).setHorizontalAlignment(HorizontalAlignment.CENTER).setBorder(Border.NO_BORDER));
-        float columwidth8[] = {140, 140, 140, 140};
-        Table table8 = new Table(columwidth8);
-        table8.addCell(new Cell(5, 5).add(image5).setHorizontalAlignment(HorizontalAlignment.CENTER).setBorder(Border.NO_BORDER));
-        float columwidth9[] = {140, 140, 140, 140};
-        Table table9 = new Table(columwidth9);
-        table9.addCell(new Cell(5, 5).add(image6).setHorizontalAlignment(HorizontalAlignment.CENTER).setBorder(Border.NO_BORDER));
-        // Añadimos las tablas al documento.
-        document.add(table1);
-        document.add(new Paragraph("\n"));
-        document.add(new Paragraph("PARTE DE INCIDENCIA EN CARRETERA").setFontSize(18f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
-        document.add(table2);
-        document.add(new Paragraph("\n"));
-        document.add(table3);
-        document.add(new Paragraph("\n"));
-        document.add(new Paragraph("\n"));
-        document.add(new Paragraph("IMAGENES ADJUNTAS DEL SUCESO").setFontSize(18f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
-        document.add(new Paragraph("\n"));
-        document.add(table4);
-        document.add(new Paragraph("\n"));
-        document.add(table5);
-        document.add(new Paragraph("\n"));
-        document.add(table6);
-        document.add(new Paragraph("\n"));
-        document.add(table7);
-        document.add(new Paragraph("\n"));
-        document.add(new Paragraph("IMAGENES VEHICULOS IMPLICADOS").setFontSize(18f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
-        document.add(new Paragraph("\n"));
-        document.add(table8);
-        document.add(new Paragraph("\n"));
-        document.add(table9);
-        document.add(new Paragraph("\n"));
-        // Añadimos las imagenes al documento.
-
-        /*document.add(image1);
-        document.add(new Paragraph("\n"));
-        document.add(image2);
-        document.add(new Paragraph("\n"));
-        document.add(image3);
-        document.add(new Paragraph("\n"));
-        document.add(image4);
-        document.add(new Paragraph("\n"));
-        document.add(new Paragraph("\n"));
-        document.add(new Paragraph("IMAGENES VEHICULOS IMPLICADOS").setFontSize(18f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
-        document.add(image5);
-        document.add(new Paragraph("\n"));
-        document.add(image6);
-// cerramos el documento.
-        document.close();
-                // Avisamos mediante TOAST que el pdf ha sido creado.
-                Toast.makeText(this, "PDF CREADO", Toast.LENGTH_LONG).show();
-                }
-
-    */
-
+}

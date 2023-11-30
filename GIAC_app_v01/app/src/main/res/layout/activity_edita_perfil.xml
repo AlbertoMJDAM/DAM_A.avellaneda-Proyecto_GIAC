@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/times"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="TU PERFIL DE USUARIO"
         android:textColor="#306cb0"
         android:textSize="22sp"
@@ -27,8 +27,8 @@
 
     <TextView
         android:id="@+id/tvsbtit"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/times"
         android:text="@string/des_editausuario"
@@ -36,7 +36,7 @@
         android:textAllCaps="false"
         android:textColor="#306cb0"
         android:textIsSelectable="false"
-        android:textSize="10sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -63,24 +63,23 @@
             <LinearLayout
                 android:id="@+id/li"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_marginStart="125dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="100dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal"
+                android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
 
                 <TextView
                     android:id="@+id/tvid"
                     android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:fontFamily="@font/times"
+                    android:layout_marginStart="50dp"
                     android:text="Id Usuario: "
-                    android:textColor="#C4306CB0"
+                    android:textColor="#306cb0"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -91,14 +90,23 @@
                     android:layout_width="110dp"
                     android:layout_height="30dp"
                     android:fontFamily="@font/times"
-                    android:text="0000000 "
-                    android:textColor="#C4306CB0"
+                    android:text="0000"
+                    android:textColor="#306cb0"
                     android:textSize="22sp"
                     android:textStyle="italic|bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnAutoriza"
+                style="@style/Boton_azul_L"
+                android:layout_gravity="center"
+                android:layout_width="80dp"
+                android:layout_height="35dp"
+                android:text="Editar"
+                android:textSize="10dp"/>
 
             <TextView
                 android:id="@+id/tvNombre"
@@ -112,6 +120,9 @@
                 android:id="@+id/edtNombre"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Introduzca su nombre"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
 
@@ -126,6 +137,9 @@
                 android:id="@+id/edtPApe"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Introduzca su primer apellido"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPApe" />
 
@@ -142,6 +156,9 @@
                 android:id="@+id/edtSApe"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Introduzca su segundo apellido"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="547dp" />
 
@@ -156,6 +173,9 @@
                 android:id="@+id/edTtvDNI"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Ejemplo formato: 00000000A"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -170,6 +190,9 @@
                 android:id="@+id/edtFNac"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Ejemplo formato: 01/01/1990"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -185,6 +208,9 @@
                 android:id="@+id/edtFli"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Ejemplo formato: 01/01/2000"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -201,6 +227,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="52dp"
                 android:layout_marginTop="25dp"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -216,6 +245,9 @@
                 android:id="@+id/edTeMail"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Introduza su correo electronico"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -230,6 +262,9 @@
                 android:id="@+id/edtphone"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="699000000"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -244,6 +279,9 @@
                 android:id="@+id/edtNusu"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Introduza un nombre de usuario"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -258,6 +296,9 @@
                 android:id="@+id/edtPasword"
                 style="@style/TextInputEditText_RegistroUsu"
                 android:hint="Introduza una contraseña"
+                android:fontFamily="@font/arial"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
         </LinearLayout>

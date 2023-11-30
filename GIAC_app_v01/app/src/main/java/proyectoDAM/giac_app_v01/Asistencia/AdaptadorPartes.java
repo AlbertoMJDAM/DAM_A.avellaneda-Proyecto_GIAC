@@ -32,15 +32,21 @@ import proyectoDAM.giac_app_v01.R;
 
 public class AdaptadorPartes extends BaseAdapter {
 
+    String tipo;
+    String naEmpleado;
+    String cnEmpleado = "";
+    String identificador;
+    String fechas;
+    String estadoSuc;
     Context contexto; //contexto de la aplicacion
     RequestQueue requestQueue;
     List<Partes> listaPartes; //lista de datos a generar. Podemos usar tb un ArrayList
     String nomEmp,pApe,email,telefono;
-    public AdaptadorPartes(Context contexto, List<Partes> mislistVehiculos) {
 
+    // Constructor del adaptador
+    public AdaptadorPartes(Context contexto, List<Partes> mislistPartes) {
         this.contexto = contexto;
-
-        listaPartes = mislistVehiculos;
+        listaPartes = mislistPartes;
     }
 
 
@@ -63,7 +69,7 @@ public class AdaptadorPartes extends BaseAdapter {
     }
 
 
-
+    // Completamos el metodo getView para que el ItemlistView haga todo aquello que queremos
     @SuppressLint("SuspiciousIndentation")
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) { //Es el método que se ejecuta cuando se muestra en mi ListView cada item
@@ -79,12 +85,7 @@ public class AdaptadorPartes extends BaseAdapter {
         ImageView infogiac = (ImageView)vista.findViewById(R.id.imggiac);
         ImageView mail = (ImageView)vista.findViewById(R.id.imgMail);
         ImageView llamar = (ImageView)vista.findViewById(R.id.imgTelefono);
-        String tipo;
-        String naEmpleado;
-        String cnEmpleado = "";
-        String identificador;
-        String fechas;
-        String estadoSuc;
+
 
         if(listaPartes.get(i).getId_Parte()>15000){
             identificador = String.valueOf(listaPartes.get(i).getCod_Accidente());
@@ -127,7 +128,7 @@ public class AdaptadorPartes extends BaseAdapter {
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(contexto.getApplicationContext(), "MAIL" , Toast.LENGTH_LONG).show();
+                //Toast.makeText(contexto.getApplicationContext(), "MAIL" , Toast.LENGTH_LONG).show();
                 Intent correo = new Intent (v.getContext(), EnvioMail_emp.class);
                 correo.addFlags(FLAG_ACTIVITY_NEW_TASK);
                 correo.putExtra("email", email);
@@ -167,7 +168,7 @@ public class AdaptadorPartes extends BaseAdapter {
                     public void onResponse(String response) {
                         try {
                             Log.w("Response VOLLEY SC", response.toString());
-                            Toast.makeText(contexto.getApplicationContext(), "hasta aqui bien", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(contexto.getApplicationContext(), "hasta aqui bien", Toast.LENGTH_SHORT).show();
                             JSONObject jsonObject =new JSONObject(response);
                             String exito = jsonObject.getString("exito");
                             JSONArray jsonArray =jsonObject.getJSONArray("datos");

@@ -78,6 +78,25 @@
         <item>OTROS - CAMION</item>
         <item>OTROS - MICRO-BUS</item>
     </string-array>
+    /////////////////////////////////// MENU ACCIDENTE ////////////////////////////////
+    <string name="inc_infoDatos">¿No sabes cómo rellenar una incidencia?\n Tranquilo, te guiaremos en todo el proceso. Tan solo sigue las instrucciones que te detallamos aquí. Cuando termines de leer, pulsa en cualquier punto fuera del recuadro para comenzar.</string>
+    <string name="inc_infoDatos1">Primero deberás comprobar los datos cargados según tu perfil y completar el resto de datos. también necesitaremos la ubicación donde has sufrido o visto la incidencia, pero tranquil@
+        ¡No es necesario que te sepas el nombre de la calle o el punto kilométrico de la carretera! \nPara saber dónde te encuentras, hemos habilitado un botón similar a este:</string>
+    <string name="inc_infoDatos2">la dirección y coordenadas de donde te encuentras.\n¡Adelante! Vamos a empezar a rellenar estos datos y cuando termines, pulsa el botón Siguiente."</string>
+
+    /////////////////////////////////// MENU ACCIDENTE ////////////////////////////////
+    <string name="acc_infoDatos">En primer lugar, si sigues en la zona del suceso por favor, si es viable permanece en el vehículo y señaliza el accidente. En caso contrario, ponte el chaleco reflectante y busca un lugar cercano que sea lo más seguro y alejado del tráfico para rellenar el parte.</string>
+    <string name="acc_infoDatos2">Ahora te ayudaremos a rellenar el parte. Tan solo sigue las instrucciones que te detallamos aquí. Cuando termines de leer, pulsa en cualquier punto fuera del recuadro para comenzar.</string>
+    <string name="acc_infoDatos3">¡No es necesario que te sepas el nombre de la calle o el punto kilométrico de la carretera! \nPara saber dónde te encuentras, hemos habilitado un botón similar a este:</string>
+    <string name="acc_infoDatos4">Cuando pinches en el y aceptes los permisos de localización, la aplicación detectara automáticamente
+        la dirección y coordenadas de donde te encuentras.\n¡Adelante! Vamos a empezar a rellenar estos datos y cuando termines, pulsa el botón Siguiente.</string>
+    <string name="acc_infoDescripcion">Ahora que tenemos tus datos correctamente, tan solo necesitamos que describas brevemente lo ocurrido y, para una mejor evaluación, realices 4 fotografías del Accidente. Si hubiera vehículos implicados, realiza una fotografía de cada uno de ellos en la que se pueda apreciar la matricula.</string>
+    <string name="acc_infoDescripcion2">Para cargar las fotografías en el parte de incidencia, tan solo pulsa en cada uno de los iconos de las cámaras y busca la imagen en tu galería de imágenes.</string>
+    <string name="acc_infoDescripcion3">Una vez cargadas las imágenes, es el momento de guardar el parte de incidencia. Te recomendamos que, una vez guardada, pulses el botón "Generar PDF" para crear un documento PDF que puedas conservar para su envío a tu compañía de seguros o como resguardo de lo ocurrido.</string>
+
+    /////////////////////////////////// MENU AYUDA ////////////////////////////////
+    <string name="descripcion_ayudas">Si tienes alguna consulta que no relacionada con los partes y necesitas que te ayudemos, te facilitamos dos vías de comunicación. Elige la opción que quieras y cuéntanos que sucede.</string>
+    <string name="mails_copias">Si quieres enviar una copia de tu consulta a otras personas \n(abogados, mediadores, talleres, peritos, etc.).\nPor favor indica sus direcciones en el recuadro inferior.</string>
 
 
 </resources>

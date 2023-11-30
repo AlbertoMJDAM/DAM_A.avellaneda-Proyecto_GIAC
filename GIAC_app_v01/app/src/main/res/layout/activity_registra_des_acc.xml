@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/times"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="REGISTRO DE ACCIDENTE"
         android:textColor="#306cb0"
         android:textSize="22sp"
@@ -29,16 +29,7 @@
     <TextView
         android:id="@+id/tvsbtit"
         android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/times"
-        android:text=""
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#306cb0"
-        android:textIsSelectable="false"
-        android:textSize="10sp"
-        android:textStyle="bold"
+        android:layout_height="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +71,7 @@
                     android:fontFamily="@font/times"
                     android:layout_marginStart="30dp"
                     android:text="Id Usuario:"
-                    android:textColor="#C4306CB0"
+                    android:textColor="#306cb0"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +83,7 @@
                     android:layout_height="30dp"
                     android:fontFamily="@font/times"
                     android:text="0000"
-                    android:textColor="#C4306CB0"
+                    android:textColor="#306cb0"
                     android:textSize="18sp"
                     android:textStyle="italic|bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +96,7 @@
                     android:fontFamily="@font/times"
                     android:layout_marginStart="-22dp"
                     android:text="Id Accidente:  "
-                    android:textColor="#C4306CB0"
+                    android:textColor="#306cb0"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     />
@@ -116,7 +107,7 @@
                     android:layout_height="30dp"
                     android:fontFamily="@font/times"
                     android:text="0000"
-                    android:textColor="#C4306CB0"
+                    android:textColor="#306cb0"
                     android:textSize="18sp"
                     android:textStyle="italic|bold"
                     />
@@ -139,34 +130,42 @@
                 android:id="@+id/edtDescripcion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="20"
                 android:layout_marginStart="10dp"
-                android:padding="50dp"
                 android:background="@drawable/borde_descripcion"
+                android:ems="20"
+                android:fontFamily="@font/arial"
+                android:textStyle="bold"
                 android:gravity="center_horizontal"
-                android:fontFamily="@font/times"
-                android:textSize="18dp"
-                android:textColor="@color/black"
                 android:inputType="textMultiLine"
-                android:maxLines="5"/>
+                android:maxLines="5"
+                android:padding="50dp"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/tvcargaimg"
-                style="@style/TextView_Azul"
-                android:layout_marginStart="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:layout_width="200dp"
-                android:layout_height="20dp"
                 android:text="IMAGENES DEL SUCESO"
+                android:textAlignment="center"
+                android:fontFamily="@font/times"
+                android:textSize="18dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#306cb0"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:ems="70"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="0dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -191,7 +190,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:ems="70"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="0dp"
                 android:gravity="center"
                 android:orientation="horizontal">
                 <ImageView
@@ -211,20 +210,24 @@
 
             <TextView
                 android:id="@+id/tvcargaimgImplicado"
-                style="@style/TextView_Azul"
-                android:layout_marginStart="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:layout_width="314dp"
-                android:layout_height="20dp"
                 android:text="IMAGENES DE VEHICULOS AFECTADOS"
+                android:textAlignment="center"
+                android:fontFamily="@font/times"
+                android:textSize="18dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#306cb0"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:ems="70"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="0dp"
                 android:gravity="center"
                 android:orientation="horizontal">
                 <ImageView
@@ -241,7 +244,7 @@
                     android:background="#cecece"
                     android:src="@drawable/fotosapp"/>
             </LinearLayout>
-
+        </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
@@ -250,7 +253,7 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -281,13 +284,15 @@
     <Button
         android:id="@+id/btnpdf"
         style="@style/Boton_blanco_S"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="8dp"
-        android:textAlignment="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="1"
+        android:backgroundTint="#A11E1E"
         android:gravity="center"
-        android:text="Generar Pdf"
+        android:text="GENERAR PDF"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

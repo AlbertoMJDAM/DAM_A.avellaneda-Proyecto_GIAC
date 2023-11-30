@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -55,6 +56,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 
 import java.io.ByteArrayOutputStream;
@@ -92,6 +94,7 @@ public class RegistraDesIn extends AppCompatActivity {
         // INSTANCIAMOS EL CUADRO DE DIALOGO
         loadingDialogBar = new LoadingDialogBar(this);
 
+
         //CARGA DE ELEMENTOS DEL LAYOUT
         tvidusu = findViewById(R.id.tvidusu);
         tvnuminci = findViewById(R.id.tvnuminci);
@@ -107,6 +110,18 @@ public class RegistraDesIn extends AppCompatActivity {
         // RELLENAMOS LOS TEXTVIEW DE INCIDENCIA Y USUARIO
         tvidusu.setText(incidencia.getIdUsuario());
         tvnuminci.setText(incidencia.getIdIncidencia());
+
+        // DAMOS IMAGEN PREVIA A LAS IMAGENES Y CARGAMOS EN LAS MISMAS
+        Uri imageUri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+                getResources().getResourcePackageName(R.drawable.fotosapp) + '/' +
+                getResources().getResourceTypeName(R.drawable.fotosapp) + '/' +
+                String.valueOf(R.drawable.fotosapp));
+
+        // FIJAMOS EL VALOR DE LA URI
+        img1.setImageURI(imageUri);
+        img2.setImageURI(imageUri);
+        img3.setImageURI(imageUri);
+        img4.setImageURI(imageUri);
 
         // ########## DAMOS ACCION A LOS BOTONES ##########
         // BOTON GUARDAR CARGA LOS DATOS EN BBDD
@@ -172,36 +187,28 @@ public class RegistraDesIn extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Creando Documento PDF", Toast.LENGTH_LONG).show();
                 if (checkPermission()) {
+                    Toast.makeText(getApplicationContext(), "Permisos Disponibles", Toast.LENGTH_LONG).show();
                     incidencia.setDescripcion(edtdescripcion.getText().toString());
                 } else {
+                    Toast.makeText(getApplicationContext(), "Permisos Necesarios", Toast.LENGTH_LONG).show();
                     requestPermissions();
                 }
-                // Al guardar incidencia abrimos carpeta de incidencia en el dispositivo
-                File directorio = new File(getExternalStorageDirectory() + "/giac", incidencia.getIdIncidencia());
-                if (!directorio.exists()) {
-                    if (directorio.mkdirs()) {
-                        Toast.makeText(getApplicationContext(), "Creado directorio de incidencia", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Error al crear directorio", Toast.LENGTH_LONG).show();
-                    }
-                }
-                if (incidencia.getImg1() != null && incidencia.getImg2() != null && incidencia.getImg3() != null & incidencia.getImg4() != null) {
-                    try {
-                        createPdf();
+                try {
+                    createPdf();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     }
-                } else {
-                    Toast.makeText(getApplicationContext(), "Inserta 4 fotograficas", Toast.LENGTH_LONG).show();
                 }
-            }
-        });
-        ////////////////////////////////////////////////////////////////////////////////////////////
-    }
+            });
+            ////////////////////////////////////////////////////////////////////////////////////////////
+        }
 
     /* ################################# METODOS #######################################
         A continuacion mostramos los metodos utilizados para el registro de usuarios
      */
+
+    ///////////////////////////////METODOS PARA USO Y CAPTURA DE IMAGENES //////////////////////////
+
     // METODOS ENCARGADOS DE ABRIR LA GALERIA DE IMAGENES Y LA CAMARA DE FOTOS PARA LA CARGA DE LAS FOTOS DE LA INCIDENCIA.
     private void AbrirGaleria() {
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -281,7 +288,38 @@ public class RegistraDesIn extends AppCompatActivity {
             }
     );
 
+
+    // METODO DEL CUADRO DE DIALOGO PARA SELECCION DE CAMARA O DE GALERIA - MEJORAR
+    private void muestraAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Carga de imagenes");
+        builder.setMessage("Selecciona carga de imagenes");
+        builder.setPositiveButton("Camara", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                abrirCamara();
+                dialog.dismiss();
+            }
+
+        });
+        builder.setNegativeButton("Galeria", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AbrirGaleria();
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
+
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////// METODOS DE MANEJO DE DATOS DE LA BBDD //////////////////////////////
+
     // METODO ENCARGADO DE INSERTAR INCIDENCIA EN BBDD.
+
     private void InsertaIncidencia(String url) {
         ProgressDialog progressDialog =new ProgressDialog(this);
         progressDialog.setMessage("Guardado de datos de la Incidencia");
@@ -322,6 +360,7 @@ public class RegistraDesIn extends AppCompatActivity {
     }
 
     // METODO ENCARGADO DE INSERTAR PARTE EN BBDD.
+
     private void InsertaParte(String url) {
         ProgressDialog progressDialog =new ProgressDialog(this);
         progressDialog.setMessage("Creando un parte de la Incidencia");
@@ -359,12 +398,20 @@ public class RegistraDesIn extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // METODO ENCARGADO DE CREAR EL ARCHIVO PDF.
+    /////////////////////////////////// METODOS GENERAR PDF/////////////////////////////////////////
+    ///////////////////////// METODO ENCARGADO DE CREAR EL ARCHIVO PDF. ////////////////////////////
     private void createPdf() throws FileNotFoundException {
-
-        //Creamos el archivo en una ruta indicada
-        File file = new File(getExternalStorageDirectory() + "/giac/" + incidencia.getIdIncidencia(), incidencia.getIdIncidencia() + ".pdf");
+        File file = new File(getExternalStorageDirectory() + "/giac/", "Incidencia_" + incidencia.getIdIncidencia() + "_v1" + ".pdf");
+        while (file.exists()){
+            String existente = file.getName();
+            String [] nombre = existente.split("_v");
+            int version = Integer.parseInt(nombre[1].substring(0, 1));
+            version++;
+            File file2 = new File(getExternalStorageDirectory() + "/giac/", "Incidencia_" + incidencia.getIdIncidencia() + "_v" + String.valueOf(version) + ".pdf");
+            file = file2;
+        }
 
         //Generamos archivo pdf
         PdfWriter writer = new PdfWriter(file);
@@ -390,8 +437,8 @@ public class RegistraDesIn extends AppCompatActivity {
         byte[] bitmapData1 = stream1.toByteArray();
         ImageData imageData1 = ImageDataFactory.create(bitmapData1);
         Image image1 = new Image(imageData1);
-        image1.setWidth(800f);
-        image1.setHeight(600f);
+        image1.setWidth(400f);
+        image1.setHeight(200f);
 
         //Segunda imagen cargada
         Drawable d2 = img2.getDrawable();
@@ -401,8 +448,8 @@ public class RegistraDesIn extends AppCompatActivity {
         byte[] bitmapData2 = stream2.toByteArray();
         ImageData imageData2 = ImageDataFactory.create(bitmapData2);
         Image image2 = new Image(imageData2);
-        image2.setWidth(800f);
-        image2.setHeight(600f);
+        image2.setWidth(400f);
+        image2.setHeight(200f);
 
         //Tercera imagen cargada
         Drawable d3 = img3.getDrawable();
@@ -412,8 +459,8 @@ public class RegistraDesIn extends AppCompatActivity {
         byte[] bitmapData3 = stream3.toByteArray();
         ImageData imageData3 = ImageDataFactory.create(bitmapData3);
         Image image3 = new Image(imageData3);
-        image3.setWidth(800f);
-        image3.setHeight(600f);
+        image3.setWidth(400f);
+        image3.setHeight(200f);
 
         //Cuarta imagen cargada
         Drawable d4 = img4.getDrawable();
@@ -423,10 +470,10 @@ public class RegistraDesIn extends AppCompatActivity {
         byte[] bitmapData4 = stream4.toByteArray();
         ImageData imageData4 = ImageDataFactory.create(bitmapData4);
         Image image4 = new Image(imageData4);
-        image4.setWidth(800f);
-        image4.setHeight(600f);
+        image4.setWidth(400f);
+        image4.setHeight(200f);
 
-        //Primera tabla tiene el logo y direccion de empresa
+        //Tabla 1. tiene el logo y direccion de empresa.
         float columwidth[] = {180, 80, 140, 140};
         Table table1 = new Table(columwidth);
         table1.addCell(new Cell(3, 1).add(image0).setBorder(Border.NO_BORDER));
@@ -451,11 +498,11 @@ public class RegistraDesIn extends AppCompatActivity {
         table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
         table1.addCell(new Cell().add(new Paragraph()).setBorder(Border.NO_BORDER));
 
-        //Segunda tabla tiene los datos de id de incidencia.
+        //Tabla 2. tiene los datos de id de incidencia.
         float columwidth2[] = {140, 140, 140, 140};
         Table table2 = new Table(columwidth2);
 
-        //Tabla 2 rellena datos de identificacion de incidencia
+        //Tabla 2 rellena datos de identificacion de incidencia.
         table2.addCell(new Cell(1, 2).add(new Paragraph("Nº DE INCIDENCIA")));
         table2.addCell(new Cell(1, 2).add(new Paragraph(incidencia.getIdIncidencia())).setTextAlignment(TextAlignment.CENTER));
         table2.addCell(new Cell(1, 2).add(new Paragraph("FECHA DE LA INCIDENCIA")));
@@ -463,11 +510,11 @@ public class RegistraDesIn extends AppCompatActivity {
         table2.addCell(new Cell(1, 2).add(new Paragraph("Nº DE EMPLEADO ASISTE")));
         table2.addCell(new Cell(1, 2).add(new Paragraph(incidencia.getIdEmpleado())).setTextAlignment(TextAlignment.CENTER));
 
-        //Tercera tabla rellena datos del Usuario, parte y descripcion
+        //Tabla 3. rellena datos del Usuario, parte y descripcion.
         float columwidth3[] = {140, 140, 140, 140};
         Table table3 = new Table(columwidth2);
 
-        //Tabla 3 Datos personales
+        //Tabla 3 Datos personales.
         table3.addCell(new Cell(1, 4).add(new Paragraph("DATOS DEL USUARIO")).setFontSize(14f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
         table3.addCell(new Cell(1, 2).add(new Paragraph("Nº IDENTIFICACION USUARIOS")));
         table3.addCell(new Cell(1, 2).add(new Paragraph(incidencia.getIdUsuario())).setTextAlignment(TextAlignment.CENTER));
@@ -499,6 +546,21 @@ public class RegistraDesIn extends AppCompatActivity {
         table3.addCell(new Cell(1, 4).add(new Paragraph("DESCRIPCION DEL SUCESO")).setFontSize(14f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
         table3.addCell(new Cell(5, 4).add(new Paragraph(incidencia.getDescripcion())).setTextAlignment(TextAlignment.CENTER));
 
+        // Tablas 4 a 7 Imagenes del suceso.
+        float columwidth4[] = {140, 140, 140, 140};
+        Table table4 = new Table(columwidth4);
+        table1.addCell(new Cell(0,2).add(new Paragraph()).setBorder(Border.NO_BORDER));
+        table4.addCell(new Cell(1, 1).add(image1).setHorizontalAlignment(HorizontalAlignment.CENTER).setBorder(Border.NO_BORDER));
+        float columwidth5[] = {140, 140, 140, 140};
+        Table table5 = new Table(columwidth5);
+        table5.addCell(new Cell(5, 5).add(image2).setHorizontalAlignment(HorizontalAlignment.CENTER).setBorder(Border.NO_BORDER));
+        float columwidth6[] = {140, 140, 140, 140};
+        Table table6 = new Table(columwidth6);
+        table6.addCell(new Cell(5, 5).add(image3).setHorizontalAlignment(HorizontalAlignment.CENTER).setBorder(Border.NO_BORDER));
+        float columwidth7[] = {140, 140, 140, 140};
+        Table table7 = new Table(columwidth5);
+        table7.addCell(new Cell(5, 5).add(image4).setHorizontalAlignment(HorizontalAlignment.CENTER).setBorder(Border.NO_BORDER));
+
         // Añadimos las tablas al documento.
         document.add(table1);
         document.add(new Paragraph("\n"));
@@ -509,18 +571,24 @@ public class RegistraDesIn extends AppCompatActivity {
         document.add(new Paragraph("\n"));
         document.add(new Paragraph("\n"));
         document.add(new Paragraph("IMAGENES ADJUNTAS DEL SUCESO").setFontSize(18f).setBold().setFontColor(azulGiac).setTextAlignment(TextAlignment.CENTER));
+        document.add(new Paragraph("\n"));
+        document.add(table4);
+        document.add(new Paragraph("\n"));
+        document.add(table5);
+        document.add(new Paragraph("\n"));
+        document.add(table6);
+        document.add(new Paragraph("\n"));
+        document.add(table7);
+        document.add(new Paragraph("\n"));
 
-        // Añadimos las imagenes al documento.
-        document.add(image1);
-        document.add(image2);
-        document.add(image3);
-        document.add(image4);
         // cerramos el documento.
         document.close();
+
         // Avisamos mediante TOAST que el pdf ha sido creado.
         Toast.makeText(this, "PDF CREADO", Toast.LENGTH_LONG).show();
     }
 
+    /////////////////////////////////////// PERMISOS ////////////////////////////////////////////////
     // METODOS ENCARGADOS DE LOS PERMISOS DE LECTURA Y ESCRITURA PARA PDF NECESARIOS.
     private boolean checkPermission() {
         int permission1 = ContextCompat.checkSelfPermission(getApplicationContext(), WRITE_EXTERNAL_STORAGE);
@@ -551,29 +619,7 @@ public class RegistraDesIn extends AppCompatActivity {
     }
 
 
-    // METODO DEL CUADRO DE DIALOGO PARA SELECCION DE CAMARA O DE GALERIA - MEJORAR
-    private void muestraAlertDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Carga de imagenes");
-        builder.setMessage("Selecciona carga de imagenes");
-        builder.setPositiveButton("Camara", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                abrirCamara();
-                dialog.dismiss();
-            }
 
-            });
-        builder.setNegativeButton("Galeria", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                AbrirGaleria();
-                dialog.dismiss();
-            }
-        });
-        builder.create().show();
-
-    }
 
     // METODOS ENCARGADOS DE LOS PERMISOS DE CAMARA.
     private void permisosCamara(){
@@ -587,131 +633,4 @@ public class RegistraDesIn extends AppCompatActivity {
         }
     }
 
-
-    }
-
-
-    /*
-        @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == REQUEST_IMAGE_GALERIA){
-            if(permissions.length>00&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                abrirgaleria();
-            }
-        }else {
-            Toast.makeText(this,"Debes habilitar los permisos de la camara",Toast.LENGTH_SHORT).show();
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode==REQUEST_IMAGE_GALERIA){
-            if(requestCode== Activity.RESULT_OK){
-                Uri imagen = data.getData();
-                img1.setImageURI(imagen);
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-
-    }
-
-    private void abrirgaleria() {
-        Intent abrecamara = new Intent(Intent.ACTION_GET_CONTENT);
-        abrecamara.setType("image/*");
-        if (abrecamara.resolveActivity(getPackageManager()) != null && img1.isEnabled()) {
-            startActivityForResult(abrecamara, REQUEST_IMAGE_GALERIA);
-
-        }
-
-    }
-
-************************ INCIDENCIA QUE FUNCIONA ************************
-
-    private void insertaincidencia(String url){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> parametros = new HashMap<String,String>();
-                parametros.put("Id_Incidencia","3010");
-                parametros.put("Id_Usuario","1002");
-                parametros.put("empleado","1000");
-                parametros.put("Vehiculo_Usuario","8209KWN");
-                parametros.put("Fecha_Incidencia","2023-10-10");
-                parametros.put("Direccion","asdf");
-                parametros.put("CoordenadaX","22");
-                parametros.put("CoordenadaY","22");
-                parametros.put("Descripcion","a");
-                return parametros;
-            }
-        };
-        requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
-
-************************ PARTE QUE FUNCIONA ************************
-
-    private void insertaParte(String url){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> parametros = new HashMap<String,String>();
-                parametros.put("Id_Parte","13012");
-                parametros.put("Cod_Incidencia","3012");
-                parametros.put("Cod_Accidente","");
-                parametros.put("Usuario","1002");
-                parametros.put("Empleado", "");
-                parametros.put("Fecha_Alta","23-10-10");
-                parametros.put("Estado_Parte","En proceso");
-                parametros.put("Fecha_Finalizacion","");
-                return parametros;
-            }
-        };
-        requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
-private void abrirCamara(){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(intent.resolveActivity(getPackageManager()) != null && img1.isEnabled()){
-        startActivityForResult(intent, 1);
-        onActivityResult(1,1,intent,img1);
-        }
-        }
-
-protected void onActivityResult(int requestCode, int resultCode, Intent data,ImageView img) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-        Bundle extras = data.getExtras();
-        Bitmap imgBitmap = (Bitmap) extras.get("data");
-        img1.setImageBitmap(imgBitmap);
-        }
-        }
-
-    */
-
+}

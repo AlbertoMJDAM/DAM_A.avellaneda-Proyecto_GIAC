@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2A6B5B"
+    android:background="@drawable/fpop_up"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".menuPrincipal_U.PopupDirActivity">
@@ -22,16 +22,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:hint="Tu dirección aparecerá aquí"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textAlignment="center" />
 
     <Button
         android:id="@+id/button_location"
+        style="@style/Boton_blanco_S"
+        android:textColor="#11194E"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:layout_gravity="center"
+
         android:text="Ver mapa" />
 
 
