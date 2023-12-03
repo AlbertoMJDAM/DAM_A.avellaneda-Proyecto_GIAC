@@ -68,6 +68,7 @@ public class accidentesAsignados extends AppCompatActivity {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             try {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String Id_Usuario = jsonObject.getString("Id_Usuario");
                                 String Id_Accidente = jsonObject.getString("Id_Accidente");
                                 String Empleado = jsonObject.getString("Empleado");
                                 String Vehiculo_usuario = jsonObject.getString("Vehiculo_usuario");
@@ -79,7 +80,7 @@ public class accidentesAsignados extends AppCompatActivity {
                                 String CoordenadaY = jsonObject.getString("CoordenadaY");
                                 String Fecha_Accidente = jsonObject.getString("Fecha_Accidente");
 
-                                Accidentes accidente = new Accidentes(Id_Accidente, Empleado, Vehiculo_usuario,
+                                Accidentes accidente = new Accidentes(Id_Accidente, Id_Usuario, Empleado, Vehiculo_usuario,
                                         V_Implicado_Uno, V_Implicado_Dos, Ubicacion, Descripcion, CoordenadaX,
                                         CoordenadaY, Fecha_Accidente);
                                 lista.add(accidente);

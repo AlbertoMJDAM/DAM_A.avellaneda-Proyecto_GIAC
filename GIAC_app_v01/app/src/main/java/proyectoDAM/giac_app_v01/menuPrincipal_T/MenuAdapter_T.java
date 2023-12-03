@@ -30,9 +30,6 @@ public class MenuAdapter_T extends RecyclerView.Adapter<MenuAdapter_T.ViewHolder
                 LayoutInflater.from(parent.getContext()).inflate(R.layout.formatoimag,parent,false));
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-                        //Falta pulir el tema de los botones de sonidos//
-    ///////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.imageView.setBackgroundResource(imagenes[position]);
@@ -42,12 +39,18 @@ public class MenuAdapter_T extends RecyclerView.Adapter<MenuAdapter_T.ViewHolder
                     holder.audio.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(clientesTrab.isPlaying())
+                            if(clientesTrab.isPlaying()){
                                 clientesTrab.pause();
-                            if(accidenteTrab.isPlaying())
+                                clientesTrab.seekTo(0);
+                            }
+                            if(accidenteTrab.isPlaying()){
                                 accidenteTrab.pause();
-                            if(documentosTrab.isPlaying())
+                                accidenteTrab.seekTo(0);
+                            }
+                            if(documentosTrab.isPlaying()){
                                 documentosTrab.pause();
+                                documentosTrab.seekTo(0);
+                            }
                             incidenciaTrab.start();
                         }
                     });
@@ -56,57 +59,67 @@ public class MenuAdapter_T extends RecyclerView.Adapter<MenuAdapter_T.ViewHolder
                     holder.textotitulo.setText(holder.textotitulo.getResources().getString(R.string.TituloCLIASIG));
                     holder.textoinfo.setText(holder.textoinfo.getResources().getString(R.string.accidentesAsig));
                     holder.audio.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(incidenciaTrab.isPlaying())
-                            incidenciaTrab.pause();
-                        if(accidenteTrab.isPlaying())
-                            accidenteTrab.pause();
-                        if(documentosTrab.isPlaying())
-                            documentosTrab.pause();
-                        clientesTrab.start();
-                    }
+                        @Override
+                        public void onClick(View v) {
+                            if(incidenciaTrab.isPlaying()){
+                                incidenciaTrab.pause();
+                                incidenciaTrab.seekTo(0);
+                            }
+                            if(clientesTrab.isPlaying()){
+                                clientesTrab.pause();
+                                clientesTrab.seekTo(0);
+                            }
+                            if(documentosTrab.isPlaying()){
+                                documentosTrab.pause();
+                                documentosTrab.seekTo(0);
+                            }
+                            accidenteTrab.start();
+                        }
                     });
                     break;
             case 2: holder.textotitulo.setText(holder.textotitulo.getResources().getString(R.string.TituloACCTRAB));
                     holder.textoinfo.setText(holder.textoinfo.getResources().getString(R.string.accidenTrab));
                     holder.audio.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(clientesTrab.isPlaying())
-                        {
-                            clientesTrab.pause();
-                            clientesTrab.reset();
+                        @Override
+                        public void onClick(View v) {
+                            if(incidenciaTrab.isPlaying()){
+                                incidenciaTrab.pause();
+                                incidenciaTrab.seekTo(0);
+                            }
+                            if(accidenteTrab.isPlaying()){
+                                accidenteTrab.pause();
+                                accidenteTrab.seekTo(0);
+                            }
+                            if(documentosTrab.isPlaying()){
+                                documentosTrab.pause();
+                                documentosTrab.seekTo(0);
+                            }
+                            clientesTrab.start();
                         }
-                        if(incidenciaTrab.isPlaying()){
-                            incidenciaTrab.pause();
-                            incidenciaTrab.reset();
-                        }
-                        if(documentosTrab.isPlaying()){
-                            documentosTrab.pause();
-                            documentosTrab.reset();
-                        }
-                        accidenteTrab.start();
-                    }
                     });
                     break;
             case 3: holder.textotitulo.setText(holder.textotitulo.getResources().getString(R.string.TituloDOCTRAB));
                     holder.textoinfo.setText(holder.textoinfo.getResources().getString(R.string.archivosTrab));
                     holder.audio.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(accidenteTrab.isPlaying())
-                            accidenteTrab.pause();
-                        if(incidenciaTrab.isPlaying())
-                            incidenciaTrab.pause();
-                        if(clientesTrab.isPlaying())
-                            clientesTrab.pause();
-                        documentosTrab.start();
-                    }
+                        @Override
+                        public void onClick(View v) {
+                            if(incidenciaTrab.isPlaying()){
+                                incidenciaTrab.pause();
+                                incidenciaTrab.seekTo(0);
+                            }
+                            if(accidenteTrab.isPlaying()){
+                                accidenteTrab.pause();
+                                accidenteTrab.seekTo(0);
+                            }
+                            if(clientesTrab.isPlaying()){
+                                clientesTrab.pause();
+                                clientesTrab.seekTo(0);
+                            }
+                            documentosTrab.start();
+                        }
                     });
                     break;
         }
-
     }
 
     @Override
@@ -131,5 +144,4 @@ public class MenuAdapter_T extends RecyclerView.Adapter<MenuAdapter_T.ViewHolder
             documentosTrab = MediaPlayer.create(itemView.getContext(),R.raw.documentos_trab);
         }
     }
-
 }

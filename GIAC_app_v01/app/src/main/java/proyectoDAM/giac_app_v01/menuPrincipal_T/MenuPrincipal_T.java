@@ -31,10 +31,11 @@ import proyectoDAM.giac_app_v01.menuPrincipal_T.localizarAccidentes.localizarAcc
 public class MenuPrincipal_T extends AppCompatActivity {
 
     // Atributos:
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 123; // Damos valor al permiso.
     private String datosTrabajador; // Datos del Trabajador registrado en login
     private ViewPager2 viewPager2; //Menu de acciones
     private TextView tvBbienvenida; // String de Bienvenida de Usuario
+    private String IDTrabajador;
+
 
     // Array de imagenes de acciones a realizar
     private int[] imagenes = {R.drawable.incidencia,R.drawable.asistencia,R.drawable.accidente,R.drawable.archivos};
@@ -62,12 +63,18 @@ public class MenuPrincipal_T extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
+        //COGEMOS LA ID DEL TRABAJADOR
+        try {
+            IDTrabajador = jsonDatosTrab.getString("Id_Empleado");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
         // Damos valor a los elementos del menu principal:
         tvBbienvenida = findViewById(R.id.tvBienvenidaTrab);
         try {
             tvBbienvenida.setText("¡ Bienvenido " + jsonDatosTrab.getString("Nombre") + " !");
-            //COGEMOS LA ID DEL TRABAJADOR
-            String idTrabajador = jsonDatosTrab.getString("Id_Empleado");
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }
@@ -95,25 +102,17 @@ public class MenuPrincipal_T extends AppCompatActivity {
                 page.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //COGEMOS LA ID DEL TRABAJADOR Y LA PASAMOS A LAS NUEVAS ACTIVITIES
-                        String idTrabajador = null;
-                        try {
-                            idTrabajador = jsonDatosTrab.getString("Id_Empleado");
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
                         switch (cont) {
                             // DESDE ESTE PUNTO SE INICIAN TODAS LAS INTENT DE LAS ACCIONS A REALIZAR POR EL USUARIO EN EL SWIPEVIEW
                             //
                             case 0: //BOTON DE INCIDENCIAS ASIGNADAS
                                 Intent IncidenciasAsignadas = new Intent (view.getContext(), IncidenciasAsignadas.class);
-
-                                IncidenciasAsignadas.putExtra("idTrabajador", idTrabajador);
+                                IncidenciasAsignadas.putExtra("idTrabajador", IDTrabajador);
                                 startActivity(IncidenciasAsignadas);
                                 break;
                             case 1: //BOTON DE ACCIDENTES ASIGNADAS
                                 Intent accidentesAsignados = new Intent (getApplicationContext(), accidentesAsignados.class);
-                                accidentesAsignados.putExtra("idTrabajador", idTrabajador);
+                                accidentesAsignados.putExtra("idTrabajador", IDTrabajador);
                                 startActivity(accidentesAsignados);
                                 break;
                             case 2: //BOTON DE LOCALIZAR ACCIDENTES
@@ -122,6 +121,7 @@ public class MenuPrincipal_T extends AppCompatActivity {
                                 break;
                             case 3: //BOTON DE DOCUMENTOS DE PARTES
                                 Intent documentosTrabajadores = new Intent (view.getContext(), documentosTrabajadores.class);
+                                documentosTrabajadores.putExtra("idTrabajador", IDTrabajador);
                                 startActivity(documentosTrabajadores);
                                 break;
                         }
@@ -181,53 +181,26 @@ public class MenuPrincipal_T extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         //Metodo para el boton de lista de Incidencias sin Asignar
         btnListaIncidencias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent listaIncidencias = new Intent(getApplicationContext(), ListadoIncidencias.class);
-                //COGEMOS LA ID DEL TRABAJADOR Y LA PASAMOS A LA NUEVA ACTIVITY
-                String idTrabajador = null;
-                try {
-                    idTrabajador = jsonDatosTrab.getString("Id_Empleado");
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                }
-                listaIncidencias.putExtra("idTrabajador", idTrabajador);
+                listaIncidencias.putExtra("idTrabajador", IDTrabajador);
                 startActivity(listaIncidencias);
             }
         });
+
         //Metodo para el boton de lista de Accidenctes sin Asignar
         btnListaAccidentes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent ListaAccidentes = new Intent(getApplicationContext(), ListadoAccidentes.class);
-                //COGEMOS LA ID DEL TRABAJADOR Y LA PASAMOS A LA NUEVA ACTIVITY
-                String idTrabajador = null;
-                try {
-                    idTrabajador = jsonDatosTrab.getString("Id_Empleado");
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                }
-                ListaAccidentes.putExtra("idTrabajador", idTrabajador);
+                ListaAccidentes.putExtra("idTrabajador", IDTrabajador);
                 startActivity(ListaAccidentes);
             }
         });
-    }
-
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
-            case REQUEST_CODE_ASK_PERMISSIONS:
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    // El usuario acepto los permisos.
-                    toasted("Gracias, aceptaste los permisos requeridos para el correcto funcionamiento de esta aplicación.");
-                }else{
-                    // Permiso denegado.
-                    toasted("No se aceptó permisos");
-                }
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
     }
 
     public void toasted(String s){

@@ -70,7 +70,10 @@ public class ListadoUsuarios extends AppCompatActivity {
                                 String email = jsonObject.getString("Email");
                                 String pApellido = jsonObject.getString("Per_Apellido");
                                 String sApellidos = jsonObject.getString("Sdo_Apellido");
-                                Usuarios usuario = new Usuarios(id, nombre, dni, licencia, email, pApellido, sApellidos);
+                                String Fecha_Nacimiento = jsonObject.getString("Fecha_Nacimiento");
+                                String Telefono = jsonObject.getString("Telefono");
+                                Usuarios usuario = new Usuarios(id, nombre, dni, licencia, email, pApellido,
+                                        sApellidos,Fecha_Nacimiento, Telefono);
                                 lista.add(usuario);
                             } catch (JSONException e) {
                                 Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();

@@ -7,19 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.io.File;
 import java.util.ArrayList;
 
-import proyectoDAM.giac_app_v01.Model.Accidentes;
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoAccidentes.adaptadorListaAccidentes;
 
 public class documentosTrabajadores extends AppCompatActivity {
 
     // ATRIBUTOS
     private ListView lvDocumentosTrabajador;
-    private ArrayList<Accidentes> lista;
-    private adaptadorListaAccidentes adapter;
+    private ArrayList<File> lista;
+    private adaptadorDocumentosTrabajador adapter;
     private Button btnSalir;
+    private String idTrabajador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,12 @@ public class documentosTrabajadores extends AppCompatActivity {
 
         // DAMOS VALOR A LOS ELEMENTOS
         lvDocumentosTrabajador = (ListView) findViewById(R.id.lvDocumentosTrabajador);
-        lista = new ArrayList<Accidentes>();
+        lista = new ArrayList<File>();
         btnSalir = (Button) findViewById(R.id.btnSalir);
+
+        // TRAEMOS UN STRING CON LOS DATOS DEL ID DEL TRABAJADOR
+        Bundle extras = getIntent().getExtras();
+        idTrabajador = extras.getString("idTrabajador");
 
         //METODO DEL BOTON btnSalir
         btnSalir.setOnClickListener(new View.OnClickListener() {
@@ -38,5 +42,22 @@ public class documentosTrabajadores extends AppCompatActivity {
                 finish();
             }
         });
+
+        obtenerDocumentos();
     }
+
+    private void obtenerDocumentos(){
+        String direccion = getFilesDir()+"/GIAC/";
+        File dir = new File(direccion);
+        File[] listaDirectorios;
+        listaDirectorios = dir.listFiles();
+        if(listaDirectorios != null) {
+            for(int x=0; x<listaDirectorios.length; x++){
+                lista.add(listaDirectorios[x]);
+            }
+        }
+        adapter = new adaptadorDocumentosTrabajador(getApplicationContext(), lista);
+        lvDocumentosTrabajador.setAdapter(adapter);
+    }
+
 }

@@ -5,20 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondogl"
-    tools:context=".login.Login"
-    tools:layout_editor_absoluteX="-3dp"
-    tools:layout_editor_absoluteY="0dp">
+    android:layout_gravity="center"
+    tools:context=".login.Login">
 
     <EditText
         android:id="@+id/edtUser"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_height="60dp"
         android:layout_marginTop="350dp"
-        android:layout_marginEnd="50dp"
         android:background="@drawable/btn_contorno_blanco_l"
         android:drawableLeft="@drawable/ico_user"
         android:textAlignment="textStart"
+        android:inputType="textPersonName"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,8 +26,9 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,14 +37,11 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tiPass"
             android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="55dp"
-            android:layout_marginEnd="50dp"
+            android:layout_height="60dp"
             app:endIconMode="password_toggle"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.545"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtUser">
 
@@ -53,13 +49,13 @@
                 android:id="@+id/textInputEditText"
                 style="@style/TextoHint"
                 android:layout_width="300dp"
-                android:layout_height="55dp"
+                android:layout_height="60dp"
                 android:background="@drawable/btn_contorno_blanco_l"
                 android:drawableStart="@drawable/ico_lock"
                 android:textAlignment="textStart"
                 android:inputType="textPassword"
-                tools:layout_editor_absoluteX="66dp"
-                tools:layout_editor_absoluteY="508dp" />
+                android:textSize="20dp"/>
+
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
@@ -70,31 +66,43 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="20dp"
         android:orientation="horizontal"
-        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-        <CheckBox
-            android:id="@+id/cbRecordar"
-            style="@style/TextosBlancos"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:text="Recuerdame"
-            android:textSize="14dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="55">
 
-        <TextView
-            android:id="@+id/tvRem"
-            style="@style/TextosBlancos"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="20dp"
-            android:layout_marginStart="20dp"
-            android:text="¿Olvido su contraseña?"
-            android:textSize="14dp" />
+            <CheckBox
+                android:id="@+id/cbRecordar"
+                style="@style/TextosBlancos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recuerdame"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="45">
+
+            <TextView
+                android:id="@+id/tvRem"
+                style="@style/TextosBlancos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Olvido su contraseña?"
+                android:textSize="14dp" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <Button
@@ -122,10 +130,11 @@
         android:id="@+id/btnReg"
         style="@style/Boton_azul_L"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:text="Nuevo Usuario"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMember"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMember"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

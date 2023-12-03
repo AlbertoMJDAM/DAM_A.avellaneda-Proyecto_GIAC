@@ -51,12 +51,12 @@ public class adaptadorListaVehiculos extends BaseAdapter {
         TextView tvColor = (TextView) view.findViewById(R.id.tvColor);
         TextView tvMatricula = (TextView) view.findViewById(R.id.tvMatricula);
 
-        tvIdVehiculo.setText(arrayList.get(i).getId());
+        tvIdVehiculo.setText(arrayList.get(i).getId_Cliente());
         tvMarca.setText(arrayList.get(i).getMarca());
         tvModelo.setText(arrayList.get(i).getModelo());
         tvColor.setText(arrayList.get(i).getColor());
         tvMatricula.setText(arrayList.get(i).getMatricula());
-        tvPuertas.setText(arrayList.get(i).getnPuertas());
+        tvPuertas.setText(arrayList.get(i).getNum_Puertas());
 
         return view;
     }

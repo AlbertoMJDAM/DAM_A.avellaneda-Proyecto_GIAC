@@ -2,64 +2,111 @@ package proyectoDAM.giac_app_v01.Model;
 
 public class Vehiculos {
 
-    private String id;
-    private String marca;
-    private String modelo;
-    private String color;
-    private String matricula;
-    private String nPuertas;
+    private String Id_Cliente;
+    private String Tipo_Vehiculo;
+    private String Marca;
+    private String Modelo;
+    private String Color;
+    private String Num_Puertas;
+    private String Motor;
+    private String Cv;
+    private String Matricula;
+    private String Num_Bastidor;
 
-    public Vehiculos(String id, String marca, String modelo, String color, String matricula, String nPuertas){
-        this.id = id;
-        this.marca = marca;
-        this.modelo = modelo;
-        this.color = color;
-        this.matricula = matricula;
-        this.nPuertas = nPuertas;
+    public Vehiculos(String Id_Cliente, String Tipo_Vehiculo, String Marca, String Modelo, String Color,
+                     String Num_Puertas, String Motor, String Cv, String Matricula, String Num_Bastidor){
+        this.Id_Cliente = Id_Cliente;
+        this.Tipo_Vehiculo = Tipo_Vehiculo;
+        this.Marca = Marca;
+        this.Modelo = Modelo;
+        this.Color = Color;
+        this.Num_Puertas = Num_Puertas;
+        this.Motor = Motor;
+        this.Cv = Cv;
+        this.Matricula = Matricula;
+        this.Num_Bastidor = Num_Bastidor;
     }
-    public String getnPuertas() {
-        return nPuertas;
-    }
-    public void setnPuertas(String nPuertas) {
-        this.nPuertas = nPuertas;
-    }
-    public String getId() {
-        return id;
+    public Vehiculos(){
+
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getId_Cliente() {
+        return Id_Cliente;
+    }
+
+    public void setId_Cliente(String id_Cliente) {
+        Id_Cliente = id_Cliente;
+    }
+
+    public String getTipo_Vehiculo() {
+        return Tipo_Vehiculo;
+    }
+
+    public void setTipo_Vehiculo(String tipo_Vehiculo) {
+        Tipo_Vehiculo = tipo_Vehiculo;
     }
 
     public String getMarca() {
-        return marca;
+        return Marca;
     }
 
     public void setMarca(String marca) {
-        this.marca = marca;
+        Marca = marca;
     }
 
     public String getModelo() {
-        return modelo;
+        return Modelo;
     }
 
     public void setModelo(String modelo) {
-        this.modelo = modelo;
+        Modelo = modelo;
     }
 
     public String getColor() {
-        return color;
+        return Color;
     }
 
     public void setColor(String color) {
-        this.color = color;
+        Color = color;
+    }
+
+    public String getNum_Puertas() {
+        return Num_Puertas;
+    }
+
+    public void setNum_Puertas(String num_Puertas) {
+        Num_Puertas = num_Puertas;
+    }
+
+    public String getMotor() {
+        return Motor;
+    }
+
+    public void setMotor(String motor) {
+        Motor = motor;
+    }
+
+    public String getCv() {
+        return Cv;
+    }
+
+    public void setCv(String cv) {
+        Cv = cv;
     }
 
     public String getMatricula() {
-        return matricula;
+        return Matricula;
     }
 
     public void setMatricula(String matricula) {
-        this.matricula = matricula;
+        Matricula = matricula;
+    }
+
+    public String getNum_Bastidor() {
+        return Num_Bastidor;
+    }
+
+    public void setNum_Bastidor(String num_Bastidor) {
+        Num_Bastidor = num_Bastidor;
     }
 }

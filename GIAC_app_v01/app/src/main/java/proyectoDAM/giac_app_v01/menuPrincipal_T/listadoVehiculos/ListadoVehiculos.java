@@ -37,12 +37,12 @@ public class ListadoVehiculos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_vehiculos);
 
-        // Damos valor a los elementos:
+        // DAMOS VALOR A LOS ELEMENTOS
         lvListaVehiculos = (ListView) findViewById(R.id.lvListaVehiculos);
         lista = new ArrayList<Vehiculos>();
         btnRetroceder = (Button) findViewById(R.id.btnRetroceder);
 
-        //Metodo para el boton Retroceder
+        //METODO PARA EL BOTON btnRetroceder
         btnRetroceder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,15 +64,20 @@ public class ListadoVehiculos extends AppCompatActivity {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             try {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                String id = jsonObject.getString("Id_Cliente");
-                                String marca = jsonObject.getString("Marca");
-                                String modelo = jsonObject.getString("Modelo");
-                                String color = jsonObject.getString("Color");
-                                String matricula = jsonObject.getString("Matricula");
-                                String nPuertas = jsonObject.getString("Num_Puertas");
-                                Vehiculos vehiculo = new Vehiculos(id, marca, modelo, color, matricula, nPuertas);
+                                String Id_Cliente = jsonObject.getString("Id_Cliente");
+                                String Tipo_Vehiculo = jsonObject.getString("Tipo_Vehiculo");
+                                String Marca = jsonObject.getString("Marca");
+                                String Modelo = jsonObject.getString("Modelo");
+                                String Color = jsonObject.getString("Color");
+                                String Num_Puertas = jsonObject.getString("Num_Puertas");
+                                String Motor = jsonObject.getString("Motor");
+                                String Cv = jsonObject.getString("Cv");
+                                String Matricula = jsonObject.getString("Matricula");
+                                String Num_Bastidor = jsonObject.getString("Num_Bastidor");
+
+                                Vehiculos vehiculo = new Vehiculos(Id_Cliente, Tipo_Vehiculo, Marca, Modelo, Color,
+                                        Num_Puertas, Motor, Cv, Matricula, Num_Bastidor);
                                 lista.add(vehiculo);
-                                //Toast.makeText(getApplicationContext(),vehiculo.getId()+" "+vehiculo.getMarca()+" "+vehiculo.getModelo()+" "+vehiculo.getColor()+" "+vehiculo.getMatricula(),Toast.LENGTH_SHORT).show();
                             } catch (JSONException e) {
                                 Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                             }

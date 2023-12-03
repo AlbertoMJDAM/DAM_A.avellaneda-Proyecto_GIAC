@@ -29,7 +29,6 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/viewpagerTrab"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBienvenidaTrab">
 
@@ -37,7 +36,6 @@
             android:id="@+id/btnTrab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
             android:background="@android:color/transparent"
             android:text="Tus Datos"
             android:textAlignment="gravity"
@@ -49,7 +47,6 @@
             android:id="@+id/btnListaCoches"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
             android:background="@android:color/transparent"
             android:text="Lista Vehiculos"
             android:textAlignment="gravity"
@@ -61,9 +58,7 @@
             android:id="@+id/btnListaUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:background="@android:color/transparent"
-            android:shadowColor="@color/black"
             android:text="Lista Clientes"
             android:textAlignment="gravity"
             android:textSize="9dp"

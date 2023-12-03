@@ -70,7 +70,7 @@
             style="@style/Boton_blanco_S"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="REGRESAR" />
+            android:text="SALIR" />
 
     </LinearLayout>
 

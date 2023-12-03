@@ -1,10 +1,22 @@
 package proyectoDAM.giac_app_v01.login;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.Manifest.permission.CALL_PHONE;
+import static android.Manifest.permission.CAMERA;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.Manifest.permission_group.STORAGE;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -32,6 +44,7 @@ import java.util.Map;
 import proyectoDAM.giac_app_v01.R;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.MenuPrincipal_T;
 import proyectoDAM.giac_app_v01.menuPrincipal_U.MenuPrincipal_U;
+import proyectoDAM.giac_app_v01.registraIncidencias.LoadingDialogBar;
 import proyectoDAM.giac_app_v01.registroUsuario.RegistroUsuarios;
 
 
@@ -46,6 +59,7 @@ public class Login extends AppCompatActivity {
     SharedPreferences.Editor editorPreferencias;
     String llave = "sesion";
     String userGuardado = "";
+    LoadingDialogBar loadingDialogBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +73,8 @@ public class Login extends AppCompatActivity {
         cbRecordar = (CheckBox) findViewById(R.id.cbRecordar);
         preferencias = this.getPreferences(Context.MODE_PRIVATE);
         editorPreferencias = preferencias.edit();
+        loadingDialogBar =new LoadingDialogBar(this);
+
         //AL INICIAR, REVISA SI SE RECORDO USUARIO Y LO ESTABLECE ASI COMO MARCHA EL CHECK
         if(RevisarSesion()){
             edtUser.setText(this.preferencias.getString(userGuardado, ""));
@@ -110,21 +126,23 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 GuardarSesion(cbRecordar.isChecked());
                 ComprobarUsuario();
+                loadingDialogBar.MuestraDialog("Comprobando credenciales");
             }
         });
+        VerificarPermisos();
     }
 
     //METODO QUE CONSULTA EN LAS BBDD DE USUARIOS SI EXISTE EL USUARIO CON SU CONTRASENA
     //SI EXISTE, LANZA LA PANTALLA PRINCIPAL DE USUARIOS, SI NO, COMPRUEBA EN TRABAJADOR
     public void ComprobarUsuario(){
         String urlUsuarios = "https://appgiac.000webhostapp.com/validar_usuario.php";
-        String a = "";
         StringRequest stringRequest=new StringRequest(Request.Method.POST, urlUsuarios, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(!response.isEmpty()){
                     Intent intent=new Intent(getApplicationContext(), MenuPrincipal_U.class);
                     intent.putExtra("Usuario",response);
+                    loadingDialogBar.OcultaDialog();
                     startActivity(intent);
                 }else {
                     ComprobarEmpleado();
@@ -158,6 +176,7 @@ public class Login extends AppCompatActivity {
                 if(!response.isEmpty()){
                     Intent intent= new Intent(getApplicationContext(), MenuPrincipal_T.class);
                     intent.putExtra("Trabajador", response);
+                    loadingDialogBar.OcultaDialog();
                     startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(), "Usuario o contrasena incorrectos", Toast.LENGTH_SHORT).show();
@@ -192,5 +211,35 @@ public class Login extends AppCompatActivity {
     public Boolean RevisarSesion(){
         boolean sesion = this.preferencias.getBoolean(llave, false);
         return sesion;
+    }
+
+    //METODO ENCARGADO DE COMPROBAR LOS PERMISOS NECESARIOS EN LA APLICACION Y SOLICITARLOS AL USUARIO
+    private boolean checkPermission(){
+        int permisoEscritura = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int permisoLectura = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int permisoCamara = ContextCompat.checkSelfPermission(this, CAMERA);
+        int permisoLocalizacion = ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION);
+        int permisoLocalizacionFina = ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION);
+        int permisoTelefono = ContextCompat.checkSelfPermission(this, CALL_PHONE);
+        int permisoStorage = ContextCompat.checkSelfPermission(this, STORAGE);
+        return permisoEscritura == PackageManager.PERMISSION_GRANTED && permisoLectura == PackageManager.PERMISSION_GRANTED &&
+                permisoCamara == PackageManager.PERMISSION_GRANTED && permisoLocalizacion == PackageManager.PERMISSION_GRANTED &&
+                permisoLocalizacionFina == PackageManager.PERMISSION_GRANTED && permisoTelefono == PackageManager.PERMISSION_GRANTED &&
+                permisoStorage == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermissions(){
+        ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE,
+                CAMERA,ACCESS_COARSE_LOCATION,ACCESS_FINE_LOCATION,CALL_PHONE}, 200);
+    }
+
+    private void VerificarPermisos(){
+        //DEFINIMOS LA SOLICITUD DE PERMISOS AL USUARIO
+        if(!checkPermission()){
+            requestPermissions();
+            if(checkPermission()){
+                Toast.makeText(getApplicationContext(), "Permisos Aceptados", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

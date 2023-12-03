@@ -1,14 +1,18 @@
 package proyectoDAM.giac_app_v01.Model;
 
-public class Accidentes {
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    String Id_Accidente, Empleado, Vehiculo_usuario, V_Implicado_Uno, V_Implicado_Dos, Ubicacion;
+public class Accidentes implements Parcelable {
+
+    String Id_Accidente, Id_Usuario, Empleado, Vehiculo_usuario, V_Implicado_Uno, V_Implicado_Dos, Ubicacion;
     String Descripcion, CoordenadaX, CoordenadaY, Fecha_Accidente;
 
-    public Accidentes(String Id_Accidente, String Empleado, String Vehiculo_usuario, String V_Implicado_Uno,
+    public Accidentes(String Id_Accidente, String Id_Usuario, String Empleado, String Vehiculo_usuario, String V_Implicado_Uno,
                       String V_Implicado_Dos, String Ubicacion, String Descripcion,
                       String CoordenadaX, String CooredenadaY, String Fecha_Accidente){
         this.Id_Accidente = Id_Accidente;
+        this.Id_Usuario = Id_Usuario;
         this.Empleado = Empleado;
         this.Vehiculo_usuario = Vehiculo_usuario;
         this.V_Implicado_Uno = V_Implicado_Uno;
@@ -18,6 +22,67 @@ public class Accidentes {
         this.CoordenadaX = CoordenadaX;
         this.CoordenadaY = CooredenadaY;
         this.Fecha_Accidente = Fecha_Accidente;
+    }
+
+    public Accidentes(Parcel parcel)
+    {
+        //Seguimos el mismo orden que el usado en el metodo writeToParcel
+        Id_Accidente = parcel.readString();
+        Id_Usuario = parcel.readString();
+        Empleado = parcel.readString();
+        Vehiculo_usuario = parcel.readString();
+        V_Implicado_Uno = parcel.readString();
+        V_Implicado_Dos = parcel.readString();
+        Ubicacion = parcel.readString();
+        Descripcion = parcel.readString();
+        CoordenadaX = parcel.readString();
+        CoordenadaY = parcel.readString();
+        Fecha_Accidente = parcel.readString();
+    }
+
+    public static final Parcelable.Creator<Accidentes> CREATOR =
+            new Parcelable.Creator<Accidentes>()
+            {
+                @Override
+                public Accidentes createFromParcel(Parcel parcel)
+                {
+                    return new Accidentes(parcel);
+                }
+
+                @Override
+                public Accidentes[] newArray(int size)
+                {
+                    return new Accidentes[size];
+                }
+            };
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags)
+    {
+        parcel.writeString(Id_Accidente);
+        parcel.writeString(Id_Usuario);
+        parcel.writeString(Empleado);
+        parcel.writeString(Vehiculo_usuario);
+        parcel.writeString(V_Implicado_Uno);
+        parcel.writeString(V_Implicado_Dos);
+        parcel.writeString(Ubicacion);
+        parcel.writeString(Descripcion);
+        parcel.writeString(CoordenadaX);
+        parcel.writeString(CoordenadaY);
+        parcel.writeString(Fecha_Accidente);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public String getId_Usuario() {
+        return Id_Usuario;
+    }
+
+    public void setId_Usuario(String id_Usuario) {
+        Id_Usuario = id_Usuario;
     }
 
     public String getId_Accidente() {

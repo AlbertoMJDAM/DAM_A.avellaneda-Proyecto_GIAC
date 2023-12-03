@@ -27,39 +27,34 @@
         android:theme="@style/Theme"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".SplashScreen.SplashScreen"
-            android:exported="true">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Ayuda.EnvioMail"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".Ayuda.PopUp_tipocon"
-            android:exported="false"
-            android:theme="@style/Theme.CrearPopUp.acc" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA1wQVD4KafHYm7By6Q-nm-lROlsEi5j10" />
 
+        <activity
+            android:name=".SplashScreen.SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".Ayuda.EnvioMail"
+            android:exported="false" />
+        <activity
+            android:name=".Ayuda.PopUp_tipocon"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_T.documentosTrabajadores.pdfView"
+            android:exported="false" />
         <activity
             android:name=".menuPrincipal_T.incidenciasAsignadas.gestionarIncidencia"
             android:exported="false" />
@@ -71,6 +66,9 @@
             android:exported="false" />
         <activity
             android:name=".menuPrincipal_T.accidentesAsignados.accidentesAsignados"
+            android:exported="false" />
+        <activity
+            android:name=".menuPrincipal_T.accidentesAsignados.gestionarAccidentes"
             android:exported="false" />
         <activity
             android:name=".menuPrincipal_T.incidenciasAsignadas.IncidenciasAsignadas"
@@ -110,12 +108,11 @@
             android:exported="false" />
         <activity
             android:name=".menuPrincipal_U.PopupMapaActivity"
-            android:exported="false"
-            android:theme="@style/Theme.CrearPopUp.acc" />
+            android:exported="false" />
         <activity
             android:name=".menuPrincipal_U.PopupDirActivity"
             android:exported="false"
-            android:theme="@style/Theme.CrearPopUp.acc" />
+            android:theme="@style/Theme.CrearPopUp.as" />
         <activity
             android:name=".registraIncidencias.RegistraDatosIn"
             android:exported="true" />
@@ -196,7 +193,6 @@
             android:name=".DocumentosUsuario.InfoDocumentos"
             android:exported="false"
             android:theme="@style/Theme.CrearPopUp.as" />
-
         <activity
             android:name=".DocumentosUsuario.MenuArchivos"
             android:exported="true" />

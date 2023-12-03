@@ -2,33 +2,35 @@ package proyectoDAM.giac_app_v01.menuPrincipal_T.localizarAccidentes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import proyectoDAM.giac_app_v01.Model.Accidentes;
 import proyectoDAM.giac_app_v01.Model.Incidencias;
 import proyectoDAM.giac_app_v01.R;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoAccidentes.ListadoAccidentes;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoIncidencias.ListadoIncidencias;
+import proyectoDAM.giac_app_v01.registraIncidencias.LoadingDialogBar;
 
 public class localizarAccidentes extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
 
@@ -37,6 +39,7 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
     private Button btnSalir;
     private ArrayList<Accidentes> listaAccidentes;
     private ArrayList<Incidencias> listaIncidencias;
+    private LoadingDialogBar loadingDialogBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
         btnSalir = (Button) findViewById(R.id.btnSalir);
         listaAccidentes = new ArrayList<Accidentes>();
         listaIncidencias = new ArrayList<Incidencias>();
+        loadingDialogBar =new LoadingDialogBar(this);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapa);
         mapFragment.getMapAsync(this);
@@ -58,7 +62,7 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
                 finish();
             }
         });
-
+        loadingDialogBar.MuestraDialog("Buscando");
         obtenerAccidentesSinAsignar();
         obtenerIncidenciasSinAsignar();
     }
@@ -68,6 +72,9 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
         mMapa = googleMap;
         this.mMapa.setOnMapClickListener(this);
         this.mMapa.setOnMapLongClickListener(this);
+        //CENTRAMOS EL MAPA EN ESPAÑA AL ABRIRLO
+        LatLng latLng = new LatLng(40.416619, -3.704373);
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
     }
 
     @Override
@@ -83,9 +90,6 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
     //METODO PARA OBTENER LOS ACCIDENTES SIN ASIGNAR Y PASARLOS A UNA LISTA
     private void obtenerAccidentesSinAsignar(){
         String url = "https://appgiac.000webhostapp.com/obtener_listado_accidentes.php";
-        ProgressDialog progressDialog =new ProgressDialog(this);
-        progressDialog.setMessage("Cargando datos");
-        progressDialog.show();
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
@@ -95,6 +99,7 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
                             try {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 String Id_Accidente = jsonObject.getString("Id_Accidente");
+                                String Id_Usuario = jsonObject.getString("Id_Usuario");
                                 String Empleado = jsonObject.getString("Empleado");
                                 String Vehiculo_usuario = jsonObject.getString("Vehiculo_usuario");
                                 String V_Implicado_Uno = jsonObject.getString("V_Implicado_Uno");
@@ -105,18 +110,14 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
                                 String CoordenadaY = jsonObject.getString("CoordenadaY");
                                 String Fecha_Accidente = jsonObject.getString("Fecha_Accidente");
 
-                                Accidentes accidente = new Accidentes(Id_Accidente, Empleado, Vehiculo_usuario,
+                                Accidentes accidente = new Accidentes(Id_Accidente, Id_Usuario, Empleado, Vehiculo_usuario,
                                         V_Implicado_Uno, V_Implicado_Dos, Ubicacion, Descripcion,
                                         CoordenadaX, CoordenadaY, Fecha_Accidente);
                                 listaAccidentes.add(accidente);
-                                progressDialog.dismiss();
-
                             } catch (JSONException e) {
                                 Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                                progressDialog.dismiss();
                             }
                         }
-                        //Toast.makeText(getApplicationContext(), "hay "+listaAccidentes.size()+" accidentes", Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -132,9 +133,6 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
     //METODO PARA OBTENER LAS INCIDENCIAS SIN ASIGNAR Y PASARLOS A UNA LISTA
     private void obtenerIncidenciasSinAsignar(){
         String url = "https://appgiac.000webhostapp.com/obtener_listado_incidencias.php";
-        ProgressDialog progressDialog =new ProgressDialog(this);
-        progressDialog.setMessage("Cargando datos");
-        progressDialog.show();
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
@@ -156,10 +154,8 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
                                 Incidencias incidencia = new Incidencias(Id_Incidencia, Id_Usuario, empleado, Vehiculo_Usuario,
                                         Fecha_Incidencia, Direccion, CoordenadaX, CoordenadaY, Descripcion);
                                 listaIncidencias.add(incidencia);
-                                progressDialog.dismiss();
                             } catch (JSONException e) {
                                 Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                                progressDialog.dismiss();
                             }
                         }
                         cargarMarcadores();
@@ -177,35 +173,78 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
 
     //METODO PARA CARGAR LOS MARCADORES EN EL MAPA
     private void cargarMarcadores(){
-        ArrayList<LatLng> listaMarcadores = new ArrayList<LatLng>();
+        ArrayList<Incidencias> listaIncidenciasMapa = new ArrayList<Incidencias>();
+        ArrayList<Accidentes> listaAccidentesMapa = new ArrayList<Accidentes>();
 
-        //RECORREMOS LA LISTA DE INCIDENCIAS PARA INCLUIRLAS EN LA LISTA DE MARCADORES
+        //RECORREMOS LA LISTA DE INCIDENCIAS PARA INCLUIRLAS EN UNA NUEVA LISTA DE INCIDENCIAS
+        //QUE SE VAN A MOSTRAR
         for(int x=0; x<listaIncidencias.size();x++){
             String coordX = listaIncidencias.get(x).getCoordenadaX();
             String coordY = listaIncidencias.get(x).getCoordenadaY();
-            if(!coordX.equals("") || !coordY.equals(""))
+            if(!coordX.equals("") && !coordY.equals(""))
             {
-                LatLng marcador = new LatLng(Double.parseDouble(listaIncidencias.get(x).getCoordenadaX()),
-                        Double.parseDouble(listaIncidencias.get(x).getCoordenadaY()));
-                listaMarcadores.add(marcador);
+                listaIncidenciasMapa.add(listaIncidencias.get(x));
             }
         }
-        //RECORREMOS LA LISTA DE ACCIDENTES PARA INCLUIRLAS EN LA LISTA DE MARCADORES
+
+        //RECORREMOS LA LISTA DE ACCIDENTES PARA INCLUIRLAS EN UNA NUEVA LISTA DE ACCIDENTES
+        //QUE SE VAN A MOSTRAR
         for(int x=0; x<listaAccidentes.size();x++){
             String coordX = listaAccidentes.get(x).getCoordenadaX();
             String coordY = listaAccidentes.get(x).getCoordenadaY();
-            if(!coordX.equals("") || !coordY.equals(""))
+            if(!coordX.equals("") && !coordY.equals(""))
             {
-                LatLng marcador = new LatLng(Double.parseDouble(listaAccidentes.get(x).getCoordenadaX()),
-                        Double.parseDouble(listaAccidentes.get(x).getCoordenadaY()));
-                listaMarcadores.add(marcador);
+                listaAccidentesMapa.add(listaAccidentes.get(x));
             }
         }
 
-        for (int i = 0; i < listaMarcadores.size() ; i++) {
-            mMapa.addMarker(new MarkerOptions()
-                    .position(listaMarcadores.get(i)));
+        //RECORREMOS LA LISTA DE INCIDENCIAS A MOSTRAR Y LAS INCLUIMOS EN EL MAPA
+        for (int i = 0; i < listaIncidenciasMapa.size() ; i++) {
+            Marker marker1;
+            marker1 = mMapa.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(listaIncidenciasMapa.get(i).getCoordenadaX()),
+                    Double.parseDouble(listaIncidenciasMapa.get(i).getCoordenadaY()))).title(listaIncidenciasMapa.get(i).getId_Incidencia()));
+            String[] datos = new String[4];
+            datos[1] = listaIncidenciasMapa.get(i).getId_Incidencia();
+            datos[2] = listaIncidenciasMapa.get(i).getId_Usuario();
+            datos[3] = listaIncidenciasMapa.get(i).getVehiculo_Usuario();
+            datos[0] = "I";
+            marker1.setTag(datos);
         }
-    }
 
+        //RECORREMOS LA LISTA DE ACCIDENTES A MOSTRAR Y LOS INCLUIMOS EN EL MAPA
+        for (int i = 0; i < listaAccidentesMapa.size() ; i++) {
+            Marker marker1;
+            marker1 = mMapa.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(listaAccidentesMapa.get(i).getCoordenadaX()),
+                    Double.parseDouble(listaAccidentesMapa.get(i).getCoordenadaY()))).title(listaAccidentesMapa.get(i).getId_Accidente()));
+            marker1.setTag(listaAccidentesMapa.get(i));
+            String[] datos = new String[4];
+            datos[1] = listaAccidentesMapa.get(i).getId_Accidente();
+            datos[2] = listaAccidentesMapa.get(i).getId_Usuario();
+            datos[3] = listaAccidentesMapa.get(i).getVehiculo_usuario();
+            datos[0] = "A";
+            marker1.setTag(datos);
+        }
+
+        loadingDialogBar.OcultaDialog();
+
+        //CARGAMOS EL ADAPTADOR PERSONALIZADO DE LA INFOWINDOWS
+        mMapa.setInfoWindowAdapter(new adaptadorInfoMapa(LayoutInflater.from(getApplicationContext())));
+
+        //DAMOS FUNCIONALIDAD AL PULSAR LA INFOWINDOWS MANDANDO A LA ACTIVITY DE INCIDENCIAS O ACCIDENTES
+        mMapa.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(@NonNull Marker marker) {
+                String[] datos = (String[]) marker.getTag();
+                if(datos[0].equalsIgnoreCase("I")){
+                    Intent intent = new Intent (getApplicationContext(), ListadoIncidencias.class);
+                    intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                    getApplicationContext().startActivity(intent);
+                }else{
+                    Intent intent = new Intent (getApplicationContext(), ListadoAccidentes.class);
+                    intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                    getApplicationContext().startActivity(intent);
+                }
+            }
+        });
+    }
 }

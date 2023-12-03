@@ -2,19 +2,36 @@ package proyectoDAM.giac_app_v01.menuPrincipal_T.incidenciasAsignadas;
 
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
 import java.util.ArrayList;
 
+import proyectoDAM.giac_app_v01.DocumentosUsuario.MenuArchivos;
+import proyectoDAM.giac_app_v01.Model.Accidentes;
 import proyectoDAM.giac_app_v01.Model.Incidencias;
 import proyectoDAM.giac_app_v01.R;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoAccidentes.adaptadorListaAccidentes;
 
 public class adaptadorIncidenciasAsignadas extends BaseAdapter {
 
@@ -66,15 +83,61 @@ public class adaptadorIncidenciasAsignadas extends BaseAdapter {
         tvUbicacionIncidencia.setText(arrayList.get(i).getDireccion());
         tvDescripcionIncidencia.setText(arrayList.get(i).getDescripcion());
 
+        //METODO ONCLICK DEL ITEM SELECCIONADO
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent (view.getContext(), gestionarIncidencia.class);
-                //intent.putParcelableArrayListExtra("datos", (ArrayList<? extends Parcelable>) arrayList);
-                view.getContext().getApplicationContext().startActivity(intent);
+                Intent intent = new Intent (context, gestionarIncidencia.class);
+                intent.putParcelableArrayListExtra("datos", arrayList);
+                intent.putExtra("incidencia", i);
+                intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
+
+        //METODO LONGCLICK DEL ITEM SELECCIONADO
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                new AlertDialog.Builder(v.getRootView().getContext())
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("ELIMINAR ARCHIVO")
+                        .setMessage("Se va a eliminar la incidencia:\n" +  arrayList.get(i).getId_Incidencia())
+                        .setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                eliminarIncidencia(i);
+                            }
+                        })
+                        .setNegativeButton("Cancelar",null)
+                        .show();
+
+                return false;
             }
         });
 
         return view;
+    }
+
+    //METODO QUE REALIZA LA LLAMADA PARA ELIMINAR LA INCIDENCIA SELECCIONADA DE LA BASE DE DATOS
+    private void eliminarIncidencia(int i){
+        String url = "https://appgiac.000webhostapp.com/eliminar_incidencia.php?Id_Incidencia="+arrayList.get(i).getId_Incidencia();
+
+        StringRequest stringRequest = new StringRequest(url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String string) {
+                        Toast.makeText(context.getApplicationContext(), string, Toast.LENGTH_SHORT).show();
+                        arrayList.remove(i);
+                        notifyDataSetChanged();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context.getApplicationContext(), error.getMessage().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue= Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
     }
 }

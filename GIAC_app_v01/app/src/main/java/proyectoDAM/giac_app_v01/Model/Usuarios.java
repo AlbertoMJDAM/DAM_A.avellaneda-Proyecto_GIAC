@@ -2,9 +2,10 @@ package proyectoDAM.giac_app_v01.Model;
 
 public class Usuarios {
 
-    private String id, nombre, dni, licencia, email, pApellido, sApellido;
+    private String id, nombre, dni, licencia, email, pApellido, sApellido, Fecha_Nacimiento,Telefono;
 
-    public Usuarios (String id, String nombre, String dni, String licencia, String email, String pApellido, String sApellido){
+    public Usuarios (String id, String nombre, String dni, String licencia, String email, String pApellido, String sApellido,
+                     String Fecha_Nacimiento, String Telefono){
         this.id = id;
         this.nombre = nombre;
         this.dni = dni;
@@ -12,6 +13,24 @@ public class Usuarios {
         this.email = email;
         this.pApellido = pApellido;
         this.sApellido = sApellido;
+        this.Fecha_Nacimiento = Fecha_Nacimiento;
+        this.Telefono = Telefono;
+    }
+
+    public String getFecha_Nacimiento() {
+        return Fecha_Nacimiento;
+    }
+
+    public void setFecha_Nacimiento(String fecha_Nacimiento) {
+        Fecha_Nacimiento = fecha_Nacimiento;
+    }
+
+    public String getTelefono() {
+        return Telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        Telefono = telefono;
     }
 
     public String getpApellido() {
