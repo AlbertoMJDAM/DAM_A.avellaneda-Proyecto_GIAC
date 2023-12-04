@@ -7,7 +7,7 @@
     android:background="@drawable/fpop_up"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".Ayuda.PopUp_tipocon">
+    tools:context=".menuPrincipal_U.Ayuda.PopUp_tipocon">
 
     <TextView
         android:id="@+id/tvTitulo"

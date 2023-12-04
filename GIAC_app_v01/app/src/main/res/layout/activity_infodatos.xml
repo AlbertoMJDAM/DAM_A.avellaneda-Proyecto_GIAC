@@ -7,7 +7,7 @@
     android:background="#104D60"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".registraIncidencias.InfoDatos">
+    tools:context=".menuPrincipal_U.registraIncidencias.InfoDatos">
 
     <ScrollView
         android:id="@+id/scrollView"

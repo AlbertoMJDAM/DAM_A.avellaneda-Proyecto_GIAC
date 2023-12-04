@@ -20,8 +20,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Asistencia.LoadingDialogBar;
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.Model.Vehiculos;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Vehiculos;
 
 public class ListadoVehiculos extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class ListadoVehiculos extends AppCompatActivity {
     private ArrayList<Vehiculos> lista;
     private adaptadorListaVehiculos adapter;
     private Button btnRetroceder;
-
+    private LoadingDialogBar loadingDialogBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class ListadoVehiculos extends AppCompatActivity {
         lvListaVehiculos = (ListView) findViewById(R.id.lvListaVehiculos);
         lista = new ArrayList<Vehiculos>();
         btnRetroceder = (Button) findViewById(R.id.btnRetroceder);
+        loadingDialogBar =new LoadingDialogBar(this);
 
         //METODO PARA EL BOTON btnRetroceder
         btnRetroceder.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +52,7 @@ public class ListadoVehiculos extends AppCompatActivity {
             }
         });
 
+        loadingDialogBar.MuestraDialog("Cargando listado de vehiculos");
         obtenerVehiculos();
     }
 
@@ -83,8 +86,9 @@ public class ListadoVehiculos extends AppCompatActivity {
                             }
                         }
                         adapter = new adaptadorListaVehiculos(getApplicationContext(),lista);
-
-                        lvListaVehiculos.setAdapter(adapter);                    }
+                        lvListaVehiculos.setAdapter(adapter);
+                        loadingDialogBar.OcultaDialog();
+                    }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {

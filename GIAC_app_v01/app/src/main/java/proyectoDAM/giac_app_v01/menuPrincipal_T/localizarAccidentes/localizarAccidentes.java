@@ -2,7 +2,7 @@ package proyectoDAM.giac_app_v01.menuPrincipal_T.localizarAccidentes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.ProgressDialog;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,12 +25,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
-import proyectoDAM.giac_app_v01.Model.Accidentes;
-import proyectoDAM.giac_app_v01.Model.Incidencias;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Accidentes;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Incidencias;
 import proyectoDAM.giac_app_v01.R;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoAccidentes.ListadoAccidentes;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoIncidencias.ListadoIncidencias;
-import proyectoDAM.giac_app_v01.registraIncidencias.LoadingDialogBar;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.registraIncidencias.LoadingDialogBar;
 
 public class localizarAccidentes extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
 

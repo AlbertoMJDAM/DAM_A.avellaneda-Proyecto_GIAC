@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Locale;
 
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.registraIncidencias.LoadingDialogBar;
 
 public class PopupDirActivity extends AppCompatActivity implements LocationListener {
 

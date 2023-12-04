@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.Model.Vehiculos;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Vehiculos;
 
 public class adaptadorListaVehiculos extends BaseAdapter {
 

@@ -8,7 +8,7 @@
     android:backgroundTint="#000E63"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".registraAccidentes.InfoDesPdfAcc">
+    tools:context=".menuPrincipal_U.registraAccidentes.InfoDesPdfAcc">
 
     <ScrollView
         android:id="@+id/scrollView"

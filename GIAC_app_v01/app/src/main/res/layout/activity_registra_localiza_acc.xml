@@ -9,7 +9,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
-    tools:context=".registraAccidentes.RegistraLocalizaAcc">
+    tools:context=".menuPrincipal_U.registraAccidentes.RegistraLocalizaAcc">
 
     <TextView
         android:id="@+id/tvdescripcion"

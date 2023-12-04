@@ -16,22 +16,13 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
 import java.util.ArrayList;
 
-import proyectoDAM.giac_app_v01.DocumentosUsuario.MenuArchivos;
-import proyectoDAM.giac_app_v01.Model.Accidentes;
-import proyectoDAM.giac_app_v01.Model.Incidencias;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Incidencias;
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoAccidentes.adaptadorListaAccidentes;
 
 public class adaptadorIncidenciasAsignadas extends BaseAdapter {
 

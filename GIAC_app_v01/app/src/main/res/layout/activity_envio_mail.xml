@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fmenu"
-    tools:context=".Ayuda.EnvioMail">
+    tools:context=".menuPrincipal_U.Ayuda.EnvioMail">
 
     <TextView
         android:id="@+id/textView"

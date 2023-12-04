@@ -23,12 +23,12 @@ import androidx.viewpager2.widget.ViewPager2;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import proyectoDAM.giac_app_v01.Asistencia.MenuPartes;
-import proyectoDAM.giac_app_v01.Ayuda.PopUp_tipocon;
-import proyectoDAM.giac_app_v01.DocumentosUsuario.MenuArchivos;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Asistencia.MenuPartes;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Ayuda.PopUp_tipocon;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.DocumentosUsuario.MenuArchivos;
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.registraAccidentes.PopUp_Acciones;
-import proyectoDAM.giac_app_v01.registraIncidencias.RegistraDatosIn;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.registraAccidentes.PopUp_Acciones;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.registraIncidencias.RegistraDatosIn;
 
 
 public class MenuPrincipal_U extends AppCompatActivity {

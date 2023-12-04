@@ -1,32 +1,17 @@
 package proyectoDAM.giac_app_v01.menuPrincipal_T.documentosTrabajadores;
 
-import static android.provider.MediaStore.AUTHORITY;
-
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.DrawableRes;
-import androidx.core.content.FileProvider;
-
 import java.io.File;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
-import proyectoDAM.giac_app_v01.BuildConfig;
-import proyectoDAM.giac_app_v01.MainActivity;
-import proyectoDAM.giac_app_v01.Model.Accidentes;
-import proyectoDAM.giac_app_v01.Model.Documentos;
 import proyectoDAM.giac_app_v01.R;
 
 public class adaptadorDocumentosTrabajador extends BaseAdapter {

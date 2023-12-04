@@ -42,9 +42,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import proyectoDAM.giac_app_v01.Model.Accidentes;
-import proyectoDAM.giac_app_v01.Model.Usuarios;
-import proyectoDAM.giac_app_v01.Model.Vehiculos;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Accidentes;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Usuarios;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Vehiculos;
 import proyectoDAM.giac_app_v01.R;
 
 public class gestionarAccidentes extends AppCompatActivity {

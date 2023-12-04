@@ -10,6 +10,7 @@ import android.widget.ListView;
 import java.io.File;
 import java.util.ArrayList;
 
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Asistencia.LoadingDialogBar;
 import proyectoDAM.giac_app_v01.R;
 
 public class documentosTrabajadores extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class documentosTrabajadores extends AppCompatActivity {
     private adaptadorDocumentosTrabajador adapter;
     private Button btnSalir;
     private String idTrabajador;
+    private LoadingDialogBar loadingDialogBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class documentosTrabajadores extends AppCompatActivity {
         lvDocumentosTrabajador = (ListView) findViewById(R.id.lvDocumentosTrabajador);
         lista = new ArrayList<File>();
         btnSalir = (Button) findViewById(R.id.btnSalir);
+        loadingDialogBar =new LoadingDialogBar(this);
+
 
         // TRAEMOS UN STRING CON LOS DATOS DEL ID DEL TRABAJADOR
         Bundle extras = getIntent().getExtras();
@@ -43,6 +47,7 @@ public class documentosTrabajadores extends AppCompatActivity {
             }
         });
 
+        loadingDialogBar.MuestraDialog("Cargando documentos");
         obtenerDocumentos();
     }
 
@@ -58,6 +63,7 @@ public class documentosTrabajadores extends AppCompatActivity {
         }
         adapter = new adaptadorDocumentosTrabajador(getApplicationContext(), lista);
         lvDocumentosTrabajador.setAdapter(adapter);
+        loadingDialogBar.OcultaDialog();
     }
 
 }

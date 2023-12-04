@@ -7,7 +7,7 @@
     android:background="#104D60"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".registraIncidencias.InfoDesPdf">
+    tools:context=".menuPrincipal_U.registraIncidencias.InfoDesPdf">
 
     <ScrollView
         android:id="@+id/scrollView"

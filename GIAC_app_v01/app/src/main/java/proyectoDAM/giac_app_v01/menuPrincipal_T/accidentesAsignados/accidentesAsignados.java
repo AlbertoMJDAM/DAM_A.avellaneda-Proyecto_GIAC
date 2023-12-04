@@ -20,8 +20,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import proyectoDAM.giac_app_v01.Model.Accidentes;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Accidentes;
 import proyectoDAM.giac_app_v01.R;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.registraIncidencias.LoadingDialogBar;
 
 public class accidentesAsignados extends AppCompatActivity {
 
@@ -31,6 +32,7 @@ public class accidentesAsignados extends AppCompatActivity {
     private adaptadorAccidentesAsignados adapter;
     private Button btnRegresar;
     private String idTrabajador;
+    private LoadingDialogBar loadingDialogBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class accidentesAsignados extends AppCompatActivity {
         lvAccidentesAsignados = (ListView) findViewById(R.id.lvAccidentesAsignados);
         lista = new ArrayList<Accidentes>();
         btnRegresar = (Button) findViewById(R.id.btnRegresar);
+        loadingDialogBar =new LoadingDialogBar(this);
+
 
         //Metodo para el boton btnRegresar
         btnRegresar.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +58,7 @@ public class accidentesAsignados extends AppCompatActivity {
             }
         });
 
+        loadingDialogBar.MuestraDialog("Cargando accidentes asignados");
         obtenerAccidentesAsignados();
     }
 
@@ -90,6 +95,7 @@ public class accidentesAsignados extends AppCompatActivity {
                         }
                         adapter = new adaptadorAccidentesAsignados(getApplicationContext(),lista);
                         lvAccidentesAsignados.setAdapter(adapter);
+                        loadingDialogBar.OcultaDialog();
                     }
                 }, new Response.ErrorListener() {
             @Override

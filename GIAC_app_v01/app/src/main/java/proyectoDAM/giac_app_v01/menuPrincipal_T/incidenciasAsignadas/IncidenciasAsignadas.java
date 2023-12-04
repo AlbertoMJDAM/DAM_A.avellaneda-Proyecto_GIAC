@@ -1,6 +1,5 @@
 package proyectoDAM.giac_app_v01.menuPrincipal_T.incidenciasAsignadas;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,13 +8,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -23,12 +19,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import proyectoDAM.giac_app_v01.Model.Incidencias;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Asistencia.LoadingDialogBar;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Incidencias;
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoIncidencias.adaptadorListadoIncidencias;
 
 public class IncidenciasAsignadas extends AppCompatActivity {
 
@@ -38,6 +32,7 @@ public class IncidenciasAsignadas extends AppCompatActivity {
     private adaptadorIncidenciasAsignadas adapter;
     private Button btnRegresar;
     private String idTrabajador;
+    private LoadingDialogBar loadingDialogBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +48,7 @@ public class IncidenciasAsignadas extends AppCompatActivity {
         lvIncidenciasAsignadas = (ListView) findViewById(R.id.lvIncidenciasAsignadas);
         lista = new ArrayList<Incidencias>();
         btnRegresar = (Button) findViewById(R.id.btnRegresar);
+        loadingDialogBar =new LoadingDialogBar(this);
 
         //Metodo para el boton btnRegresar
         btnRegresar.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +58,7 @@ public class IncidenciasAsignadas extends AppCompatActivity {
             }
         });
 
+        loadingDialogBar.MuestraDialog("Cargando incidencias asignadas");
         obtenerIncidenciasAsignadas();
     }
 
@@ -95,7 +92,7 @@ public class IncidenciasAsignadas extends AppCompatActivity {
                         }
                         adapter = new adaptadorIncidenciasAsignadas(getApplicationContext(),lista);
                         lvIncidenciasAsignadas.setAdapter(adapter);
-
+                        loadingDialogBar.OcultaDialog();
                     }
                 }, new Response.ErrorListener() {
             @Override

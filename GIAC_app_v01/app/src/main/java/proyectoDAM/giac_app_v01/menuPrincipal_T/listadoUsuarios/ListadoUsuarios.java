@@ -20,8 +20,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Asistencia.LoadingDialogBar;
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.Model.Usuarios;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Usuarios;
 
 public class ListadoUsuarios extends AppCompatActivity {
 
@@ -30,6 +31,7 @@ public class ListadoUsuarios extends AppCompatActivity {
     private ArrayList<Usuarios> lista;
     private adaptadorListaUsuarios adapter;
     private Button btnRetroceder;
+    private LoadingDialogBar loadingDialogBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class ListadoUsuarios extends AppCompatActivity {
         lvListaUsuarios = (ListView) findViewById(R.id.lvListaUsuarios);
         lista = new ArrayList<Usuarios>();
         btnRetroceder = (Button) findViewById(R.id.btnRetroceder);
+        loadingDialogBar =new LoadingDialogBar(this);
 
         //Metodo para el boton Retroceder
         btnRetroceder.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +52,7 @@ public class ListadoUsuarios extends AppCompatActivity {
             }
         });
 
+        loadingDialogBar.MuestraDialog("Cargando listado de usuarios");
         obtenerUsuarios();
     }
 
@@ -80,8 +84,9 @@ public class ListadoUsuarios extends AppCompatActivity {
                             }
                         }
                         adapter = new adaptadorListaUsuarios(getApplicationContext(),lista);
-
-                        lvListaUsuarios.setAdapter(adapter);                    }
+                        lvListaUsuarios.setAdapter(adapter);
+                        loadingDialogBar.OcultaDialog();
+                    }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {

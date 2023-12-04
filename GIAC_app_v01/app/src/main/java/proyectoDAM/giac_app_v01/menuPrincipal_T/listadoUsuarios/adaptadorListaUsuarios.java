@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.Model.Usuarios;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Usuarios;
 
 public class adaptadorListaUsuarios extends BaseAdapter {
 

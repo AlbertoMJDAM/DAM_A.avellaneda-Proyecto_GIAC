@@ -1,23 +1,18 @@
 package proyectoDAM.giac_app_v01.menuPrincipal_T.listadoIncidencias;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.DrawableContainer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.Model.Incidencias;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Incidencias;
 
 public class adaptadorListadoIncidencias extends BaseAdapter {
 

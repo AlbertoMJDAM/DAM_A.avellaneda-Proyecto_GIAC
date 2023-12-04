@@ -4,13 +4,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,14 +23,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.annotation.IncompleteAnnotationException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Asistencia.LoadingDialogBar;
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.Model.Incidencias;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Incidencias;
 
 public class ListadoIncidencias extends AppCompatActivity {
 
@@ -43,6 +38,7 @@ public class ListadoIncidencias extends AppCompatActivity {
     private ArrayList<Incidencias> lista;
     private adaptadorListadoIncidencias adapter;
     private Button btnGuardar, btnSalir;
+    private LoadingDialogBar loadingDialogBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +50,7 @@ public class ListadoIncidencias extends AppCompatActivity {
         lista = new ArrayList<Incidencias>();
         btnGuardar = (Button) findViewById(R.id.btnGuardar);
         btnSalir = (Button) findViewById(R.id.btnSalir);
+        loadingDialogBar =new LoadingDialogBar(this);
 
         //Metodo para el boton btnGuardar
         btnGuardar.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +76,7 @@ public class ListadoIncidencias extends AppCompatActivity {
             }
         });
 
+        loadingDialogBar.MuestraDialog("Cargando incidencias sin asignar");
         obtenerIncidencias();
     }
 
@@ -112,7 +110,7 @@ public class ListadoIncidencias extends AppCompatActivity {
                         }
                         adapter = new adaptadorListadoIncidencias(getApplicationContext(),lista);
                         lvListaIncidencias.setAdapter(adapter);
-
+                        loadingDialogBar.OcultaDialog();
                     }
                 }, new Response.ErrorListener() {
             @Override

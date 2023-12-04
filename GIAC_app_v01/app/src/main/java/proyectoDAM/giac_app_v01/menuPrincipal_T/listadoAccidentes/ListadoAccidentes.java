@@ -28,7 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.Model.Accidentes;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Accidentes;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.registraIncidencias.LoadingDialogBar;
 
 public class ListadoAccidentes extends AppCompatActivity {
 
@@ -37,6 +38,8 @@ public class ListadoAccidentes extends AppCompatActivity {
     private ArrayList<Accidentes> lista;
     private adaptadorListaAccidentes adapter;
     private Button btnSalir, btnGuardar;
+    private LoadingDialogBar loadingDialogBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,8 @@ public class ListadoAccidentes extends AppCompatActivity {
         lista = new ArrayList<Accidentes>();
         btnGuardar = (Button) findViewById(R.id.btnGuardar);
         btnSalir = (Button) findViewById(R.id.btnSalir);
+        loadingDialogBar =new LoadingDialogBar(this);
+
 
         //Metodo para el boton btnGuardar
         btnGuardar.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +78,7 @@ public class ListadoAccidentes extends AppCompatActivity {
             }
         });
 
+        loadingDialogBar.MuestraDialog("Cargando accidentes sin asignar");
         obtenerAccidentes();
     }
 
@@ -109,7 +115,9 @@ public class ListadoAccidentes extends AppCompatActivity {
                         }
                         adapter = new adaptadorListaAccidentes(getApplicationContext(),lista);
 
-                        lvListaAccidentes.setAdapter(adapter);                    }
+                        lvListaAccidentes.setAdapter(adapter);
+                        loadingDialogBar.OcultaDialog();
+                    }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {

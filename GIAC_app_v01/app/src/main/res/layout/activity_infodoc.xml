@@ -8,7 +8,7 @@
     android:backgroundTint="#000E63"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".DocumentosUsuario.InfoDocumentos">
+    tools:context=".menuPrincipal_U.DocumentosUsuario.InfoDocumentos">
 
     <ScrollView
         android:id="@+id/scrollView"

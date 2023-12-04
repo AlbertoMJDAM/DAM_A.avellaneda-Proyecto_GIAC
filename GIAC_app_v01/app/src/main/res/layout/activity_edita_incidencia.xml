@@ -8,7 +8,7 @@
     android:backgroundTintMode="src_atop"
     android:hapticFeedbackEnabled="false"
     android:layout_gravity="center"
-    tools:context=".Asistencia.EditaIncidencia">
+    tools:context=".menuPrincipal_U.Asistencia.EditaIncidencia">
 
     <TextView
         android:id="@+id/tvtituloAcc"

@@ -20,10 +20,8 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
-import proyectoDAM.giac_app_v01.Model.Accidentes;
-import proyectoDAM.giac_app_v01.Model.Incidencias;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Accidentes;
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.menuPrincipal_T.incidenciasAsignadas.gestionarIncidencia;
 
 public class adaptadorAccidentesAsignados extends BaseAdapter {
 

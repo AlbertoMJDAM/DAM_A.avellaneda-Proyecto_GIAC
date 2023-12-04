@@ -44,7 +44,7 @@ import java.util.Map;
 import proyectoDAM.giac_app_v01.R;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.MenuPrincipal_T;
 import proyectoDAM.giac_app_v01.menuPrincipal_U.MenuPrincipal_U;
-import proyectoDAM.giac_app_v01.registraIncidencias.LoadingDialogBar;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.registraIncidencias.LoadingDialogBar;
 import proyectoDAM.giac_app_v01.registroUsuario.RegistroUsuarios;
 
 

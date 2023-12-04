@@ -8,7 +8,7 @@
     android:backgroundTintMode="src_atop"
     android:hapticFeedbackEnabled="false"
     android:layout_gravity="center"
-    tools:context=".registraAccidentes.RegistraDatosAcc">
+    tools:context=".menuPrincipal_U.registraAccidentes.RegistraDatosAcc">
 
     <TextView
         android:id="@+id/tvtituloAcc"

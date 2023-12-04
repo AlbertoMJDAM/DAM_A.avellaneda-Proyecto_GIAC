@@ -47,10 +47,10 @@
         </activity>
 
         <activity
-            android:name=".Ayuda.EnvioMail"
+            android:name=".menuPrincipal_U.Ayuda.EnvioMail"
             android:exported="false" />
         <activity
-            android:name=".Ayuda.PopUp_tipocon"
+            android:name=".menuPrincipal_U.Ayuda.PopUp_tipocon"
             android:exported="false" />
         <activity
             android:name=".menuPrincipal_T.documentosTrabajadores.pdfView"
@@ -114,18 +114,18 @@
             android:exported="false"
             android:theme="@style/Theme.CrearPopUp.as" />
         <activity
-            android:name=".registraIncidencias.RegistraDatosIn"
+            android:name=".menuPrincipal_U.registraIncidencias.RegistraDatosIn"
             android:exported="true" />
         <activity
-            android:name=".registraIncidencias.InfoDatos"
+            android:name=".menuPrincipal_U.registraIncidencias.InfoDatos"
             android:exported="false"
             android:theme="@style/Theme.CrearPopUp.as" />
         <activity
-            android:name=".registraIncidencias.InfoDesPdf"
+            android:name=".menuPrincipal_U.registraIncidencias.InfoDesPdf"
             android:exported="false"
             android:theme="@style/Theme.CrearPopUp.as" />
         <activity
-            android:name=".registraIncidencias.RegistraDesIn"
+            android:name=".menuPrincipal_U.registraIncidencias.RegistraDesIn"
             android:exported="false" />
         <activity
             android:name=".login.Login"
@@ -149,15 +149,15 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".registraAccidentes.PopUp_Acciones"
+            android:name=".menuPrincipal_U.registraAccidentes.PopUp_Acciones"
             android:exported="true"
             android:theme="@style/Theme.CrearPopUp.acc" />
         <activity
-            android:name=".registraAccidentes.InfoDatosAcc"
+            android:name=".menuPrincipal_U.registraAccidentes.InfoDatosAcc"
             android:exported="false"
             android:theme="@style/Theme.CrearPopUp.as" />
         <activity
-            android:name=".registraAccidentes.InfoDesPdfAcc"
+            android:name=".menuPrincipal_U.registraAccidentes.InfoDesPdfAcc"
             android:exported="false"
             android:theme="@style/Theme.CrearPopUp.as">
             <meta-data
@@ -165,21 +165,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".registraAccidentes.RegistraDatosAcc"
+            android:name=".menuPrincipal_U.registraAccidentes.RegistraDatosAcc"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".registraAccidentes.RegistraDesAcc"
+            android:name=".menuPrincipal_U.registraAccidentes.RegistraDesAcc"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".registraAccidentes.RegistraLocalizaAcc"
+            android:name=".menuPrincipal_U.registraAccidentes.RegistraLocalizaAcc"
             android:exported="false"
             android:theme="@style/Theme.CrearPopUp.as">
             <meta-data
@@ -190,23 +190,23 @@
                 android:value="AIzaSyC1XseOxJfUCeTcXs4eoTlxDKrg3mIar2A" />
         </activity>
         <activity
-            android:name=".DocumentosUsuario.InfoDocumentos"
+            android:name=".menuPrincipal_U.DocumentosUsuario.InfoDocumentos"
             android:exported="false"
             android:theme="@style/Theme.CrearPopUp.as" />
         <activity
-            android:name=".DocumentosUsuario.MenuArchivos"
+            android:name=".menuPrincipal_U.DocumentosUsuario.MenuArchivos"
             android:exported="true" />
         <activity
-            android:name=".Asistencia.MenuPartes"
+            android:name=".menuPrincipal_U.Asistencia.MenuPartes"
             android:exported="false" />
         <activity
-            android:name=".Asistencia.EditaAccidente"
+            android:name=".menuPrincipal_U.Asistencia.EditaAccidente"
             android:exported="false" />
         <activity
-            android:name=".Asistencia.EditaIncidencia"
+            android:name=".menuPrincipal_U.Asistencia.EditaIncidencia"
             android:exported="false" />
         <activity
-            android:name=".Asistencia.EnvioMail_emp"
+            android:name=".menuPrincipal_U.Asistencia.EnvioMail_emp"
             android:exported="false" />
 
         <provider

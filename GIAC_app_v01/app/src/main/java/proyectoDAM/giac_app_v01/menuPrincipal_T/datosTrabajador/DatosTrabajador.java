@@ -26,19 +26,19 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Asistencia.LoadingDialogBar;
 import proyectoDAM.giac_app_v01.R;
 
 public class DatosTrabajador extends AppCompatActivity {
 
     // Atributos:
-    TextView tvNusu2,tvidtrab,tvPerfil2;
-    EditText edtNombre,edtPApe,edtSApe,edTDNI,edtFNac,edTeMail,edtphone,edtPasword;
-    Button btnSave;
-    String datosTrabajador;
-    RequestQueue requestQueue;
-    JSONObject jsonDatosTrab;
-
-
+    private TextView tvNusu2,tvidtrab,tvPerfil2;
+    private EditText edtNombre,edtPApe,edtSApe,edTDNI,edtFNac,edTeMail,edtphone,edtPasword;
+    private Button btnSave;
+    private String datosTrabajador;
+    private RequestQueue requestQueue;
+    private JSONObject jsonDatosTrab;
+    private LoadingDialogBar loadingDialogBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,10 @@ public class DatosTrabajador extends AppCompatActivity {
         edtphone = (EditText) findViewById(R.id.edtphone);
         edtPasword = (EditText) findViewById(R.id.edtPasword);
         btnSave = (Button) findViewById(R.id.btnSave);
+        loadingDialogBar =new LoadingDialogBar(this);
 
+        //ACTIVAMOS LOADINGGIALOGBAR
+        loadingDialogBar.MuestraDialog("Cargando datos del empleado ");
 
         // Establecemos los datos en sus casillas
         try {
@@ -133,6 +136,9 @@ public class DatosTrabajador extends AppCompatActivity {
                 }
             }
         });
+
+        //DESACTIVAMOS DIALOGBAR
+        loadingDialogBar.OcultaDialog();
     }
 
     //METODO QUE REALIZA LA ACTUALIZACION DE DATOS EN LA BBDD TRABAJADORES

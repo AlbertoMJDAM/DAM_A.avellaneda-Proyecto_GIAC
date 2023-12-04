@@ -1,8 +1,5 @@
 package proyectoDAM.giac_app_v01.menuPrincipal_T.incidenciasAsignadas;
 
-import static android.os.Environment.getExternalStorageDirectory;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -35,22 +32,18 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.TextAlignment;
 
-import org.apache.commons.net.ftp.FTP;
-import org.apache.commons.net.ftp.FTPClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import proyectoDAM.giac_app_v01.Model.Incidencias;
-import proyectoDAM.giac_app_v01.Model.Usuarios;
-import proyectoDAM.giac_app_v01.Model.Vehiculos;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Incidencias;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Usuarios;
+import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Vehiculos;
 import proyectoDAM.giac_app_v01.R;
 
 public class gestionarIncidencia extends AppCompatActivity {
