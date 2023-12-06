@@ -67,8 +67,8 @@ public class RegistroVehiculo extends AppCompatActivity {
 
         // Recibimos el valor del ID_Usuario del usuario que ha iniciado sesion
         bundle = getIntent().getExtras();
-        //idCliente = bundle.getString("idusuario");
-        idCliente = 1003;
+        idCliente = Integer.valueOf(bundle.getString("idusuario"));
+
         // METODO ONCLICK DE BOTON "GUARDAR" PARA INSERTAR DATOS EN LA URL INDICADA EN EL METODO "insertaVehiculos"
         // TRAS LA VALIDACION DE LOS DATOS INSERTADOS MEDIANTE LOS METODOS DE VALIDACION.
 

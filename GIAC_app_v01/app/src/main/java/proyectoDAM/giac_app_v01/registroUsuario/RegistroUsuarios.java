@@ -130,10 +130,6 @@ public class RegistroUsuarios extends AppCompatActivity {
                 }
 
                 if(datosOk){
-                    // LLAMAMOS AL METODO maxID en onCreate para que, desde el inicio de registro tome el numero de ID
-                    // Prueba en LocalHost
-                    //insertaUsuarios("http://192.168.1.134/BBDD_giac/insertar_usuario.php");
-                    // Prueba en WebHost
                     insertaUsuarios("https://appgiac.000webhostapp.com/insertar_usuario.php");
                 }
             }
@@ -314,6 +310,7 @@ public class RegistroUsuarios extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
+                finish();
             }
 
         }, new Response.ErrorListener() {

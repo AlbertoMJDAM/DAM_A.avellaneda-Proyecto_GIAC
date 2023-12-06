@@ -23,6 +23,7 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -74,6 +75,26 @@ public class Login extends AppCompatActivity {
         preferencias = this.getPreferences(Context.MODE_PRIVATE);
         editorPreferencias = preferencias.edit();
         loadingDialogBar =new LoadingDialogBar(this);
+
+        //ESCONDEMOS EL TECLADO CUANDO DEJAMOS DE HACER FOCO EN EL EDITEXT
+        edtUser.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        });
+
+        //ESCONDEMOS EL TECLADO CUANDO DEJAMOS DE HACER FOCO EN EL EDITEXT
+        edtPass.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        });
 
         //AL INICIAR, REVISA SI SE RECORDO USUARIO Y LO ESTABLECE ASI COMO MARCHA EL CHECK
         if(RevisarSesion()){
@@ -151,6 +172,7 @@ public class Login extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                loadingDialogBar.OcultaDialog();
                 Toast.makeText(getBaseContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }){
@@ -180,11 +202,13 @@ public class Login extends AppCompatActivity {
                     startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(), "Usuario o contrasena incorrectos", Toast.LENGTH_SHORT).show();
+                    loadingDialogBar.OcultaDialog();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                loadingDialogBar.OcultaDialog();
                 Toast.makeText(getBaseContext(), error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }){

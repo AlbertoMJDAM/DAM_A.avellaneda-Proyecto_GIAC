@@ -80,7 +80,6 @@ public class PopupDirActivity extends AppCompatActivity implements LocationListe
     }
     @Override
     public void onLocationChanged(Location location) {
-        Toast.makeText(this, ""+location.getLatitude()+","+location.getLongitude(), Toast.LENGTH_SHORT).show();
         try {
             Geocoder geocoder = new Geocoder(PopupDirActivity.this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);

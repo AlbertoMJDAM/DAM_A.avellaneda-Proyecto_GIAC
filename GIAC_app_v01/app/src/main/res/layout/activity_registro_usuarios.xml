@@ -46,14 +46,12 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="650dp"
+        android:layout_height="0dp"
         android:layout_marginTop="2dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="13dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvsbtit">
+        app:layout_constraintTop_toBottomOf="@+id/tvsbtit"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -169,7 +167,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtFNac"
                 style="@style/TextInputEditText_RegistroUsu"
-                android:hint="Ejemplo formato: 01/01/1990"
+                android:hint="Ejemplo formato: 1990-05-21"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -184,7 +182,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtFli"
                 style="@style/TextInputEditText_RegistroUsu"
-                android:hint="Ejemplo formato: 01/01/2000"
+                android:hint="Ejemplo formato: 1990-05-21"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="670dp" />
 
@@ -268,11 +266,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        tools:layout_editor_absoluteX="10dp">
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2">
 
         <Button
             android:id="@+id/btnSave"
@@ -281,7 +278,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="40dp"
-
             android:text="GUARDAR" />
 
         <Button

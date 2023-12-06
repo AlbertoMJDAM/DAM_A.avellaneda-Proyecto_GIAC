@@ -124,16 +124,16 @@ public class MenuPrincipal_U extends AppCompatActivity {
                                 accidente.putExtra("idusuario", idusuario);
                                 startActivity(accidente);
                                 break;
-                            case 2: //Intent asistencia = new Intent (view.getContext(), AsisteciaActivity.class);
+                            case 2:
                                 Intent asistenciaPartes = new Intent (view.getContext(), MenuPartes.class);
                                 asistenciaPartes.putExtra("idusuario", idusuario);
                                 startActivity(asistenciaPartes);
                                 break;
-                            case 3: //Intent archivos = new Intent (view.getContext(), ArchivosActivity.class);
+                            case 3:
                                 Intent archivos = new Intent (view.getContext(), MenuArchivos.class);
                                 startActivity(archivos);
                                 break;
-                            case 4: //Intent ayuda = new Intent (view.getContext(), AyudaActivity.class);
+                            case 4:
                                 Intent ayuda = new Intent (view.getContext(), PopUp_tipocon.class);
                                 ayuda.putExtra("email", email);
                                 startActivity(ayuda);

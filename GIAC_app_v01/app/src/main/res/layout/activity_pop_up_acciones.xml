@@ -6,21 +6,20 @@
     android:layout_height="match_parent"
     android:background="@drawable/fpop_up"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".menuPrincipal_U.registraAccidentes.PopUp_Acciones">
 
     <TextView
         android:id="@+id/tvTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:fontFamily="@font/times"
         android:gravity="center"
         android:text="¡Ante todo manten la calma!"
         android:textAlignment="center"
         android:textColor="#CDCFD1"
         android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:autoSizeTextType="uniform"/>
 
     <TextView
         android:id="@+id/tvdescripcion"
@@ -36,17 +35,18 @@
         android:textStyle="bold" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center">
 
         <Button
-            style="@style/Boton_blanco_S"
             android:id="@+id/btnAviso"
+            style="@style/Boton_blanco_S"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_margin="20dp"
+            android:layout_marginTop="5dp"
             android:backgroundTint="@color/white"
             android:layout_gravity="center"
             android:text="  Asistencia  " />
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_margin="20dp"
+            android:layout_marginTop="5dp"
             android:layout_gravity="center"
             android:text="Formulario" />
 
@@ -65,8 +65,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginStart="10dp"
         android:gravity="center_horizontal">
 
         <ImageView
@@ -76,15 +74,17 @@
             android:src="@drawable/info"/>
 
         <TextView
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="5dp"
             android:fontFamily="@font/times"
             android:text="Si prefieres ver un video explicativo puedes ver nuestro canal de YouTube pulsando en el icono."
             android:textAlignment="textStart"
             android:textColor="#CDCFD1"
             android:textSize="12sp"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:autoSizeTextType="uniform"
+            android:layout_marginBottom="5dp"/>
     </LinearLayout>
 </LinearLayout>

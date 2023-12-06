@@ -85,10 +85,6 @@ public class adaptadorListadoIncidencias extends BaseAdapter {
                 }
             }
         });
-
-
-
-
         return view;
     }
 

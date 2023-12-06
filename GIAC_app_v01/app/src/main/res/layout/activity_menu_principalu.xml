@@ -11,7 +11,7 @@
         android:id="@+id/tvBienvenida"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="40dp"
         android:text="¡Bienvenido Usuario!"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -25,11 +25,9 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/viewpager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBienvenida">
 
@@ -37,7 +35,6 @@
             android:id="@+id/btnUsu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
             android:background="@android:color/transparent"
             android:text="Mi perfil"
             android:textAlignment="gravity"
@@ -49,7 +46,6 @@
             android:id="@+id/btncoche"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
             android:background="@android:color/transparent"
             android:text="Mis vehiculos"
             android:textAlignment="gravity"
@@ -61,9 +57,7 @@
             android:id="@+id/btnmapa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:background="@android:color/transparent"
-            android:shadowColor="@color/black"
             android:text="Mi Ubicacion"
             android:textAlignment="gravity"
             android:textSize="9dp"
@@ -74,46 +68,39 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:clipToPadding="false"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         android:foregroundGravity="center"
         android:overScrollMode="ifContentScrolls"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
     <ImageButton
         android:id="@+id/btnsos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="20dp"
         android:background="@android:color/transparent"
         android:src="@drawable/sos"
-        app:layout_constraintBottom_toTopOf="@+id/linlayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewpager"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/linlayout"/>
 
     <LinearLayout
         android:id="@+id/linlayout"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/tvtutorial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:text="@string/tutoriales"
             android:textAlignment="center"
             android:textColor="@color/white"

@@ -39,7 +39,22 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                     holder.audio.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            //accidente.stop();
+                            if(accidente.isPlaying()){
+                                accidente.pause();
+                                accidente.seekTo(0);
+                            }
+                            if(asistencia.isPlaying()){
+                                asistencia.pause();
+                                asistencia.seekTo(0);
+                            }
+                            if(documentos.isPlaying()){
+                                documentos.pause();
+                                documentos.seekTo(0);
+                            }
+                            if(ayuda.isPlaying()){
+                                ayuda.pause();
+                                ayuda.seekTo(0);
+                            }
                             incidencia.start();
                         }
                     });
@@ -50,8 +65,22 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                     holder.audio.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        incidencia.stop();
-                        //asistencia.stop();
+                        if(asistencia.isPlaying()){
+                            asistencia.pause();
+                            asistencia.seekTo(0);
+                        }
+                        if(documentos.isPlaying()){
+                            documentos.pause();
+                            documentos.seekTo(0);
+                        }
+                        if(ayuda.isPlaying()){
+                            ayuda.pause();
+                            ayuda.seekTo(0);
+                        }
+                        if(incidencia.isPlaying()){
+                            incidencia.pause();
+                            incidencia.seekTo(0);
+                        }
                         accidente.start();
                     }
                     });
@@ -61,8 +90,22 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                     holder.audio.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //accidente.stop();
-                        //documentos.stop();
+                        if(incidencia.isPlaying()){
+                            incidencia.pause();
+                            incidencia.seekTo(0);
+                        }
+                        if(accidente.isPlaying()){
+                            accidente.pause();
+                            accidente.seekTo(0);
+                        }
+                        if(documentos.isPlaying()){
+                            documentos.pause();
+                            documentos.seekTo(0);
+                        }
+                        if(ayuda.isPlaying()){
+                            ayuda.pause();
+                            ayuda.seekTo(0);
+                        }
                         asistencia.start();
                     }
                 });
@@ -72,8 +115,22 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                     holder.audio.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //ayuda.stop();
-                        //asistencia.stop();
+                        if(incidencia.isPlaying()){
+                            incidencia.pause();
+                            incidencia.seekTo(0);
+                        }
+                        if(accidente.isPlaying()){
+                            accidente.pause();
+                            accidente.seekTo(0);
+                        }
+                        if(asistencia.isPlaying()){
+                            asistencia.pause();
+                            asistencia.seekTo(0);
+                        }
+                        if(ayuda.isPlaying()){
+                            ayuda.pause();
+                            ayuda.seekTo(0);
+                        }
                         documentos.start();
                     }
                 });
@@ -83,15 +140,27 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
                     holder.audio.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                       // documentos.stop();
+                        if(incidencia.isPlaying()){
+                            incidencia.pause();
+                            incidencia.seekTo(0);
+                        }
+                        if(accidente.isPlaying()){
+                            accidente.pause();
+                            accidente.seekTo(0);
+                        }
+                        if(asistencia.isPlaying()){
+                            asistencia.pause();
+                            asistencia.seekTo(0);
+                        }
+                        if(documentos.isPlaying()){
+                            documentos.pause();
+                            documentos.seekTo(0);
+                        }
                         ayuda.start();
                     }
-                });
+                    });
                     break;
         }
-
-
-
     }
 
     @Override
@@ -117,5 +186,4 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             ayuda = MediaPlayer.create(itemView.getContext(),R.raw.ayuda);
         }
     }
-
 }

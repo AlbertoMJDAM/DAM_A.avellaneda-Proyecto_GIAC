@@ -20,11 +20,11 @@
     <string name="TituloAYU">SOLICITA AYUDA</string>
     <string name="des_editausuario">Consulta y edita tus datos de usuario</string>
     <string name="incidencia">Si has tenido alguna avería, un percance leve o has detectado algún
-        desperfecto en la carretera\nPincha en la imagen y lo solucionaremos.</string>
+        desperfecto en la carretera. Pincha en la imagen y lo solucionaremos.</string>
     <string name="accidente">¿Has tenido un accidente? Tranquilo, no pierdas la calma.Pincha en
         la imagen y te ayudaremos con la máxima brevedad. </string>
     <string name="asitencia">¿Necesitas información sobre tu accidente? Pincha en la imagen y
-        consulta a los agentes\nque te atendieron.</string>
+        consulta a los agentes que te atendieron.</string>
     <string name="archivos"> Revisa la documentación de tus partes activos pinchando en la
         imagen superior.</string>
     <string name="ayuda"> Pulsa en la imagen superior y te ayudaremos con lo que necesites.</string>
@@ -35,7 +35,6 @@
     <string name="TituloCLIASIG">REVISAR ACCIDENTES ASIGNADOS</string>
     <string name="TituloACCTRAB">LOCALIZAR ACCIDENTES</string>
     <string name="TituloDOCTRAB">REVISAR DOCUMENTOS DE LAS INCIDENCIAS Y ACCIDENTES</string>
-
 
     <string name="incidenAsig">Revisa tus incidencias asignadas y ponte en contacto con ellos para su tranquilidad. 
         Pincha en la imagen para gestionarlas.</string>
@@ -97,6 +96,5 @@
     /////////////////////////////////// MENU AYUDA ////////////////////////////////
     <string name="descripcion_ayudas">Si tienes alguna consulta que no relacionada con los partes y necesitas que te ayudemos, te facilitamos dos vías de comunicación. Elige la opción que quieras y cuéntanos que sucede.</string>
     <string name="mails_copias">Si quieres enviar una copia de tu consulta a otras personas \n(abogados, mediadores, talleres, peritos, etc.).\nPor favor indica sus direcciones en el recuadro inferior.</string>
-
 
 </resources>

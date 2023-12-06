@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_marginTop="15dp"
     android:layout_marginBottom="15dp">
@@ -17,9 +17,10 @@
         android:background="@drawable/btn_contorno_blanco_l">
 
         <LinearLayout
-            android:layout_width="280dp"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_weight="10">
 
             <TextView
                 style="@style/TextosBlancos"
@@ -51,12 +52,21 @@
                 android:background="@color/white"/>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/img"
-            android:src="@drawable/coche"
-            android:layout_width="110dp"
-            android:layout_height="100dp"
-            android:layout_marginEnd="50dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="27">
+
+            <ImageView
+                android:id="@+id/img"
+                android:src="@drawable/coche"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"/>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

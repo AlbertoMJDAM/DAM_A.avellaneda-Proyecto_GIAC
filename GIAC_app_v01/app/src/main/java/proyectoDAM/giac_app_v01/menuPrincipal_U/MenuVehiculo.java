@@ -39,6 +39,13 @@ public class MenuVehiculo extends AppCompatActivity {
     Button btnAddvehiculo;
 
     @Override
+    protected void onRestart(){
+        super.onRestart();
+        lista.clear();
+        cargarvehiculos();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menuvehiculo);
@@ -54,6 +61,21 @@ public class MenuVehiculo extends AppCompatActivity {
 
         lista = new ArrayList<Vehiculo>();
 
+        cargarvehiculos();
+
+
+
+        btnAddvehiculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent RegVehiculo= new Intent(getApplicationContext(),RegistroVehiculo.class);
+                RegVehiculo.putExtra("idusuario" , idUsuario);
+                startActivity(RegVehiculo);
+            }
+        });
+    }
+
+    private void cargarvehiculos(){
         // Instanciamos objeto RequestQueue
         RequestQueue request = Volley.newRequestQueue(this);
         //Como el elemento raiz en este caso (Viendo el fichero JSON) es un objeto (no un array)
@@ -147,15 +169,6 @@ public class MenuVehiculo extends AppCompatActivity {
         });
         //Añadimos a request el objeto jsonObjectRequest
         request.add(jsonObjectRequest);
-
-        btnAddvehiculo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent RegVehiculo= new Intent(getApplicationContext(),RegistroVehiculo.class);
-                RegVehiculo.putExtra("idusuario" , idUsuario);
-                startActivity(RegVehiculo);
-            }
-        });
     }
 
 }

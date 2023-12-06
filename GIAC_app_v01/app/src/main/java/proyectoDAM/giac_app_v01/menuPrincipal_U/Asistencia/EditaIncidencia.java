@@ -74,7 +74,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.menuPrincipal_U.registraIncidencias.Incidencia;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.Partes;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.Incidencia;
 
 public class EditaIncidencia extends AppCompatActivity {
 

@@ -139,7 +139,6 @@ public class EditaPerfil extends AppCompatActivity {
 
                 if(datosOk){
                     EditaPerfil("https://appgiac.000webhostapp.com/actualizar_usuario.php?Id_Usuario="+ tvidusu.getText().toString());
-                    //ConfirmaActualizacion("https://appgiac.000webhostapp.com/actualizar_usuario.php?Id_Usuario="+"1003");
 
 
 

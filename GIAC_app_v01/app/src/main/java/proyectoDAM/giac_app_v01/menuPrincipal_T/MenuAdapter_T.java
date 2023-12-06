@@ -16,7 +16,6 @@ import proyectoDAM.giac_app_v01.R;
 public class MenuAdapter_T extends RecyclerView.Adapter<MenuAdapter_T.ViewHolder> {
     MediaPlayer incidenciaTrab,accidenteTrab,clientesTrab,documentosTrab;
     int [] imagenes;
-    private MediaPlayer mp;
     Context context;
     public MenuAdapter_T(int[] imagenes) {
         this.imagenes = imagenes;

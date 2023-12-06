@@ -71,7 +71,6 @@ public class adaptadorDocumentosTrabajador extends BaseAdapter {
     //METODO PARA ABRIR EL ARCHIVO PDF EN LA APLICACION PREDETERMINADA PARA ELLO
     public void mostrarPDF(String archivo, Context context) {
         Toast.makeText(context, "Visualizando documento", Toast.LENGTH_LONG).show();
-
         Intent intent = new Intent(context, pdfView.class);
         intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("archivo", archivo);

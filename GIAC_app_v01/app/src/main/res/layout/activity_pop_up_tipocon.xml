@@ -3,24 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/fpop_up"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".menuPrincipal_U.Ayuda.PopUp_tipocon">
 
     <TextView
         android:id="@+id/tvTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:fontFamily="@font/times"
         android:gravity="center"
         android:text="¡Aqui estamos para ayudarte!"
         android:textAlignment="center"
         android:textColor="#CDCFD1"
         android:textSize="22dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:autoSizeTextType="uniform"/>
 
     <TextView
         android:id="@+id/tvdescripcion"
@@ -38,15 +37,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center">
 
         <Button
-            style="@style/Boton_blanco_S"
             android:id="@+id/btnEmail"
+            style="@style/Boton_blanco_S"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_margin="20dp"
+            android:layout_marginTop="15dp"
             android:backgroundTint="@color/white"
             android:layout_gravity="center"
             android:text="  Correo Electronico  " />
@@ -57,7 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_margin="20dp"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/white"
             android:layout_gravity="center"
             android:text="Asistencia TelefOnica" />
 

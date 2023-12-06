@@ -56,7 +56,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="40"
+                    android:layout_weight="30"
                     android:layout_gravity="center_vertical">
 
                     <TextView
@@ -65,7 +65,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18dp"
-                        android:text="Nº Puertas: "/>
+                        android:text="Puertas: "/>
 
                     <TextView
                         style="@style/TextosBlancos"
@@ -169,8 +169,9 @@
         <ImageView
             android:id="@+id/img"
             android:src="@drawable/coche_blanco"
-            android:layout_width="110dp"
-            android:layout_height="100dp"/>
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="5dp"/>
 
     </LinearLayout>
 

@@ -101,13 +101,10 @@ public class PopupMapaActivity extends AppCompatActivity {
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
                             googleMap.addMarker(markerOptions);
                         } else {
-
                         }
-
                     }
                 });
             }
         });
-
     }
 }

@@ -66,6 +66,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import proyectoDAM.giac_app_v01.R;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.Accidente;
 
 public class RegistraDesAcc extends AppCompatActivity {
 

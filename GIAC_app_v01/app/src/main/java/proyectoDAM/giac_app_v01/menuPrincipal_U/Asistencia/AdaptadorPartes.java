@@ -28,6 +28,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 import proyectoDAM.giac_app_v01.R;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.Partes;
 
 public class AdaptadorPartes extends BaseAdapter {
 
