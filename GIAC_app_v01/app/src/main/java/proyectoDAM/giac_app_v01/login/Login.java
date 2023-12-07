@@ -40,6 +40,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,7 +63,6 @@ public class Login extends AppCompatActivity {
     SharedPreferences.Editor editorPreferencias;
     String llave = "sesion";
     String userGuardado = "";
-    LoadingDialogBar loadingDialogBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,6 @@ public class Login extends AppCompatActivity {
         cbRecordar = (CheckBox) findViewById(R.id.cbRecordar);
         preferencias = this.getPreferences(Context.MODE_PRIVATE);
         editorPreferencias = preferencias.edit();
-        loadingDialogBar =new LoadingDialogBar(this);
 
         //ESCONDEMOS EL TECLADO CUANDO DEJAMOS DE HACER FOCO EN EL EDITEXT
         edtUser.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -149,7 +148,6 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 GuardarSesion(cbRecordar.isChecked());
                 ComprobarUsuario();
-                //loadingDialogBar.MuestraDialog("Comprobando credenciales");
             }
         });
         VerificarPermisos();
@@ -159,8 +157,10 @@ public class Login extends AppCompatActivity {
     //SI EXISTE, LANZA LA PANTALLA PRINCIPAL DE USUARIOS, SI NO, COMPRUEBA EN TRABAJADOR
     public void ComprobarUsuario(){
         //INSERTAMOS UN PROGRESSDIALOG PARA INFORMAR QUE SE ESTAN COMPROBANDO LOS DATOS
-        ProgressDialog progressDialog =new ProgressDialog(this);
-        progressDialog.setMessage("Comprobando usuario");
+        PleaseWaitDialog progressDialog = new PleaseWaitDialog(this);
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Comprobando usuarios...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         String urlUsuarios = "https://appgiac.000webhostapp.com/validar_usuario.php";
         StringRequest stringRequest=new StringRequest(Request.Method.POST, urlUsuarios, new Response.Listener<String>() {
@@ -219,8 +219,10 @@ public class Login extends AppCompatActivity {
     //SI EXISTE, LANZA LA PANTALLA PRINCIPAL DE EMPLEADOS
     public void ComprobarEmpleado(){
         //INSERTAMOS UN PROGRESSDIALOG PARA INFORMAR QUE SE ESTAN COMPROBANDO LOS DATOS
-        ProgressDialog progressDialogemp =new ProgressDialog(this);
-        progressDialogemp.setMessage("Comprobando Empleado");
+        PleaseWaitDialog progressDialogemp = new PleaseWaitDialog(this);
+        progressDialogemp.setTitle("Espere por favor");
+        progressDialogemp.setMessage("Comprobando empleados...");
+        progressDialogemp.setCancelable(false);
         progressDialogemp.show();
         String urlEmpleados = "https://appgiac.000webhostapp.com/validar_empleado.php";
         StringRequest stringRequest=new StringRequest(Request.Method.POST, urlEmpleados, new Response.Listener<String>() {

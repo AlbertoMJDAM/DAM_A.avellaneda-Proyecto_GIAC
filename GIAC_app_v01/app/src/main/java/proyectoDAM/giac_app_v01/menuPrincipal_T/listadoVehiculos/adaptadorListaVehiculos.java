@@ -1,10 +1,13 @@
 package proyectoDAM.giac_app_v01.menuPrincipal_T.listadoVehiculos;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -50,6 +53,7 @@ public class adaptadorListaVehiculos extends BaseAdapter {
         TextView tvModelo = (TextView) view.findViewById(R.id.tvModelo);
         TextView tvColor = (TextView) view.findViewById(R.id.tvColor);
         TextView tvMatricula = (TextView) view.findViewById(R.id.tvMatricula);
+        ImageView ivFoto = (ImageView) view.findViewById(R.id.img);
 
         tvIdVehiculo.setText(arrayList.get(i).getId_Cliente());
         tvMarca.setText(arrayList.get(i).getMarca());
@@ -57,6 +61,37 @@ public class adaptadorListaVehiculos extends BaseAdapter {
         tvColor.setText(arrayList.get(i).getColor());
         tvMatricula.setText(arrayList.get(i).getMatricula());
         tvPuertas.setText(arrayList.get(i).getNum_Puertas());
+
+        Uri imageMoto = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+                view.getResources().getResourcePackageName(R.drawable.moto) + '/' +
+                view.getResources().getResourceTypeName(R.drawable.moto) + '/' +
+                String.valueOf(R.drawable.moto));
+        Uri imageCamion = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+                view.getResources().getResourcePackageName(R.drawable.camion) + '/' +
+                view.getResources().getResourceTypeName(R.drawable.camion) + '/' +
+                String.valueOf(R.drawable.camion));
+        Uri imageCoche = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+                view.getResources().getResourcePackageName(R.drawable.coche_no) + '/' +
+                view.getResources().getResourceTypeName(R.drawable.coche_no) + '/' +
+                String.valueOf(R.drawable.coche_no));
+        Uri imageNodisp = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+                view.getResources().getResourcePackageName(R.drawable.camera) + '/' +
+                view.getResources().getResourceTypeName(R.drawable.camera) + '/' +
+                String.valueOf(R.drawable.camera));
+
+        String tipo =  arrayList.get(i).getTipo_Vehiculo();
+
+        if(tipo.contains("MOTO")){
+            ivFoto.setImageURI(imageMoto);
+        }
+        else if(tipo.contains("COCHE")){
+            ivFoto.setImageURI(imageCoche);
+        }
+        else if(tipo.contains("OTROS")){
+            ivFoto.setImageURI(imageCamion);
+        }
+
+
 
         return view;
     }

@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,7 +39,7 @@ public class ListadoIncidencias extends AppCompatActivity {
     private ArrayList<Incidencias> lista;
     private adaptadorListadoIncidencias adapter;
     private Button btnGuardar, btnSalir;
-    private LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class ListadoIncidencias extends AppCompatActivity {
         lista = new ArrayList<Incidencias>();
         btnGuardar = (Button) findViewById(R.id.btnGuardar);
         btnSalir = (Button) findViewById(R.id.btnSalir);
-        loadingDialogBar =new LoadingDialogBar(this);
+        progressDialog = new PleaseWaitDialog(this);
 
         //Metodo para el boton btnGuardar
         btnGuardar.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +77,11 @@ public class ListadoIncidencias extends AppCompatActivity {
             }
         });
 
-        loadingDialogBar.MuestraDialog("Cargando incidencias sin asignar");
+        //ACTIVAMOS LOADINGGIALOGBAR
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Cargando incidencias sin asignar...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         obtenerIncidencias();
     }
 
@@ -110,7 +115,9 @@ public class ListadoIncidencias extends AppCompatActivity {
                         }
                         adapter = new adaptadorListadoIncidencias(getApplicationContext(),lista);
                         lvListaIncidencias.setAdapter(adapter);
-                        loadingDialogBar.OcultaDialog();
+
+                        //DESACTIVAMOS LOADINGGIALOGBAR
+                        progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -129,8 +136,9 @@ public class ListadoIncidencias extends AppCompatActivity {
         String url = "https://appgiac.000webhostapp.com/asignar_incidencias.php?empleado="+ idTrabajador;
 
         //CREAMOS LA BARRA DE PROGRESO
-        ProgressDialog progressDialog =new ProgressDialog(this);
-        progressDialog.setMessage("Actualizando");
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Actualizando...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
         for(int x=0; x<listaIncidenciasElegidas.size(); x++){

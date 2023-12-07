@@ -3,6 +3,7 @@ package proyectoDAM.giac_app_v01.menuPrincipal_T.localizarAccidentes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,6 +22,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.tashila.pleasewait.PleaseWaitDialog;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +42,7 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
     private Button btnSalir;
     private ArrayList<Accidentes> listaAccidentes;
     private ArrayList<Incidencias> listaIncidencias;
-    private LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,8 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
         btnSalir = (Button) findViewById(R.id.btnSalir);
         listaAccidentes = new ArrayList<Accidentes>();
         listaIncidencias = new ArrayList<Incidencias>();
-        loadingDialogBar =new LoadingDialogBar(this);
+        progressDialog = new PleaseWaitDialog(this);
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapa);
         mapFragment.getMapAsync(this);
@@ -62,9 +66,11 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
                 finish();
             }
         });
-        loadingDialogBar.MuestraDialog("Buscando");
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Buscando...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         obtenerAccidentesSinAsignar();
-        obtenerIncidenciasSinAsignar();
     }
 
     @Override
@@ -118,6 +124,8 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
                                 Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                             }
                         }
+
+                        obtenerIncidenciasSinAsignar();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -225,7 +233,7 @@ public class localizarAccidentes extends AppCompatActivity implements OnMapReady
             marker1.setTag(datos);
         }
 
-        loadingDialogBar.OcultaDialog();
+        progressDialog.dismiss();
 
         //CARGAMOS EL ADAPTADOR PERSONALIZADO DE LA INFOWINDOWS
         mMapa.setInfoWindowAdapter(new adaptadorInfoMapa(LayoutInflater.from(getApplicationContext())));

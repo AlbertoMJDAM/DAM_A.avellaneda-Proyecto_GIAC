@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.tashila.pleasewait.PleaseWaitDialog;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -21,7 +23,7 @@ public class documentosTrabajadores extends AppCompatActivity {
     private adaptadorDocumentosTrabajador adapter;
     private Button btnSalir;
     private String idTrabajador;
-    private LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class documentosTrabajadores extends AppCompatActivity {
         lvDocumentosTrabajador = (ListView) findViewById(R.id.lvDocumentosTrabajador);
         lista = new ArrayList<File>();
         btnSalir = (Button) findViewById(R.id.btnSalir);
-        loadingDialogBar =new LoadingDialogBar(this);
+        progressDialog = new PleaseWaitDialog(this);
 
 
         // TRAEMOS UN STRING CON LOS DATOS DEL ID DEL TRABAJADOR
@@ -47,7 +49,11 @@ public class documentosTrabajadores extends AppCompatActivity {
             }
         });
 
-        loadingDialogBar.MuestraDialog("Cargando documentos");
+        //ACTIVAMOS LOADINGGIALOGBAR
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Cargando documentos...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         obtenerDocumentos();
     }
 
@@ -63,7 +69,7 @@ public class documentosTrabajadores extends AppCompatActivity {
         }
         adapter = new adaptadorDocumentosTrabajador(getApplicationContext(), lista);
         lvDocumentosTrabajador.setAdapter(adapter);
-        loadingDialogBar.OcultaDialog();
+        progressDialog.dismiss();
     }
 
 }

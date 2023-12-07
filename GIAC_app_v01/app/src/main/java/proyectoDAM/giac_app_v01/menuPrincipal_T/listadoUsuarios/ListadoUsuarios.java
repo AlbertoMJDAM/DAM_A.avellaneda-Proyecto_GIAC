@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +32,7 @@ public class ListadoUsuarios extends AppCompatActivity {
     private ArrayList<Usuarios> lista;
     private adaptadorListaUsuarios adapter;
     private Button btnRetroceder;
-    private LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class ListadoUsuarios extends AppCompatActivity {
         lvListaUsuarios = (ListView) findViewById(R.id.lvListaUsuarios);
         lista = new ArrayList<Usuarios>();
         btnRetroceder = (Button) findViewById(R.id.btnRetroceder);
-        loadingDialogBar =new LoadingDialogBar(this);
+        progressDialog = new PleaseWaitDialog(this);
 
         //Metodo para el boton Retroceder
         btnRetroceder.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +53,11 @@ public class ListadoUsuarios extends AppCompatActivity {
             }
         });
 
-        loadingDialogBar.MuestraDialog("Cargando listado de usuarios");
+        //ACTIVAMOS LOADINGGIALOGBAR
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Cargando listado de usuarios...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         obtenerUsuarios();
     }
 
@@ -85,7 +90,9 @@ public class ListadoUsuarios extends AppCompatActivity {
                         }
                         adapter = new adaptadorListaUsuarios(getApplicationContext(),lista);
                         lvListaUsuarios.setAdapter(adapter);
-                        loadingDialogBar.OcultaDialog();
+
+                        //DESACTIVAMOS LOADINGGIALOGBAR
+                        progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override

@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,7 +39,7 @@ public class ListadoAccidentes extends AppCompatActivity {
     private ArrayList<Accidentes> lista;
     private adaptadorListaAccidentes adapter;
     private Button btnSalir, btnGuardar;
-    private LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
 
 
     @Override
@@ -51,7 +52,7 @@ public class ListadoAccidentes extends AppCompatActivity {
         lista = new ArrayList<Accidentes>();
         btnGuardar = (Button) findViewById(R.id.btnGuardar);
         btnSalir = (Button) findViewById(R.id.btnSalir);
-        loadingDialogBar =new LoadingDialogBar(this);
+        progressDialog = new PleaseWaitDialog(this);
 
 
         //Metodo para el boton btnGuardar
@@ -78,7 +79,11 @@ public class ListadoAccidentes extends AppCompatActivity {
             }
         });
 
-        loadingDialogBar.MuestraDialog("Cargando accidentes sin asignar");
+        //ACTIVAMOS LOADINGGIALOGBAR
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Cargando accidentes sin asignar...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         obtenerAccidentes();
     }
 
@@ -116,7 +121,9 @@ public class ListadoAccidentes extends AppCompatActivity {
                         adapter = new adaptadorListaAccidentes(getApplicationContext(),lista);
 
                         lvListaAccidentes.setAdapter(adapter);
-                        loadingDialogBar.OcultaDialog();
+
+                        //DESACTIVAMOS LOADINGGIALOGBAR
+                        progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -134,9 +141,10 @@ public class ListadoAccidentes extends AppCompatActivity {
         String idTrabajador = extras.getString("idTrabajador").trim();
         String url = "https://appgiac.000webhostapp.com/asignar_accidentes.php?Empleado="+ idTrabajador;
 
-        //CREAMOS LA BARRA DE PROGRESO
-        ProgressDialog progressDialog =new ProgressDialog(this);
-        progressDialog.setMessage("Actualizando");
+        //ACTIVAMOS LOADINGGIALOGBAR
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Actualizando...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
         for(int x=0; x<listaAccidentesElegidos.size(); x++){

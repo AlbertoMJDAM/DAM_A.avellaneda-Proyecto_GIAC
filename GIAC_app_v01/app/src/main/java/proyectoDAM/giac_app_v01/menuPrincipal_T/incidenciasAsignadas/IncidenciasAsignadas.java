@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +33,7 @@ public class IncidenciasAsignadas extends AppCompatActivity {
     private adaptadorIncidenciasAsignadas adapter;
     private Button btnRegresar;
     private String idTrabajador;
-    private LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class IncidenciasAsignadas extends AppCompatActivity {
         lvIncidenciasAsignadas = (ListView) findViewById(R.id.lvIncidenciasAsignadas);
         lista = new ArrayList<Incidencias>();
         btnRegresar = (Button) findViewById(R.id.btnRegresar);
-        loadingDialogBar =new LoadingDialogBar(this);
+        progressDialog = new PleaseWaitDialog(this);
 
         //Metodo para el boton btnRegresar
         btnRegresar.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +59,11 @@ public class IncidenciasAsignadas extends AppCompatActivity {
             }
         });
 
-        loadingDialogBar.MuestraDialog("Cargando incidencias asignadas");
+        //ACTIVAMOS LOADINGGIALOGBAR
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Cargando incidencias asignadas...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         obtenerIncidenciasAsignadas();
     }
 
@@ -92,7 +97,9 @@ public class IncidenciasAsignadas extends AppCompatActivity {
                         }
                         adapter = new adaptadorIncidenciasAsignadas(getApplicationContext(),lista);
                         lvIncidenciasAsignadas.setAdapter(adapter);
-                        loadingDialogBar.OcultaDialog();
+
+                        //DESACTIVAMOS LOADINGGIALOGBAR
+                        progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override

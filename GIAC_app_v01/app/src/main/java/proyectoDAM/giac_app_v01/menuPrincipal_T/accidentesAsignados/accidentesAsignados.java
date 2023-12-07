@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +33,7 @@ public class accidentesAsignados extends AppCompatActivity {
     private adaptadorAccidentesAsignados adapter;
     private Button btnRegresar;
     private String idTrabajador;
-    private LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,8 @@ public class accidentesAsignados extends AppCompatActivity {
         lvAccidentesAsignados = (ListView) findViewById(R.id.lvAccidentesAsignados);
         lista = new ArrayList<Accidentes>();
         btnRegresar = (Button) findViewById(R.id.btnRegresar);
-        loadingDialogBar =new LoadingDialogBar(this);
+        progressDialog = new PleaseWaitDialog(this);
+
 
 
         //Metodo para el boton btnRegresar
@@ -58,7 +60,11 @@ public class accidentesAsignados extends AppCompatActivity {
             }
         });
 
-        loadingDialogBar.MuestraDialog("Cargando accidentes asignados");
+        //ACTIVAMOS LOADINGGIALOGBAR
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Cargando accidentes asignados...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         obtenerAccidentesAsignados();
     }
 
@@ -95,7 +101,7 @@ public class accidentesAsignados extends AppCompatActivity {
                         }
                         adapter = new adaptadorAccidentesAsignados(getApplicationContext(),lista);
                         lvAccidentesAsignados.setAdapter(adapter);
-                        loadingDialogBar.OcultaDialog();
+                        progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override

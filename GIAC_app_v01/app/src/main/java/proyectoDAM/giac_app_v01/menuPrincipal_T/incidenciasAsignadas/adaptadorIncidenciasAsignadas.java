@@ -92,9 +92,9 @@ public class adaptadorIncidenciasAsignadas extends BaseAdapter {
             public boolean onLongClick(View v) {
                 new AlertDialog.Builder(v.getRootView().getContext())
                         .setIcon(android.R.drawable.ic_delete)
-                        .setTitle("ELIMINAR ARCHIVO")
-                        .setMessage("Se va a eliminar la incidencia:\n" +  arrayList.get(i).getId_Incidencia())
-                        .setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                        .setTitle("FINALIZAR INCIDENCIA")
+                        .setMessage("Se va a finalizar la incidencia:\n" +  arrayList.get(i).getId_Incidencia())
+                        .setPositiveButton("Finalizar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 eliminarIncidencia(i);

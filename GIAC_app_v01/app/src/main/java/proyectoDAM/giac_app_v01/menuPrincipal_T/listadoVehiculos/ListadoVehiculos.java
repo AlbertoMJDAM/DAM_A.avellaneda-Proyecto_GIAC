@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +32,7 @@ public class ListadoVehiculos extends AppCompatActivity {
     private ArrayList<Vehiculos> lista;
     private adaptadorListaVehiculos adapter;
     private Button btnRetroceder;
-    private LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class ListadoVehiculos extends AppCompatActivity {
         lvListaVehiculos = (ListView) findViewById(R.id.lvListaVehiculos);
         lista = new ArrayList<Vehiculos>();
         btnRetroceder = (Button) findViewById(R.id.btnRetroceder);
-        loadingDialogBar =new LoadingDialogBar(this);
+        progressDialog = new PleaseWaitDialog(this);
 
         //METODO PARA EL BOTON btnRetroceder
         btnRetroceder.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +53,11 @@ public class ListadoVehiculos extends AppCompatActivity {
             }
         });
 
-        loadingDialogBar.MuestraDialog("Cargando listado de vehiculos");
+        //ACTIVAMOS LOADINGGIALOGBAR
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Cargando listado de vehiculos...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         obtenerVehiculos();
     }
 
@@ -87,7 +92,9 @@ public class ListadoVehiculos extends AppCompatActivity {
                         }
                         adapter = new adaptadorListaVehiculos(getApplicationContext(),lista);
                         lvListaVehiculos.setAdapter(adapter);
-                        loadingDialogBar.OcultaDialog();
+
+                        //DESACTIVAMOS LOADINGGIALOGBAR
+                        progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override

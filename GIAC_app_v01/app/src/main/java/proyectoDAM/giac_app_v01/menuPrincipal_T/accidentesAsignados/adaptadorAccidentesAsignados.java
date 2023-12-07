@@ -87,9 +87,9 @@ public class adaptadorAccidentesAsignados extends BaseAdapter {
             public boolean onLongClick(View v) {
                 new AlertDialog.Builder(v.getRootView().getContext())
                         .setIcon(android.R.drawable.ic_delete)
-                        .setTitle("ELIMINAR ARCHIVO")
-                        .setMessage("Se va a eliminar el accidente:\n" +  arrayList.get(i).getId_Accidente())
-                        .setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                        .setTitle("FINALIZAR ACCIDENTE")
+                        .setMessage("Se va a finalizar el accidente:\n" +  arrayList.get(i).getId_Accidente())
+                        .setPositiveButton("Finalizar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 eliminarAccidente(i);

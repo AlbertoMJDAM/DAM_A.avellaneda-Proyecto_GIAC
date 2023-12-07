@@ -1,13 +1,18 @@
 package proyectoDAM.giac_app_v01.menuPrincipal_T.documentosTrabajadores;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.DrawableRes;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -49,10 +54,17 @@ public class adaptadorDocumentosTrabajador extends BaseAdapter {
 
         TextView tvTitIncACC = (TextView) view.findViewById(R.id.tvTitIncACC);
         TextView tvIDIncAcc = (TextView) view.findViewById(R.id.tvIDIncAcc);
+        ImageView ivIcono = (ImageView) view.findViewById(R.id.img);
 
         String direccion = arrayList.get(i).getAbsolutePath();
+        Uri imagePDF = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
+                view.getResources().getResourcePackageName(R.drawable.pdf) + '/' +
+                view.getResources().getResourceTypeName(R.drawable.pdf) + '/' +
+                String.valueOf(R.drawable.pdf));
 
         tvIDIncAcc.setText(arrayList.get(i).getName());
+        ivIcono.setImageURI(imagePDF);
+
         if(arrayList.get(i).getName().charAt(0) == '3'){
             tvTitIncACC.setText("INCIDENCIA");
         }else{

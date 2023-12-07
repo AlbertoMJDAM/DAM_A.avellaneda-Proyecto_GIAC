@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,12 +49,15 @@ public class RegistroUsuarios extends AppCompatActivity {
     private Button btnSave,btnBorra;
 
     private Spinner sptipoli;
+    private PleaseWaitDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_usuarios);
 
+        progressDialog = new PleaseWaitDialog(this);
         tvidusu = (TextView) findViewById(R.id.tvidusu);
         edtNombre = (TextInputEditText) findViewById(R.id.edtNombre);
         edtPApe = (TextInputEditText) findViewById(R.id.edtPApe);
@@ -130,6 +134,11 @@ public class RegistroUsuarios extends AppCompatActivity {
                 }
 
                 if(datosOk){
+                    //ACTIVAMOS LOADINGGIALOGBAR
+                    progressDialog.setTitle("Espere por favor");
+                    progressDialog.setMessage("Insertando usuario...");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
                     insertaUsuarios("https://appgiac.000webhostapp.com/insertar_usuario.php");
                 }
             }
@@ -310,6 +319,8 @@ public class RegistroUsuarios extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
+                //DESACTIVAMOS LOADINGGIALOGBAR
+                progressDialog.dismiss();
                 finish();
             }
 
@@ -317,6 +328,8 @@ public class RegistroUsuarios extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                //DESACTIVAMOS LOADINGGIALOGBAR
+                progressDialog.dismiss();
             }
         }){
             @Nullable
@@ -343,6 +356,4 @@ public class RegistroUsuarios extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
-
 }

@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +39,7 @@ public class DatosTrabajador extends AppCompatActivity {
     private String datosTrabajador;
     private RequestQueue requestQueue;
     private JSONObject jsonDatosTrab;
-    private LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +70,13 @@ public class DatosTrabajador extends AppCompatActivity {
         edtphone = (EditText) findViewById(R.id.edtphone);
         edtPasword = (EditText) findViewById(R.id.edtPasword);
         btnSave = (Button) findViewById(R.id.btnSave);
-        loadingDialogBar =new LoadingDialogBar(this);
+        progressDialog = new PleaseWaitDialog(this);
 
         //ACTIVAMOS LOADINGGIALOGBAR
-        loadingDialogBar.MuestraDialog("Cargando datos del empleado ");
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Cargando datos del empleado...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
         // Establecemos los datos en sus casillas
         try {
@@ -138,7 +142,7 @@ public class DatosTrabajador extends AppCompatActivity {
         });
 
         //DESACTIVAMOS DIALOGBAR
-        loadingDialogBar.OcultaDialog();
+        progressDialog.dismiss();
     }
 
     //METODO QUE REALIZA LA ACTUALIZACION DE DATOS EN LA BBDD TRABAJADORES
