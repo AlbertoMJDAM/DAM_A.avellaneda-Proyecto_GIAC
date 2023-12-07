@@ -183,7 +183,6 @@ public class RegistraDatosAcc extends AppCompatActivity implements LocationListe
                     datosOk = false;
                 }
 
-
                 if(datosOk){
                     if(edtIdemp.getText().toString().equalsIgnoreCase("")){
                         edtIdemp.setText("No requerida asistencia");

@@ -388,7 +388,7 @@ public class EditaVehiculo extends AppCompatActivity {
         builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                EliminaVehiculo("https://appgiac.000webhostapp.com/eliminar_vehiculo.php?id_Cliente="+idCliente+"&Matricula="+edTMatricula.getText().toString());
+                EliminaVehiculo("https://appgiac.000webhostapp.com/eliminar_vehiculo.php?Matricula="+edTMatricula.getText().toString());
             }
         });
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
