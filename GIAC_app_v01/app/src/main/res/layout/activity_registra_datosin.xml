@@ -273,7 +273,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edtFsuceso"
                 style="@style/TextInputEditText_RegistroUsu"
-                android:hint="Ejemplo formato: 01/01/2023"
+                android:hint="Ejemplo formato: 2023-12-31"
                 android:fontFamily="@font/arial"
                 android:textSize="16dp"
                 android:textStyle="bold"

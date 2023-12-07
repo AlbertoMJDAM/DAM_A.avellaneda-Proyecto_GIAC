@@ -136,6 +136,18 @@ public class RegistraDesIn extends AppCompatActivity {
         });
         ////////////////////////////////////////////////////////////////////////////////////////////
 
+        // ACCION BOTON BORRAR
+        btnBorra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtdescripcion.setText("");
+                img1.setImageURI(imageUri);
+                img2.setImageURI(imageUri);
+                img3.setImageURI(imageUri);
+                img4.setImageURI(imageUri);
+            }
+        });
+
         // ACCIONES DE LOS "BOTONES/IMAGENES" QUE AL PULSAR CARGARAN FOTOS
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -618,9 +630,6 @@ public class RegistraDesIn extends AppCompatActivity {
             }
         }
     }
-
-
-
 
     // METODOS ENCARGADOS DE LOS PERMISOS DE CAMARA.
     private void permisosCamara(){

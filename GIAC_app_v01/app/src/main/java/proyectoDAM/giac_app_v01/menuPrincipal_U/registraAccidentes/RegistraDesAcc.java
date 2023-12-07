@@ -140,6 +140,20 @@ public class RegistraDesAcc extends AppCompatActivity {
         });
         ////////////////////////////////////////////////////////////////////////////////////////////
 
+        // ACCION DEL BOTON BORRAR
+        btnBorra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edtdescripcion.setText("");
+                img1.setImageURI(imageUri);
+                img2.setImageURI(imageUri);
+                img3.setImageURI(imageUri);
+                img4.setImageURI(imageUri);
+                img5.setImageURI(imageUri);
+                img6.setImageURI(imageUri);
+            }
+        });
+
         // ACCIONES DE LOS "BOTONES/IMAGENES" QUE AL PULSAR CARGARAN FOTOS
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,7 +234,7 @@ public class RegistraDesAcc extends AppCompatActivity {
                 try {
                     createPdf();
                 } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(),e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -441,13 +455,13 @@ public class RegistraDesAcc extends AppCompatActivity {
 
     // METODO ENCARGADO DE CREAR EL ARCHIVO PDF.
     private void createPdf() throws FileNotFoundException {
-        File file = new File(getExternalStorageDirectory() + "/giac/", "Accidente_" + accidente.getIdAccidente() + "_v1" + ".pdf");
+        File file = new File(getFilesDir() + "/giac/", "Accidente_" + accidente.getIdAccidente() + "_v1" + ".pdf");
         while (file.exists()){
             String existente = file.getName();
             String [] nombre = existente.split("_v");
             int version = Integer.parseInt(nombre[1].substring(0, 1));
             version++;
-            File file2 = new File(getExternalStorageDirectory() + "/giac/", "Accidente_" + accidente.getIdAccidente() + "_v" + String.valueOf(version) + ".pdf");
+            File file2 = new File(getFilesDir() + "/giac/", "Accidente_" + accidente.getIdAccidente() + "_v" + String.valueOf(version) + ".pdf");
             file = file2;
         }
 

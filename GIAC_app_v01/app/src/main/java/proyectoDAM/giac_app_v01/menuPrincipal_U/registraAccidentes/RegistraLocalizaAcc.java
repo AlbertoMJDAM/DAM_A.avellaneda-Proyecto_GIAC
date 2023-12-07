@@ -68,7 +68,7 @@ public class RegistraLocalizaAcc extends AppCompatActivity implements LocationLi
         accidente = new Accidente();
         btnlocaliza = findViewById(R.id.btnlob);
         loadingDialogBar =new LoadingDialogBar(this);
-        loadingDialogBar.MuestraDialog("Buscando datos de usuario");
+        //loadingDialogBar.MuestraDialog("Buscando datos de usuario");
 
         //CARGAMOS EL SIGUIENTE NUMERO DE INCIDENCIA
         maxIDAccidente("https://appgiac.000webhostapp.com/mostrar_max_accidente.php");
@@ -85,8 +85,8 @@ public class RegistraLocalizaAcc extends AppCompatActivity implements LocationLi
         accidente.setVehiculoImplicadoDos("Pte");
         accidente.setDescripcion("Pendiente");
         accidente.setfSuceso("0000-00-00");
-        getLocation();
         loadingDialogBar.MuestraDialog("Calculando ubicación");
+        getLocation();
 
         // Insertamos la localizacion en la BBDD
         // BOTON ENCARGADO DE LA GEOLOCALIZACION DEL USUARIO
@@ -140,7 +140,7 @@ public class RegistraLocalizaAcc extends AppCompatActivity implements LocationLi
     private void getLocation() {
         try {
             locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,5, RegistraLocalizaAcc.this);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,1000,10, RegistraLocalizaAcc.this);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -153,7 +153,6 @@ public class RegistraLocalizaAcc extends AppCompatActivity implements LocationLi
         try {
             Geocoder geocoder = new Geocoder(RegistraLocalizaAcc.this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-            loadingDialogBar.OcultaDialog();
 
             String address = addresses.get(0).getAddressLine(0);
             Double latitude = location.getLatitude();
@@ -162,7 +161,8 @@ public class RegistraLocalizaAcc extends AppCompatActivity implements LocationLi
             accidente.setUbicacion(address);
             accidente.setLatSuceso(String.valueOf(latitude));
             accidente.setLonSuceso(String.valueOf(longitude));
-            Toast.makeText(getApplicationContext(), "Ubicacion localizada", Toast.LENGTH_LONG).show();
+            loadingDialogBar.OcultaDialog();
+            //Toast.makeText(getApplicationContext(), "Ubicacion localizada", Toast.LENGTH_LONG).show();
 
         }catch (Exception e){
             e.printStackTrace();
@@ -189,14 +189,14 @@ public class RegistraLocalizaAcc extends AppCompatActivity implements LocationLi
     // METODO ENCARGADO DE INSERTAR ACCIDENTE EN BBDD.
 
     private void InsertaAccidente(String url){
-        Toast.makeText(getApplicationContext(), accidente.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), accidente.toString(), Toast.LENGTH_SHORT).show();
         //ProgressDialog progressDialog =new ProgressDialog(this);
        //progressDialog.setMessage("Insertando datos de localizacion del accidente");
        // progressDialog.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
                 //progressDialog.dismiss();
             }
 
@@ -247,8 +247,8 @@ public class RegistraLocalizaAcc extends AppCompatActivity implements LocationLi
                                     int idAccidente = object.getInt("Id_Accidente");
                                     idAccidente ++;
                                     accidente.setIdAccidente(String.valueOf(idAccidente ));
-                                    Toast.makeText(getApplicationContext(), accidente.getIdAccidente(), Toast.LENGTH_SHORT).show();
-                                    loadingDialogBar.OcultaDialog();
+                                    //Toast.makeText(getApplicationContext(), accidente.getIdAccidente(), Toast.LENGTH_SHORT).show();
+                                    //loadingDialogBar.OcultaDialog();
                                 }
                             }
                         } catch (JSONException e) {
@@ -276,14 +276,14 @@ public class RegistraLocalizaAcc extends AppCompatActivity implements LocationLi
             @Override
             public void onResponse(String response) {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Operacion exitosa", Toast.LENGTH_SHORT).show();
             }
 
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         }) {
             @Nullable

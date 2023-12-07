@@ -255,9 +255,8 @@ public class gestionarIncidencia extends AppCompatActivity {
 
             documento.close();
             Toast.makeText(this, "PDF generado y guardado.", Toast.LENGTH_SHORT).show();
-            //subirFichero(fichero, direccion);
         }catch (FileNotFoundException e){
-            String mensaje = e.getMessage().toString();
+            String mensaje = e.getMessage();
             Toast.makeText(this.getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
         }
     }

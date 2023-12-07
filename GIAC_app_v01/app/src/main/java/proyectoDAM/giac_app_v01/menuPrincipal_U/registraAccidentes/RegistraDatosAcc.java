@@ -263,7 +263,6 @@ public class RegistraDatosAcc extends AppCompatActivity implements LocationListe
     @Override
     public void onLocationChanged(Location location) {
         //Toast.makeText(this, ""+location.getLatitude()+","+location.getLongitude(), Toast.LENGTH_SHORT).show();
-        loadingDialogBar.OcultaDialog();
         try {
             Geocoder geocoder = new Geocoder(RegistraDatosAcc.this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
@@ -271,11 +270,11 @@ public class RegistraDatosAcc extends AppCompatActivity implements LocationListe
             String address = addresses.get(0).getAddressLine(0);
             Double latitude = location.getLatitude();
             Double longitude = location.getLongitude();
+            loadingDialogBar.OcultaDialog();
 
             edtDir.setText(address);
             edtLat.setText(String.valueOf(latitude));
             edtLon.setText(String.valueOf(longitude));
-            Toast.makeText(getApplicationContext(), "Ubicacion localizada", Toast.LENGTH_LONG).show();
         }catch (Exception e){
             e.printStackTrace();
 

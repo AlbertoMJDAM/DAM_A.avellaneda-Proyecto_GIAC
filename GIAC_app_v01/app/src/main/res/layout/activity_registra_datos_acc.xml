@@ -487,7 +487,7 @@
                 style="@style/TextInputEditText_RegistroUsu"
                 android:backgroundTint="#306cb0"
                 android:fontFamily="@font/arial"
-                android:hint="Ejemplo formato: 01/01/2023"
+                android:hint="Ejemplo formato: 2023-12-31"
                 android:textColorHint="#686666"
                 android:textSize="16dp"
                 android:textStyle="bold"
