@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -113,35 +114,35 @@ public class EditaVehiculo extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), edtColor.getText().toString(), Toast.LENGTH_SHORT).show();
 
                 if(!ValidaMarcaModeloColorMotor(edtMarca.getText().toString())){
-                    edtMarca.setError("¡Formato Nombre Incorrecto!");
+                    edtMarca.setError("¡Formato Incorrecto!");
                     datosOk = false;
                 }
                 if(!ValidaMarcaModeloColorMotor(edtModelo.getText().toString())){
-                    edtModelo.setError("¡Formato apellido Incorrecto!");
+                    edtModelo.setError("¡Formato Incorrecto!");
                     datosOk = false;
                 }
                 if(!ValidaMarcaModeloColorMotor(edtColor.getText().toString())){
-                    edtColor.setError("¡Formato apellido Incorrecto!");
+                    edtColor.setError("¡Formato Incorrecto!");
                     datosOk = false;
                 }
                 if(!ValidaMarcaModeloColorMotor(edtMotor.getText().toString())){
-                    edtMotor.setError("¡Formato apellido Incorrecto!");
+                    edtMotor.setError("¡Formato Incorrecto!");
                     datosOk = false;
                 }
                 if(!Validamatricula(edTMatricula.getText().toString())){
-                    edTMatricula.setError("¡Formato DNI Incorrecto!");
+                    edTMatricula.setError("¡Formato Incorrecto!");
                     datosOk = false;
                 }
                 if (!ValidaNumPuertas(edTNum_Puertas.getText().toString())){
-                    edTNum_Puertas.setError("¡Correo electronico Incorrecto!");
+                    edTNum_Puertas.setError("¡Correo Incorrecto!");
                     datosOk = false;
                 }
                 if (!ValidaCv(edtCv.getText().toString())){
-                    edtCv.setError("¡Formato telefono Incorrecto!");
+                    edtCv.setError("¡Formato Incorrecto!");
                     datosOk = false;
                 }
                 if (!ValidaNbastidor(edtNum_Bastidor.getText().toString())){
-                    edtNum_Bastidor.setError("¡Nombre Usuario Incorrecto!");
+                    edtNum_Bastidor.setError("¡Nombre Incorrecto!");
                     datosOk = false;
                 }
 
@@ -165,8 +166,11 @@ public class EditaVehiculo extends AppCompatActivity {
         btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog dialog = ConfirmaEliminacion();
-                dialog.show();
+                Toast.makeText(getApplicationContext(), idCliente, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), edTMatricula.getText().toString(), Toast.LENGTH_SHORT).show();
+                EliminaVehiculo("https://appgiac.000webhostapp.com/eliminar_vehiculo.php?id_Cliente="+idCliente+"&Matricula="+edTMatricula.getText().toString());
+                //AlertDialog dialog = ConfirmaEliminacion();
+                //dialog.show();
             }
         });
 
@@ -242,7 +246,7 @@ public class EditaVehiculo extends AppCompatActivity {
     // Metodo encargado de la validacion de caballos del vehiculo mediante regex
     public static boolean ValidaCv(String cv){
         boolean cvCorrecto;
-        String regexcv = "^[1-9]$|^[1-9][1-9]?[0-9]$|^(600)$";
+        String regexcv = "^[1-9]$|^[1-9][0-9][0-9]$|^(300)$";
         Pattern pat= Pattern.compile(regexcv);
         Matcher mat= pat.matcher(cv);
         if (mat.matches()) {
@@ -297,8 +301,10 @@ public class EditaVehiculo extends AppCompatActivity {
         String matricula = edTMatricula.getText().toString().trim();
         String NumBastidor = edtNum_Bastidor.getText().toString().trim();
 
-        ProgressDialog progressDialog =new ProgressDialog(this);
-        progressDialog.setMessage("Actualizando");
+        PleaseWaitDialog progressDialog = new PleaseWaitDialog(this);
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Actualizando Vehiculo");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest request =new StringRequest(Request.Method.POST, urlactualizar,
                 new Response.Listener<String>() {
@@ -349,7 +355,7 @@ public class EditaVehiculo extends AppCompatActivity {
                         if (response.equalsIgnoreCase("datos eliminados")) {
                             progressDialog.dismiss();
                         } else {
-                            Toast.makeText(EditaVehiculo.this, "Error no se puede registrar", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditaVehiculo.this, "Error al eliminar", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     }
@@ -382,7 +388,7 @@ public class EditaVehiculo extends AppCompatActivity {
         builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                EliminaVehiculo("https://appgiac.000webhostapp.com/eliminar_vehiculo.php");
+                EliminaVehiculo("https://appgiac.000webhostapp.com/eliminar_vehiculo.php?id_Cliente="+idCliente+"&Matricula="+edTMatricula.getText().toString());
             }
         });
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

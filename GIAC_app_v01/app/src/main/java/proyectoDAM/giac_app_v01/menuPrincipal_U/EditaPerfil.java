@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.tashila.pleasewait.PleaseWaitDialog;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -309,8 +309,10 @@ public class EditaPerfil extends AppCompatActivity {
     //  Metodo que Volley que inserta Datos en la BBDD
     @SuppressLint("NotConstructor")
     private void EditaPerfil(String urlactualizar){
-        ProgressDialog progressDialog =new ProgressDialog(this);
-        progressDialog.setMessage("Actualizando");
+        PleaseWaitDialog progressDialog = new PleaseWaitDialog(this);
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Actualizando usuario");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest request =new StringRequest(Request.Method.POST, urlactualizar,
                 new Response.Listener<String>() {

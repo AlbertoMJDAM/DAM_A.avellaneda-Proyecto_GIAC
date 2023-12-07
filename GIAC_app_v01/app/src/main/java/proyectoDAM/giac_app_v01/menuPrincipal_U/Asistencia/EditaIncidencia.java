@@ -60,6 +60,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -229,25 +230,11 @@ public class EditaIncidencia extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Boolean datosOk = Boolean.TRUE;
-                /*
+
 
                 if(!ValidaDNI(edtDNI.getText().toString())){
                     edtDNI.setError("¡Formato DNI Incorrecto!");
                     datosOk = false;
-                }
-
-                if(tfnoImpUno.isChecked() || tfnoImpDos.isChecked()){
-                    if (!ValidaTelefono(edtphone.getText().toString())){
-                        edtphone.setError("¡Formato telefono Incorrecto!");
-                        datosOk = false;
-                    }
-                }
-
-                if(emailImpUno.isChecked() || emailImpDos.isChecked()){
-                    if (!ValidaMail(edteMail.getText().toString())){
-                        edteMail.setError("¡Correo electronico Incorrecto!");
-                        datosOk = false;
-                    }
                 }
 
                 if (!ValidaFechas(etdFsuc.getText().toString())){
@@ -259,17 +246,6 @@ public class EditaIncidencia extends AppCompatActivity {
                     datosOk = false;
                 }
 
-                if (!Validamatricula(edtMatriculaImpUno.getText().toString())){
-                    edtMatriculaImpUno.setError("¡Matricula Incorrecta!");
-                    datosOk = false;
-                }
-
-                if (!Validamatricula(edtMatriculaImpDos.getText().toString())){
-                    edtMatriculaImpDos.setError("¡Matricula Incorrecta!");
-                    datosOk = false;
-                }
-
-                */
                 if(datosOk){
                     EditaIncidencia("https://appgiac.000webhostapp.com/actualizar_incidencia.php?Id_Incidencia="+ idIncidencia);
                     EditaParte("https://appgiac.000webhostapp.com/actualizar_parte.php?="+ id_Parte);
@@ -530,8 +506,10 @@ public class EditaIncidencia extends AppCompatActivity {
     //METODO QUE EDITA LA INCIDENCIA SELECCIONADA EN EL MENU PARTES
     @SuppressLint("NotConstructor")
     private void EditaIncidencia(String urlactualizar){
-        ProgressDialog progressDialog =new ProgressDialog(this);
+        PleaseWaitDialog progressDialog = new PleaseWaitDialog(this);
+        progressDialog.setTitle("Espere por favor");
         progressDialog.setMessage("Actualizando");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest request =new StringRequest(Request.Method.POST, urlactualizar,
                 new Response.Listener<String>() {
@@ -567,8 +545,10 @@ public class EditaIncidencia extends AppCompatActivity {
     //METODO QUE EDITA EL LISTADO DE PARTES ASOCIADO A LA INCIDENCIA
     private void EditaParte(String urlactualizar){
         String idAccidente = "0";
-        ProgressDialog progressDialog =new ProgressDialog(this);
+        PleaseWaitDialog progressDialog = new PleaseWaitDialog(this);
+        progressDialog.setTitle("Espere por favor");
         progressDialog.setMessage("Actualizando");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest request =new StringRequest(Request.Method.POST, urlactualizar,
                 new Response.Listener<String>() {

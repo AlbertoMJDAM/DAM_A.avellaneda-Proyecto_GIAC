@@ -58,6 +58,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -415,8 +416,10 @@ public class RegistraDesAcc extends AppCompatActivity {
 
     // METODO ENCARGADO DE INSERTAR PARTE EN BBDD.
     private void InsertaParte(String url) {
-        ProgressDialog progressDialog =new ProgressDialog(this);
+        PleaseWaitDialog progressDialog = new PleaseWaitDialog(this);
+        progressDialog.setTitle("Espere por favor");
         progressDialog.setMessage("Creando un parte del Accidente");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         int idParte = Integer.parseInt(accidente.getIdAccidente()) + 10000;
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

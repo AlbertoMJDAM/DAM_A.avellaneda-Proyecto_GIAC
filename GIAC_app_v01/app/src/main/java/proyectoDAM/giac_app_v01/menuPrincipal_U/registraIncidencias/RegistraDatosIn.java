@@ -101,7 +101,7 @@ public class RegistraDatosIn extends AppCompatActivity implements LocationListen
             @Override
             public void onClick(View v) {
                 Boolean datosOk = Boolean.TRUE;
-/*
+
                 if(!ValidaNombreApell(edtNombre.getText().toString())){
                     edtNombre.setError("¡Formato Nombre Incorrecto!");
                     datosOk = false;
@@ -136,7 +136,7 @@ public class RegistraDatosIn extends AppCompatActivity implements LocationListen
                     edtMat.setError("¡Matricula Incorrecta!");
                     datosOk = false;
                 }
-*/
+
                 if(datosOk){
                     if(edtIdemp.getText().toString().equalsIgnoreCase("")){
                         edtIdemp.setText("No requerida asistencia");

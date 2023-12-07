@@ -60,6 +60,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TextAlignment;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -267,25 +268,10 @@ public class EditaAccidente extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Boolean datosOk = Boolean.TRUE;
-                /*
 
                 if(!ValidaDNI(edtDNI.getText().toString())){
                     edtDNI.setError("¡Formato DNI Incorrecto!");
                     datosOk = false;
-                }
-
-                if(tfnoImpUno.isChecked() || tfnoImpDos.isChecked()){
-                    if (!ValidaTelefono(edtphone.getText().toString())){
-                        edtphone.setError("¡Formato telefono Incorrecto!");
-                        datosOk = false;
-                    }
-                }
-
-                if(emailImpUno.isChecked() || emailImpDos.isChecked()){
-                    if (!ValidaMail(edteMail.getText().toString())){
-                        edteMail.setError("¡Correo electronico Incorrecto!");
-                        datosOk = false;
-                    }
                 }
 
                 if (!ValidaFechas(etdFsuc.getText().toString())){
@@ -306,8 +292,6 @@ public class EditaAccidente extends AppCompatActivity {
                     edtMatriculaImpDos.setError("¡Matricula Incorrecta!");
                     datosOk = false;
                 }
-
-                */
 
                 if(datosOk){
                     EditaAccidente("https://appgiac.000webhostapp.com/actualizar_accidente.php?Id_Accidente="+ idAccidente);
@@ -595,8 +579,10 @@ public class EditaAccidente extends AppCompatActivity {
     @SuppressLint("NotConstructor")
     //METODO QUE EDITA EL ACCIDENTE SELECCIONADO EN EL MENU PARTES
     private void EditaAccidente(String urlactualizar){
-        ProgressDialog progressDialog =new ProgressDialog(this);
+        PleaseWaitDialog progressDialog = new PleaseWaitDialog(this);
+        progressDialog.setTitle("Espere por favor");
         progressDialog.setMessage("Actualizando");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest request =new StringRequest(Request.Method.POST, urlactualizar,
                 new Response.Listener<String>() {
@@ -644,8 +630,10 @@ public class EditaAccidente extends AppCompatActivity {
     //METODO QUE EDITA EL LISTADO DE PARTES ASOCIADO A LA INCIDENCIA
     private void EditaParte(String urlactualizar){
         String idIncidencia = "0";
-        ProgressDialog progressDialog =new ProgressDialog(this);
+        PleaseWaitDialog progressDialog = new PleaseWaitDialog(this);
+        progressDialog.setTitle("Espere por favor");
         progressDialog.setMessage("Actualizando");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest request =new StringRequest(Request.Method.POST, urlactualizar,
                 new Response.Listener<String>() {
