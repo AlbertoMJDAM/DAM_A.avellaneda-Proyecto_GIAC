@@ -10,7 +10,7 @@ import android.widget.ListView;
 import java.io.File;
 import java.util.ArrayList;
 
-import proyectoDAM.giac_app_v01.menuPrincipal_U.Asistencia.LoadingDialogBar;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.LoadingDialogBar;
 import proyectoDAM.giac_app_v01.R;
 
 public class documentosTrabajadores extends AppCompatActivity {

@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import proyectoDAM.giac_app_v01.menuPrincipal_U.Asistencia.LoadingDialogBar;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.LoadingDialogBar;
 import proyectoDAM.giac_app_v01.R;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Incidencias;
 

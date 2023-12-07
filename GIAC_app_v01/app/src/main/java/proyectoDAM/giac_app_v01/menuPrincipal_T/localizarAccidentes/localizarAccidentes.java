@@ -30,7 +30,7 @@ import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Incidencias;
 import proyectoDAM.giac_app_v01.R;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoAccidentes.ListadoAccidentes;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.listadoIncidencias.ListadoIncidencias;
-import proyectoDAM.giac_app_v01.menuPrincipal_U.registraIncidencias.LoadingDialogBar;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.LoadingDialogBar;
 
 public class localizarAccidentes extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
 

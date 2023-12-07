@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import proyectoDAM.giac_app_v01.menuPrincipal_U.Asistencia.LoadingDialogBar;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.LoadingDialogBar;
 import proyectoDAM.giac_app_v01.R;
 
 public class DatosTrabajador extends AppCompatActivity {

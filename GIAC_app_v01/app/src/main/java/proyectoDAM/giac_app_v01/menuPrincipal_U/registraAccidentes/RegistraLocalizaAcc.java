@@ -47,6 +47,7 @@ import java.util.Map;
 import proyectoDAM.giac_app_v01.R;
 import proyectoDAM.giac_app_v01.login.Login;
 import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.Accidente;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.LoadingDialogBar;
 
 public class RegistraLocalizaAcc extends AppCompatActivity implements LocationListener {
 

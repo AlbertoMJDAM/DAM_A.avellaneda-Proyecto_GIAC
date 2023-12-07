@@ -51,7 +51,8 @@
             android:exported="false" />
         <activity
             android:name=".menuPrincipal_U.Ayuda.PopUp_tipocon"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.CrearPopUp.as" />
         <activity
             android:name=".menuPrincipal_T.documentosTrabajadores.pdfView"
             android:exported="false" />
@@ -108,7 +109,8 @@
             android:exported="false" />
         <activity
             android:name=".menuPrincipal_U.PopupMapaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.CrearPopUp.as" />
         <activity
             android:name=".menuPrincipal_U.PopupDirActivity"
             android:exported="false"

@@ -229,7 +229,6 @@ public class MenuPrincipal_U extends AppCompatActivity {
         btnVehiculos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Algo va BIEN", Toast.LENGTH_SHORT).show();
                 Intent vehiculosintent = new Intent(getApplicationContext(), MenuVehiculo.class);
                 vehiculosintent.putExtra("idusuario", idusuario);
                 startActivity(vehiculosintent);
@@ -240,7 +239,6 @@ public class MenuPrincipal_U extends AppCompatActivity {
         btnUbicacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Algo va BIEN", Toast.LENGTH_SHORT).show();
                 Intent ubicacionintent = new Intent(getApplicationContext(), PopupDirActivity.class);
                 startActivity(ubicacionintent);
             }

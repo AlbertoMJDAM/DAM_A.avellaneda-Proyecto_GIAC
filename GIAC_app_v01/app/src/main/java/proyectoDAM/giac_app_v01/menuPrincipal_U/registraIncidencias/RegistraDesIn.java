@@ -67,6 +67,7 @@ import java.util.Map;
 
 import proyectoDAM.giac_app_v01.R;
 import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.Incidencia;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.LoadingDialogBar;
 
 public class RegistraDesIn extends AppCompatActivity {
 

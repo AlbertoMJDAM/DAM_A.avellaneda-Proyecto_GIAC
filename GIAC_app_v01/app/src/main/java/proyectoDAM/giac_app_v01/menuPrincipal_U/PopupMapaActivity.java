@@ -47,14 +47,11 @@ public class PopupMapaActivity extends AppCompatActivity {
         int ancho = medidaventana.widthPixels;
         int alto = medidaventana.heightPixels;
         getWindow().setLayout((int)(ancho * 0.85), (int)(alto*0.5));
-        //////////////////////////////
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.loc);
-
         fusedLocationProviderClient = (FusedLocationProviderClient) LocationServices.getFusedLocationProviderClient(this);
-
         Dexter.withContext(getApplicationContext()).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).withListener(
                 new PermissionListener() {
                     @Override
@@ -98,13 +95,22 @@ public class PopupMapaActivity extends AppCompatActivity {
                         if (location != null) {
                             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                             MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("Mi Ubicacion Actual");
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
+                            //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
+                            googleMap.animateCamera(CameraUpdateFactory.zoomIn());
+                            googleMap.animateCamera(CameraUpdateFactory.zoomTo(18), 2000, null);
                             googleMap.addMarker(markerOptions);
+                            /////
+
+                            /////
                         } else {
+
                         }
+
                     }
                 });
             }
         });
+
     }
 }

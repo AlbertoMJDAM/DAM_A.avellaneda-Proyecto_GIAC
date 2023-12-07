@@ -10,6 +10,10 @@ public class Partes implements Serializable {
     public int cod_Accidente;
     public int  usuario;
     public int  empleado;
+    public String nombreEmpleado;
+    public String apellidoEmpleado;
+    public String emailEmpleado;
+    public String telefonoEmpleado;
     public String fechaAlta;
     public String estado;
     public String fechaFin;
@@ -72,6 +76,22 @@ public class Partes implements Serializable {
         this.empleado = empleado;
     }
 
+    public String getNombreEmpleado() {
+        return nombreEmpleado;
+    }
+
+    public void setNombreEmpleado(String nombreEmpleado) {
+        this.nombreEmpleado = nombreEmpleado;
+    }
+
+    public String getApellidoEmpleado() {
+        return apellidoEmpleado;
+    }
+
+    public void setApellidoEmpleado(String apellidoEmpleado) {
+        this.apellidoEmpleado = apellidoEmpleado;
+    }
+
     public String getFechaAlta() {
         return fechaAlta;
     }
@@ -96,6 +116,22 @@ public class Partes implements Serializable {
         this.fechaFin = fechaFin;
     }
 
+    public String getEmailEmpleado() {
+        return emailEmpleado;
+    }
+
+    public void setEmailEmpleado(String emailEmpleado) {
+        this.emailEmpleado = emailEmpleado;
+    }
+
+    public String getTelefonoEmpleado() {
+        return telefonoEmpleado;
+    }
+
+    public void setTelefonoEmpleado(String telefonoEmpleado) {
+        this.telefonoEmpleado = telefonoEmpleado;
+    }
+
     @Override
     public String toString() {
         return "Partes{" +
@@ -104,6 +140,8 @@ public class Partes implements Serializable {
                 ", cod_Accidente=" + cod_Accidente +
                 ", usuario=" + usuario +
                 ", empleado=" + empleado +
+                ", nombreEmpleado='" + nombreEmpleado + '\'' +
+                ", apellidoEmpelado='" + apellidoEmpleado + '\'' +
                 ", fechaAlta='" + fechaAlta + '\'' +
                 ", estado='" + estado + '\'' +
                 ", fechaFin='" + fechaFin + '\'' +

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 import proyectoDAM.giac_app_v01.menuPrincipal_T.Model.Accidentes;
 import proyectoDAM.giac_app_v01.R;
-import proyectoDAM.giac_app_v01.menuPrincipal_U.registraIncidencias.LoadingDialogBar;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.LoadingDialogBar;
 
 public class accidentesAsignados extends AppCompatActivity {
 

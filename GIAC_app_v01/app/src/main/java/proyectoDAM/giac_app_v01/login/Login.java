@@ -13,12 +13,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
@@ -45,7 +47,7 @@ import java.util.Map;
 import proyectoDAM.giac_app_v01.R;
 import proyectoDAM.giac_app_v01.menuPrincipal_T.MenuPrincipal_T;
 import proyectoDAM.giac_app_v01.menuPrincipal_U.MenuPrincipal_U;
-import proyectoDAM.giac_app_v01.menuPrincipal_U.registraIncidencias.LoadingDialogBar;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.LoadingDialogBar;
 import proyectoDAM.giac_app_v01.registroUsuario.RegistroUsuarios;
 
 
@@ -147,7 +149,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 GuardarSesion(cbRecordar.isChecked());
                 ComprobarUsuario();
-                loadingDialogBar.MuestraDialog("Comprobando credenciales");
+                //loadingDialogBar.MuestraDialog("Comprobando credenciales");
             }
         });
         VerificarPermisos();
@@ -156,6 +158,10 @@ public class Login extends AppCompatActivity {
     //METODO QUE CONSULTA EN LAS BBDD DE USUARIOS SI EXISTE EL USUARIO CON SU CONTRASENA
     //SI EXISTE, LANZA LA PANTALLA PRINCIPAL DE USUARIOS, SI NO, COMPRUEBA EN TRABAJADOR
     public void ComprobarUsuario(){
+        //INSERTAMOS UN PROGRESSDIALOG PARA INFORMAR QUE SE ESTAN COMPROBANDO LOS DATOS
+        ProgressDialog progressDialog =new ProgressDialog(this);
+        progressDialog.setMessage("Comprobando usuario");
+        progressDialog.show();
         String urlUsuarios = "https://appgiac.000webhostapp.com/validar_usuario.php";
         StringRequest stringRequest=new StringRequest(Request.Method.POST, urlUsuarios, new Response.Listener<String>() {
             @Override
@@ -163,16 +169,37 @@ public class Login extends AppCompatActivity {
                 if(!response.isEmpty()){
                     Intent intent=new Intent(getApplicationContext(), MenuPrincipal_U.class);
                     intent.putExtra("Usuario",response);
-                    loadingDialogBar.OcultaDialog();
-                    startActivity(intent);
+                    // Creamos un objeto de la clase Handler para crear un hilo y dormir 2 segundos este para hacer visible la progressDialog de carga.
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialog.dismiss();
+                            startActivity(intent);
+                        }
+                    },2500);
+                    ///////////////////////////////////////////////////////////////////////////////
+                    //startActivity(intent);
                 }else {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialog.dismiss();
+                        }
+                    },2500);
                     ComprobarEmpleado();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                loadingDialogBar.OcultaDialog();
+                // Creamos un objeto de la clase Handler para crear un hilo y dormir 2 segundos este para hacer visible la progressDialog de carga.
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog.dismiss();
+                    }
+                },2500);
+                ///////////////////////////////////////////////////////////////////////////////
                 Toast.makeText(getBaseContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }){
@@ -191,6 +218,10 @@ public class Login extends AppCompatActivity {
     //METODO QUE CONSULTA EN LAS BBDD DE EMPLEADOS SI EXISTE EL EMPLEADO CON SU CONTRASENA
     //SI EXISTE, LANZA LA PANTALLA PRINCIPAL DE EMPLEADOS
     public void ComprobarEmpleado(){
+        //INSERTAMOS UN PROGRESSDIALOG PARA INFORMAR QUE SE ESTAN COMPROBANDO LOS DATOS
+        ProgressDialog progressDialogemp =new ProgressDialog(this);
+        progressDialogemp.setMessage("Comprobando Empleado");
+        progressDialogemp.show();
         String urlEmpleados = "https://appgiac.000webhostapp.com/validar_empleado.php";
         StringRequest stringRequest=new StringRequest(Request.Method.POST, urlEmpleados, new Response.Listener<String>() {
             @Override
@@ -198,17 +229,37 @@ public class Login extends AppCompatActivity {
                 if(!response.isEmpty()){
                     Intent intent= new Intent(getApplicationContext(), MenuPrincipal_T.class);
                     intent.putExtra("Trabajador", response);
-                    loadingDialogBar.OcultaDialog();
-                    startActivity(intent);
+                    // Creamos un objeto de la clase Handler para crear un hilo y dormir 2 segundos este para hacer visible la progressDialog de carga.
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialogemp.dismiss();
+                            startActivity(intent);
+                        }
+                    },2500);
+                    ///////////////////////////////////////////////////////////////////////////////
+                    //startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(), "Usuario o contrasena incorrectos", Toast.LENGTH_SHORT).show();
-                    loadingDialogBar.OcultaDialog();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressDialogemp.dismiss();
+                        }
+                    },1500);
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                loadingDialogBar.OcultaDialog();
+                // Creamos un objeto de la clase Handler para crear un hilo y dormir 2 segundos este para hacer visible la progressDialog de carga.
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialogemp.dismiss();
+                    }
+                },2500);
+                ///////////////////////////////////////////////////////////////////////////////
                 Toast.makeText(getBaseContext(), error.getMessage().toString(), Toast.LENGTH_SHORT).show();
             }
         }){

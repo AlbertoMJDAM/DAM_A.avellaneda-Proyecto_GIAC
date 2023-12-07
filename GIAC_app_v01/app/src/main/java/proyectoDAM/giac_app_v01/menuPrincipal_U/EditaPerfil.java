@@ -49,7 +49,7 @@ public class EditaPerfil extends AppCompatActivity {
             tvNusu,tvPasword;
     private TextInputEditText edtNombre,edtPApe,edtSApe, edtDNI,edtFNac,edtFli, edteMail,edtphone,
             edtNusu,edtPasword;
-    private Button btnSave,btnBorra;
+    private Button btnSave,btnBorra,btnAutoriza;
 
     private Spinner sptipoli;
 
@@ -76,8 +76,9 @@ public class EditaPerfil extends AppCompatActivity {
         btnSave = (Button) findViewById(R.id.btnSave);
         btnBorra =  (Button) findViewById(R.id.btnBorra);
         sptipoli =(Spinner) findViewById(R.id.sptipoli);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.TipoPermiso, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.TipoPermiso, android.R.layout.simple_spinner_item);
         sptipoli.setAdapter(adapter);
+        btnAutoriza = (Button) findViewById(R.id.btnAutoriza);
 
         // PONGO ESTO PARA LA PRUEBA PERO HAY QUE TRAER EL IDUSUARIO DESDE EL INTEN MENU PRINCIPAL
         bundle = getIntent().getExtras();
@@ -86,6 +87,17 @@ public class EditaPerfil extends AppCompatActivity {
         tvidusu.setText(idUsuario);
 
         muestraUsuario(url+idUsuario);
+
+        //BLOQUEAMOS LA EDICION DE LOS CAMPOS PARA EVITARA ERRORES
+        CamposBloqueados();
+
+        // BOTON QUE DESBLOQUEA LOS CAMPOS PARA SU EDICION
+        btnAutoriza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CamposDesbloqueados();
+            }
+        });
 
 
 
@@ -138,10 +150,18 @@ public class EditaPerfil extends AppCompatActivity {
                 }
 
                 if(datosOk){
-                    EditaPerfil("https://appgiac.000webhostapp.com/actualizar_usuario.php?Id_Usuario="+ tvidusu.getText().toString());
-
-
-
+                    new AlertDialog.Builder(EditaPerfil.this)
+                            .setIcon(R.drawable.infogiac)
+                            .setTitle("         ACTUALIZAR DATOS")
+                            .setMessage("          Se va a proceder a la actualizacion")
+                            .setPositiveButton("Actualizar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    EditaPerfil("https://appgiac.000webhostapp.com/actualizar_usuario.php?Id_Usuario="+ tvidusu.getText().toString());
+                                }
+                            })
+                            .setNegativeButton("Cancelar",null)
+                            .show();
                 }
                 else {
                     Toast.makeText(getApplicationContext(), "Algo ha ido mal", Toast.LENGTH_SHORT).show();
@@ -162,6 +182,7 @@ public class EditaPerfil extends AppCompatActivity {
     /* ################################# METODOS #######################################
         A continuacion mostramos los metodos utilizados para el registro de usuarios
      */
+
 
     // Metodo encargado de la validacion de Nombres y apellidos mediante regex
     public static boolean ValidaNombreApell(String nombre){
@@ -357,9 +378,7 @@ public class EditaPerfil extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             Log.w("Response VOLLEY SC", response.toString());
-                            //Toast.makeText(getApplicationContext(), "hasta aqui bien", Toast.LENGTH_SHORT).show();
                             JSONObject jsonObject =new JSONObject(response);
-                            Toast.makeText(getApplicationContext(), "hasta aqui bien", Toast.LENGTH_SHORT).show();
                             String exito = jsonObject.getString("exito");
                             JSONArray jsonArray =jsonObject.getJSONArray("datos");
 
@@ -421,4 +440,41 @@ public class EditaPerfil extends AppCompatActivity {
         }
         return valor;
     }
+
+    // METODOS DE BLOQUEO Y DESBLOQUEO DE CAMPOS
+    public void CamposBloqueados(){
+        tvidusu.setEnabled(false);
+        edtNombre.setEnabled(false);
+        edtPApe.setEnabled(false);
+        edtSApe.setEnabled(false);
+        edtDNI.setEnabled(false);
+        edtFNac.setEnabled(false);
+        edtFli.setEnabled(false);
+        edteMail.setEnabled(false);
+        edtphone.setEnabled(false);
+        edtNusu.setEnabled(false);
+        edtPasword.setEnabled(false);
+        btnSave.setEnabled(false);
+        btnBorra.setEnabled(false);
+        sptipoli.setEnabled(false);
+    }
+
+    public void CamposDesbloqueados(){
+        tvidusu.setEnabled(true);
+        edtNombre.setEnabled(true);
+        edtPApe.setEnabled(true);
+        edtSApe.setEnabled(true);
+        edtDNI.setEnabled(true);
+        edtFNac.setEnabled(true);
+        edtFli.setEnabled(true);
+        edteMail.setEnabled(true);
+        edtphone.setEnabled(true);
+        edtNusu.setEnabled(true);
+        edtPasword.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnBorra.setEnabled(true);
+        sptipoli.setEnabled(true);
+    }
+
+
 }

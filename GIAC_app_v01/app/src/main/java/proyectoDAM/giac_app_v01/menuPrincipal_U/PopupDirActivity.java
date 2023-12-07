@@ -4,6 +4,8 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -14,7 +16,6 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -24,24 +25,27 @@ import java.util.List;
 import java.util.Locale;
 
 import proyectoDAM.giac_app_v01.R;
+import proyectoDAM.giac_app_v01.menuPrincipal_U.Model.LoadingDialogBar;
 
 public class PopupDirActivity extends AppCompatActivity implements LocationListener {
 
     TextView textView_location;
     LocationManager locationManager;
     Button btnmapa;
+    LoadingDialogBar loadingDialogBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup_dir);
-
+        loadingDialogBar = new LoadingDialogBar(this);
         //CREACION DEL POP-UP
         DisplayMetrics medidaventana = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(medidaventana);
         int ancho = medidaventana.widthPixels;
         int alto = medidaventana.heightPixels;
         getWindow().setLayout((int)(ancho * 0.85), (int)(alto*0.5));
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         ////////////////////////////////////////////////////////////////
         textView_location = findViewById(R.id.text_location);
         //Runtime permissions
@@ -54,6 +58,7 @@ public class PopupDirActivity extends AppCompatActivity implements LocationListe
 
         //CREACION DE LA DIRECCION
         getLocation();
+
 
         //CREACION DEL MAPA
         btnmapa = findViewById(R.id.button_location);
@@ -70,6 +75,7 @@ public class PopupDirActivity extends AppCompatActivity implements LocationListe
     private void getLocation() {
 
         try {
+            loadingDialogBar.MuestraDialog("Estamos localizandote,\nespera unos instantes");
             locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,5, PopupDirActivity.this);
 
@@ -80,13 +86,14 @@ public class PopupDirActivity extends AppCompatActivity implements LocationListe
     }
     @Override
     public void onLocationChanged(Location location) {
+        //Toast.makeText(this, ""+location.getLatitude()+","+location.getLongitude(), Toast.LENGTH_SHORT).show();
         try {
             Geocoder geocoder = new Geocoder(PopupDirActivity.this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
             String address = addresses.get(0).getAddressLine(0);
 
             textView_location.setText(address);
-
+            loadingDialogBar.OcultaDialog();
         }catch (Exception e){
             e.printStackTrace();
         }

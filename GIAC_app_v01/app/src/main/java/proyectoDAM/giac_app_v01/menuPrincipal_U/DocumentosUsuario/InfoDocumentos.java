@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class InfoDocumentos extends AppCompatActivity {
 
     VideoView longC, onClick, carpeta;
     ImageView btnyoutube;
+    ScrollView scv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +36,14 @@ public class InfoDocumentos extends AppCompatActivity {
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         //CARGA DE ELEMENTOS DEL LAYOUT
+        scv = findViewById(R.id.scrollView);
         btnyoutube = findViewById(R.id.btnvideo);
         longC = findViewById(R.id.videoLnclick);
         onClick = findViewById(R.id.videoOnclick);
         carpeta = findViewById(R.id.carpeta);
+
+        scv.smoothScrollTo(0,0);
+
         Uri lnclick = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" +
                 getResources().getResourcePackageName(R.raw.lc_) + '/' +
                 getResources().getResourceTypeName(R.raw.lc_) + '/' +
