@@ -30,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,7 +59,7 @@ public class RegistraDatosAcc extends AppCompatActivity implements LocationListe
     private Button btnSave,btnBorra;
     private ImageButton btnlocaliza;
     Bundle bundle = new Bundle();
-    LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
     Accidente accidente;
 
     @Override
@@ -73,7 +74,7 @@ public class RegistraDatosAcc extends AppCompatActivity implements LocationListe
         accidente = new Accidente();
 
         //CARGA DE ELEMENTOS DEL LAYOUT
-        loadingDialogBar =new LoadingDialogBar(this);
+        progressDialog = new PleaseWaitDialog(this);
         tvidNumUsuario  = findViewById(R.id.tvidNumUsuario);
         tvidNumAccidente = findViewById(R.id.tvidNumAccidente);
         edtNombre = findViewById(R.id.edtNombre);
@@ -163,24 +164,32 @@ public class RegistraDatosAcc extends AppCompatActivity implements LocationListe
                     datosOk = false;
                 }
 
-                if (!Validamatricula(edtMatriculaImpUno.getText().toString())){
-                    edtMatriculaImpUno.setError("¡Matricula Incorrecta!");
-                    datosOk = false;
+                if(!edtMatriculaImpUno.getText().toString().equals("")){
+                    if (!Validamatricula(edtMatriculaImpUno.getText().toString())){
+                        edtMatriculaImpUno.setError("¡Matricula Incorrecta!");
+                        datosOk = false;
+                    }
                 }
 
-                if (!Validamatricula(edtMatriculaImpDos.getText().toString())){
-                    edtMatriculaImpDos.setError("¡Matricula Incorrecta!");
-                    datosOk = false;
+                if(!edtMatriculaImpDos.getText().toString().equals("")) {
+                    if (!Validamatricula(edtMatriculaImpDos.getText().toString())) {
+                        edtMatriculaImpDos.setError("¡Matricula Incorrecta!");
+                        datosOk = false;
+                    }
                 }
 
-                if (!ValidaNombreApellContacto(edtNombreImpUno.getText().toString())){
-                    edtNombreImpUno.setError("¡El nombre y apellidos no son correctos!");
-                    datosOk = false;
+                if(!edtNombreImpUno.getText().toString().equals("")) {
+                    if (!ValidaNombreApellContacto(edtNombreImpUno.getText().toString())) {
+                        edtNombreImpUno.setError("¡El nombre y apellidos no son correctos!");
+                        datosOk = false;
+                    }
                 }
 
-                if (!ValidaNombreApellContacto(edtNombreImpDos.getText().toString())){
-                    edtNombreImpDos.setError("¡El nombre y apellidos no son correctos!");
-                    datosOk = false;
+                if(!edtNombreImpDos.getText().toString().equals("")) {
+                    if (!ValidaNombreApellContacto(edtNombreImpDos.getText().toString())) {
+                        edtNombreImpDos.setError("¡El nombre y apellidos no son correctos!");
+                        datosOk = false;
+                    }
                 }
 
                 if(datosOk){
@@ -241,7 +250,11 @@ public class RegistraDatosAcc extends AppCompatActivity implements LocationListe
                 edtLat.setText("");
                 edtLon.setText("");
                 getLocation();
-                loadingDialogBar.MuestraDialog("Calculando ubicación");
+                //ACTIVAMOS LOADINGGIALOGBAR
+                progressDialog.setTitle("Espere por favor");
+                progressDialog.setMessage("Calculando ubicación...");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
             }
         });
 
@@ -270,7 +283,9 @@ public class RegistraDatosAcc extends AppCompatActivity implements LocationListe
             String address = addresses.get(0).getAddressLine(0);
             Double latitude = location.getLatitude();
             Double longitude = location.getLongitude();
-            loadingDialogBar.OcultaDialog();
+
+            //DESACTIVAMOS LOADINGGIALOGBAR
+            progressDialog.dismiss();
 
             edtDir.setText(address);
             edtLat.setText(String.valueOf(latitude));

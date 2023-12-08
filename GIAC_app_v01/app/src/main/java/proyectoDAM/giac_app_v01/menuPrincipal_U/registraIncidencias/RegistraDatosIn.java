@@ -29,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,14 +55,14 @@ public class RegistraDatosIn extends AppCompatActivity implements LocationListen
     private Button btnSave,btnBorra;
     private ImageButton btnlocaliza;
     Bundle bundle = new Bundle();
-    LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registra_datosin);
         startActivity(new Intent(RegistraDatosIn.this,InfoDatos.class));
-        loadingDialogBar =new LoadingDialogBar(this);
+        progressDialog = new PleaseWaitDialog(this);
 
         //CARGA DE ELEMENTOS DEL LAYOUT
         tvidusu = findViewById(R.id.tvidusu);
@@ -191,8 +192,12 @@ public class RegistraDatosIn extends AppCompatActivity implements LocationListen
                 edtDir.setText("");
                 edtLat.setText("");
                 edtLon.setText("");
+                //ACTIVAMOS LOADINGGIALOGBAR
+                progressDialog.setTitle("Espere por favor");
+                progressDialog.setMessage("Calculando ubicación...");
+                progressDialog.setCancelable(true);
+                progressDialog.show();
                 getLocation();
-                loadingDialogBar.MuestraDialog("Calculando ubicación");
             }
         });
 
@@ -204,7 +209,7 @@ public class RegistraDatosIn extends AppCompatActivity implements LocationListen
     private void getLocation() {
         try {
             locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,5, RegistraDatosIn.this);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,10000,10, RegistraDatosIn.this);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -213,7 +218,6 @@ public class RegistraDatosIn extends AppCompatActivity implements LocationListen
     }
     @Override
     public void onLocationChanged(Location location) {
-        loadingDialogBar.OcultaDialog();
         try {
             Geocoder geocoder = new Geocoder(RegistraDatosIn.this, Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
@@ -225,7 +229,11 @@ public class RegistraDatosIn extends AppCompatActivity implements LocationListen
             edtDir.setText(address);
             edtLat.setText(String.valueOf(latitude));
             edtLon.setText(String.valueOf(longitude));
-            Toast.makeText(getApplicationContext(), "Ubicacion localizada", Toast.LENGTH_LONG).show();
+
+            //DESACTIVAMOS LOADINGGIALOGBAR
+            progressDialog.dismiss();
+
+            //Toast.makeText(getApplicationContext(), "Ubicacion localizada", Toast.LENGTH_LONG).show();
         }catch (Exception e){
             e.printStackTrace();
 

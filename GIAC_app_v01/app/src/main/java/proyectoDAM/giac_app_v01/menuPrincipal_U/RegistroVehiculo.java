@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -124,10 +125,7 @@ public class RegistroVehiculo extends AppCompatActivity {
                 if(datosOk){
                     // Conexion con WebHost mediante metodo insertaUsuarios
                     insertaVehiculos("https://appgiac.000webhostapp.com/insertar_vehiculo.php");
-                    Toast.makeText(getApplicationContext(), "Algo va BIEN", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Algo va mal", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Algo va BIEN", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -253,8 +251,11 @@ public class RegistroVehiculo extends AppCompatActivity {
     //  Metodo que Volley que inserta Datos en la BBDD
     private void insertaVehiculos(String url){
 
-        ProgressDialog progressDialog =new ProgressDialog(this);
-        progressDialog.setMessage("Insertando Datos");
+        PleaseWaitDialog progressDialog =new PleaseWaitDialog(this);
+        //ACTIVAMOS LOADINGGIALOGBAR
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("        progressDialog.setMessage(\"Insertando Datos\");\n...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

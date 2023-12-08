@@ -111,7 +111,7 @@ public class EditaVehiculo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Boolean datosOk = Boolean.TRUE;
-                Toast.makeText(getApplicationContext(), edtColor.getText().toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), edtColor.getText().toString(), Toast.LENGTH_SHORT).show();
 
                 if(!ValidaMarcaModeloColorMotor(edtMarca.getText().toString())){
                     edtMarca.setError("¡Formato Incorrecto!");
@@ -166,8 +166,8 @@ public class EditaVehiculo extends AppCompatActivity {
         btnEliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), idCliente, Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(), edTMatricula.getText().toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), idCliente, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), edTMatricula.getText().toString(), Toast.LENGTH_SHORT).show();
                 EliminaVehiculo("https://appgiac.000webhostapp.com/eliminar_vehiculo.php?id_Cliente="+idCliente+"&Matricula="+edTMatricula.getText().toString());
                 //AlertDialog dialog = ConfirmaEliminacion();
                 //dialog.show();
@@ -301,6 +301,7 @@ public class EditaVehiculo extends AppCompatActivity {
         String matricula = edTMatricula.getText().toString().trim();
         String NumBastidor = edtNum_Bastidor.getText().toString().trim();
 
+        //ACTIVAMOS LOADINGGIALOGBAR
         PleaseWaitDialog progressDialog = new PleaseWaitDialog(this);
         progressDialog.setTitle("Espere por favor");
         progressDialog.setMessage("Actualizando Vehiculo");
@@ -312,12 +313,14 @@ public class EditaVehiculo extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         Toast.makeText(getApplicationContext(), "actualizo correctamente", Toast.LENGTH_SHORT).show();
+                        //DESACTIVAMOS LOADINGGIALOGBAR
                         progressDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
+                //DESACTIVAMOS LOADINGGIALOGBAR
                 progressDialog.dismiss();
             }
         }
@@ -345,19 +348,25 @@ public class EditaVehiculo extends AppCompatActivity {
 
     //METODO QUE ELIMINA EL VEHICULO SELECCIONADO DE LA BBDD
     private void EliminaVehiculo(String urleliminar){
-        ProgressDialog progressDialog =new ProgressDialog(this);
+        //ACTIVAMOS LOADINGGIALOGBAR
+        PleaseWaitDialog progressDialog = new PleaseWaitDialog(this);
+        progressDialog.setTitle("Espere por favor");
         progressDialog.setMessage("Eliminando Vehiculo");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         StringRequest request =new StringRequest(Request.Method.POST, urleliminar,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (response.equalsIgnoreCase("datos eliminados")) {
+                        if (response.equalsIgnoreCase("Datos eliminados")) {
+                            //DESACTIVAMOS LOADINGGIALOGBAR
                             progressDialog.dismiss();
                         } else {
                             Toast.makeText(EditaVehiculo.this, "Error al eliminar", Toast.LENGTH_SHORT).show();
+                            //DESACTIVAMOS LOADINGGIALOGBAR
                             progressDialog.dismiss();
                         }
+                        finish();
                     }
                 }, new Response.ErrorListener() {
             @Override

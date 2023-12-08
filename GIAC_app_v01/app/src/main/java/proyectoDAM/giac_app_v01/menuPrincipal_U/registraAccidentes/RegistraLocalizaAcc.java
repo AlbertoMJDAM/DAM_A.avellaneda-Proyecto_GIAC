@@ -34,6 +34,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,7 +56,7 @@ public class RegistraLocalizaAcc extends AppCompatActivity implements LocationLi
     RequestQueue requestQueue;
     private Accidente accidente;
     private ImageButton btnlocaliza;
-    LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
     Bundle bundle = new Bundle();
     private String idUsuario;
 
@@ -68,8 +69,7 @@ public class RegistraLocalizaAcc extends AppCompatActivity implements LocationLi
         PermisoLocalizacion();
         accidente = new Accidente();
         btnlocaliza = findViewById(R.id.btnlob);
-        loadingDialogBar =new LoadingDialogBar(this);
-        //loadingDialogBar.MuestraDialog("Buscando datos de usuario");
+        progressDialog = new PleaseWaitDialog(this);
 
         //CARGAMOS EL SIGUIENTE NUMERO DE INCIDENCIA
         maxIDAccidente("https://appgiac.000webhostapp.com/mostrar_max_accidente.php");
@@ -86,7 +86,12 @@ public class RegistraLocalizaAcc extends AppCompatActivity implements LocationLi
         accidente.setVehiculoImplicadoDos("Pte");
         accidente.setDescripcion("Pendiente");
         accidente.setfSuceso("0000-00-00");
-        loadingDialogBar.MuestraDialog("Calculando ubicación");
+
+        //ACTIVAMOS LOADINGGIALOGBAR
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Calculando ubicación...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         getLocation();
 
         // Insertamos la localizacion en la BBDD
@@ -162,7 +167,9 @@ public class RegistraLocalizaAcc extends AppCompatActivity implements LocationLi
             accidente.setUbicacion(address);
             accidente.setLatSuceso(String.valueOf(latitude));
             accidente.setLonSuceso(String.valueOf(longitude));
-            loadingDialogBar.OcultaDialog();
+
+            //DESACTIVAMOS LOADINGGIALOGBAR
+            progressDialog.dismiss();
             //Toast.makeText(getApplicationContext(), "Ubicacion localizada", Toast.LENGTH_LONG).show();
 
         }catch (Exception e){

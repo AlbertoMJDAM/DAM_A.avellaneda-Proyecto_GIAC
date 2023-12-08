@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.tashila.pleasewait.PleaseWaitDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +40,7 @@ public class MenuPartes extends AppCompatActivity {
     private static final String URL = "https://appgiac.000webhostapp.com/mostrar_partes.php?Usuario=";
     // Creamos objeto Listview y un arraylist de la clase creada Alojamiento. Con el que tomaremos los valores
     // para el adaptador.
-    LoadingDialogBar loadingDialogBar;
+    private PleaseWaitDialog progressDialog;
     RequestQueue requestQueue;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123; // Damos valor al permiso.
     ListView listaDatos;
@@ -54,9 +55,13 @@ public class MenuPartes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menupartes);
 
-        ProgressDialog progressDialog =new ProgressDialog(this);
-        progressDialog.setMessage("Cargando tus partes notificados");
+        //ACTIVAMOS LOADINGGIALOGBAR
+        progressDialog = new PleaseWaitDialog(this);
+        progressDialog.setTitle("Espere por favor");
+        progressDialog.setMessage("Cargando tus partes notificados...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
+
 
         ////////////
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -74,7 +79,6 @@ public class MenuPartes extends AppCompatActivity {
         listaDatos=(ListView)findViewById(R.id.lstDatos);
         TextView tv1=(TextView)findViewById(R.id.tv1);
 
-        loadingDialogBar = new LoadingDialogBar(this);
 
 
         //PENDIENTE DE LLEVAR AL REAL
@@ -176,7 +180,7 @@ public class MenuPartes extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //loadingDialogBar.OcultaDialog();
+                //DESACTIVAMOS LOADINGGIALOGBAR
                 progressDialog.dismiss();
             }
         },2500);

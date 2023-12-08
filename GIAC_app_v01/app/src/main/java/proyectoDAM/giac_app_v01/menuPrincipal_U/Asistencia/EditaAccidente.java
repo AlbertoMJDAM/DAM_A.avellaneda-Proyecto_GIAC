@@ -283,14 +283,18 @@ public class EditaAccidente extends AppCompatActivity {
                     datosOk = false;
                 }
 
-                if (!Validamatricula(edtMatriculaImpUno.getText().toString())){
-                    edtMatriculaImpUno.setError("¡Matricula Incorrecta!");
-                    datosOk = false;
+                if(!edtMatriculaImpUno.getText().toString().equals("")) {
+                    if (!Validamatricula(edtMatriculaImpUno.getText().toString())) {
+                        edtMatriculaImpUno.setError("¡Matricula Incorrecta!");
+                        datosOk = false;
+                    }
                 }
 
-                if (!Validamatricula(edtMatriculaImpDos.getText().toString())){
-                    edtMatriculaImpDos.setError("¡Matricula Incorrecta!");
-                    datosOk = false;
+                if(!edtMatriculaImpDos.getText().toString().equals("")){
+                    if (!Validamatricula(edtMatriculaImpDos.getText().toString())){
+                        edtMatriculaImpDos.setError("¡Matricula Incorrecta!");
+                        datosOk = false;
+                    }
                 }
 
                 if(datosOk){

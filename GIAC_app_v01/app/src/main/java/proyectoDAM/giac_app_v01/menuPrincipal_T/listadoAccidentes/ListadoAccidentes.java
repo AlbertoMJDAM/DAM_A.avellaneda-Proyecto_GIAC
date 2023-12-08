@@ -142,10 +142,11 @@ public class ListadoAccidentes extends AppCompatActivity {
         String url = "https://appgiac.000webhostapp.com/asignar_accidentes.php?Empleado="+ idTrabajador;
 
         //ACTIVAMOS LOADINGGIALOGBAR
-        progressDialog.setTitle("Espere por favor");
-        progressDialog.setMessage("Actualizando...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        PleaseWaitDialog progressDialogAsig = new PleaseWaitDialog(this);
+        progressDialogAsig.setTitle("Espere por favor");
+        progressDialogAsig.setMessage("Actualizando...");
+        progressDialogAsig.setCancelable(false);
+        progressDialogAsig.show();
 
         for(int x=0; x<listaAccidentesElegidos.size(); x++){
             int finalX = x;
@@ -153,19 +154,19 @@ public class ListadoAccidentes extends AppCompatActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            if(listaAccidentesElegidos.size()>0){
+                            if(listaAccidentesElegidos.size()==0){
                                 Toast.makeText(getApplicationContext(), "1 Accidente asignado", Toast.LENGTH_SHORT).show();
                             }else{
                                 Toast.makeText(getApplicationContext(), listaAccidentesElegidos.size()+" Accidentes asignados", Toast.LENGTH_SHORT).show();
                             }
-                            progressDialog.dismiss();
+                            progressDialogAsig.dismiss();
                             finish();
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
+                    progressDialogAsig.dismiss();
                 }
             }
             ){
