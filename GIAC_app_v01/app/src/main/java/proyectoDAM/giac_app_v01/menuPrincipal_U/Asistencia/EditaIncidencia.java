@@ -683,6 +683,17 @@ public class EditaIncidencia extends AppCompatActivity {
     /////////////////////////////////// METODOS GENERAR PDF/////////////////////////////////////////
     ///////////////////////// METODO ENCARGADO DE CREAR EL ARCHIVO PDF. ////////////////////////////
     private void createPdf() throws FileNotFoundException {
+        // Primero comprobamos si esta creada la carpeta contenedora de los pdf.
+        // Si no estuviera se crea.
+        File directorio = new File(getExternalStorageDirectory() + "/giac/");
+        if (!directorio.exists()) {
+            if (directorio.mkdirs()) {
+                Toast.makeText(getApplicationContext(), "Directorio creado", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Error al crear directorio", Toast.LENGTH_SHORT).show();
+            }
+        }
+        //A continuacion creamos el fichero pdf del parte.
         File file = new File(getExternalStorageDirectory() + "/giac/", "Incidencia_" + idIncidencia + "_v1" + ".pdf");
         while (file.exists()){
             String existente = file.getName();

@@ -459,6 +459,17 @@ public class RegistraDesAcc extends AppCompatActivity {
 
     // METODO ENCARGADO DE CREAR EL ARCHIVO PDF.
     private void createPdf() throws FileNotFoundException {
+        // Primero comprobamos si esta creada la carpeta contenedora de los pdf.
+        // Si no estuviera se crea.
+        File directorio = new File(getExternalStorageDirectory() + "/giac/");
+        if (!directorio.exists()) {
+            if (directorio.mkdirs()) {
+                Toast.makeText(getApplicationContext(), "Directorio creado", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Error al crear directorio", Toast.LENGTH_SHORT).show();
+            }
+        }
+        //A continuacion creamos el fichero pdf del parte.
         File file = new File(getFilesDir() + "/giac/", "Accidente_" + accidente.getIdAccidente() + "_v1" + ".pdf");
         while (file.exists()){
             String existente = file.getName();
@@ -467,6 +478,7 @@ public class RegistraDesAcc extends AppCompatActivity {
             version++;
             File file2 = new File(getFilesDir() + "/giac/", "Accidente_" + accidente.getIdAccidente() + "_v" + String.valueOf(version) + ".pdf");
             file = file2;
+
         }
 
         //Generamos archivo pdf
