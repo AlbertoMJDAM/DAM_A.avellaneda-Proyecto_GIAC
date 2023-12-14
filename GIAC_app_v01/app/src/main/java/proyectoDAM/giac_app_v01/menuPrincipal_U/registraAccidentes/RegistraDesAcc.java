@@ -379,7 +379,7 @@ public class RegistraDesAcc extends AppCompatActivity {
     // METODO ENCARGADO DE INSERTAR INCIDENCIA EN BBDD.
 
     private void InsertaAccidente(String url){
-        Toast.makeText(getApplicationContext(), accidente.toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), accidente.toString(), Toast.LENGTH_SHORT).show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -470,7 +470,7 @@ public class RegistraDesAcc extends AppCompatActivity {
             }
         }
         //A continuacion creamos el fichero pdf del parte.
-        File file = new File(getFilesDir() + "/giac/", "Accidente_" + accidente.getIdAccidente() + "_v1" + ".pdf");
+        File file = new File(getExternalStorageDirectory() + "/giac/", "Accidente_" + accidente.getIdAccidente() + "_v1" + ".pdf");
         while (file.exists()){
             String existente = file.getName();
             String [] nombre = existente.split("_v");

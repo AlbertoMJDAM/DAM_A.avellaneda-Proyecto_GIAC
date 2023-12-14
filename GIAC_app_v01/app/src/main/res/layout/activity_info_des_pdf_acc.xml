@@ -88,21 +88,6 @@
                     android:background="#cecece"
                     android:src="@drawable/fotosapp"/>
 
-                <TextView
-                    android:id="@+id/tvexplicacion2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="5dp"
-                    android:fontFamily="@font/times"
-                    android:text="acc_infoDescripcion3"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:textColor="#CDCFD1"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

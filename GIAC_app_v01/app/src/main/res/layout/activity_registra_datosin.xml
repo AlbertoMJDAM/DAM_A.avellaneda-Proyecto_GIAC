@@ -69,7 +69,7 @@
 
                     <TextView
                         android:id="@+id/tvidusu"
-                        android:layout_width="wrap_content"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/times"
                         android:text="0000 "
@@ -91,10 +91,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/times"
+                        android:layout_marginStart="5dp"
                         android:text="Id Incidencia: "
                         android:textColor="#306cb0"
                         android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvnuminci"

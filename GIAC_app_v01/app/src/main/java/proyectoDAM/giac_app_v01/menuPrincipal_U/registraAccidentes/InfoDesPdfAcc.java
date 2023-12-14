@@ -36,7 +36,7 @@ public class InfoDesPdfAcc extends AppCompatActivity {
         btnyoutube.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uriUrl = Uri.parse("https://www.youtube.com/channel/UCYBjK1y_U8Ge020g4FVWiuQ");
+                Uri uriUrl = Uri.parse("https://youtu.be/PmVxbPbNvAw");
                 Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
                 startActivity(launchBrowser);
             }

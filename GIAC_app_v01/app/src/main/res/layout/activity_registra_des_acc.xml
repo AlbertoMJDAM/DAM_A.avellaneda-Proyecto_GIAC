@@ -14,14 +14,15 @@
         android:id="@+id/tvtit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/times"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/times"
         android:text="REGISTRO DE ACCIDENTE"
+        android:textAlignment="center"
         android:textColor="#306cb0"
         android:textSize="22sp"
         android:textStyle="bold"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,7 +71,7 @@
 
                     <TextView
                         android:id="@+id/tvidNumUsuario"
-                        android:layout_width="wrap_content"
+                        android:layout_width="45dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/times"
                         android:text="0000"
@@ -98,7 +99,7 @@
 
                     <TextView
                         android:id="@+id/tvidNumAccidente"
-                        android:layout_width="wrap_content"
+                        android:layout_width="45dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/times"
                         android:text="0000"

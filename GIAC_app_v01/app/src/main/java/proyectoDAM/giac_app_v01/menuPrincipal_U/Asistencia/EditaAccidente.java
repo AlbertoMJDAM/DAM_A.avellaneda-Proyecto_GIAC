@@ -283,19 +283,6 @@ public class EditaAccidente extends AppCompatActivity {
                     datosOk = false;
                 }
 
-                if(!edtMatriculaImpUno.getText().toString().equals("")) {
-                    if (!Validamatricula(edtMatriculaImpUno.getText().toString())) {
-                        edtMatriculaImpUno.setError("¡Matricula Incorrecta!");
-                        datosOk = false;
-                    }
-                }
-
-                if(!edtMatriculaImpDos.getText().toString().equals("")){
-                    if (!Validamatricula(edtMatriculaImpDos.getText().toString())){
-                        edtMatriculaImpDos.setError("¡Matricula Incorrecta!");
-                        datosOk = false;
-                    }
-                }
 
                 if(datosOk){
                     EditaAccidente("https://appgiac.000webhostapp.com/actualizar_accidente.php?Id_Accidente="+ idAccidente);
@@ -531,13 +518,13 @@ public class EditaAccidente extends AppCompatActivity {
                                         edtMat.setText(object.getString("Vehiculo_Usuario"));
                                     }
                                     if (object.getString("V_Implicado_Uno").equalsIgnoreCase("Pte")){
-                                        edtMatriculaImpUno.setText("Pendiente de asignar");
+                                        edtMatriculaImpUno.setText("Pendiente de asignar / No Aplica");
                                     }
                                     else{
                                         edtMatriculaImpUno.setText(object.getString("V_Implicado_Uno"));
                                     }
                                     if (object.getString("V_Implicado_Dos").equalsIgnoreCase("Pte")){
-                                        edtMatriculaImpDos.setText("Pendiente de asignar");
+                                        edtMatriculaImpDos.setText("Pendiente de asignar / No Aplica");
                                     }
                                     else{
                                         edtMatriculaImpDos.setText(object.getString("V_Implicado_Dos"));

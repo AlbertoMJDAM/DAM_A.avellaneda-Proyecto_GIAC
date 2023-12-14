@@ -82,9 +82,9 @@ public class MenuPartes extends AppCompatActivity {
 
 
         //PENDIENTE DE LLEVAR AL REAL
-        //bundle = getIntent().getExtras();
-        //idUsuario =bundle.getString("idusuario");
-        idUsuario = "1002";
+        bundle = getIntent().getExtras();
+        idUsuario =bundle.getString("idusuario");
+        //idUsuario = "1002";
         lista = new ArrayList<Partes>();
 
         // Instanciamos objeto RequestQueue
